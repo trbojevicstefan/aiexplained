@@ -9,7 +9,7 @@ export const courseModules: CourseModule[] = [
     {id:"ai-vs-software",title:"AI vs normal software",shortTitle:"AI vs software",slug:"/lessons/ai-vs-software",status:"available",estimatedMinutes:28},
     {id:"ai-ml-dl",title:"AI vs Machine Learning vs Deep Learning",shortTitle:"AI / ML / DL",slug:"/lessons/ai-ml-dl",status:"available",estimatedMinutes:30},
     {id:"generative-vs-predictive",title:"Generative AI vs predictive AI",shortTitle:"Generative vs predictive",slug:"/lessons/generative-vs-predictive",status:"available",estimatedMinutes:30},
-    {id:"symbolic-vs-neural",title:"Symbolic AI vs neural AI",shortTitle:"Symbolic vs neural",slug:"/lessons/symbolic-vs-neural",status:"planned",estimatedMinutes:20},
+    {id:"symbolic-vs-neural",title:"Symbolic AI vs neural AI",shortTitle:"Symbolic vs neural",slug:"/lessons/symbolic-vs-neural",status:"available",estimatedMinutes:32},
     {id:"training-vs-inference",title:"Training vs inference",shortTitle:"Training vs inference",slug:"/lessons/training-vs-inference",status:"planned",estimatedMinutes:20},
     {id:"models-algorithms-data",title:"Models, algorithms and datasets",shortTitle:"Model / algorithm / data",slug:"/lessons/models-algorithms-data",status:"planned",estimatedMinutes:22},
     {id:"parameters",title:"Parameters vs hyperparameters",shortTitle:"Parameters",slug:"/lessons/parameters",status:"planned",estimatedMinutes:18},
@@ -34,13 +34,16 @@ export const aiMlDlSections: readonly LessonSectionDefinition[] = [
   {id:"nested-world",title:"Walk inside the hierarchy",taskId:"enter-zones"},{id:"sort-examples",title:"Put examples on the right level",taskId:"sort-spectrum"},{id:"symbolic-ai",title:"AI without machine learning",taskId:"solve-symbolic"},{id:"classic-ml",title:"Machine learning without deep learning",taskId:"nearest-neighbor"},{id:"deep-learning",title:"Why deep is deep",taskId:"layer-elevator"},{id:"tradeoffs",title:"Compare the three approaches",taskId:"compare-approaches"},{id:"build-hierarchy",title:"Build the nesting yourself",taskId:"hierarchy-build"},{id:"myths",title:"Destroy the common myths",taskId:"myth-flips"},{id:"explain-hierarchy",title:"Explain AI / ML / DL",taskId:"explain-hierarchy"}
 ];
 export const generativePredictiveSections: readonly LessonSectionDefinition[] = [
-  {id:"two-machines",title:"One input, two jobs",taskId:"run-two-machines"},
-  {id:"output-shapes",title:"What shape is the answer?",taskId:"sort-output-shapes"},
-  {id:"token-factory",title:"Generate by predicting the next piece",taskId:"token-factory"},
-  {id:"prediction-lab",title:"Build a predictive score",taskId:"predictive-score"},
-  {id:"generation-lab",title:"Control a generator",taskId:"generation-controls"},
-  {id:"same-model",title:"One model can serve different product jobs",taskId:"same-model-modes"},
-  {id:"choose-pattern",title:"Generative, predictive or hybrid?",taskId:"choose-product-pattern"},
-  {id:"failure-modes",title:"How the failures differ",taskId:"compare-failures"},
-  {id:"explain-gen-pred",title:"Explain it back",taskId:"explain-gen-pred"}
+  {id:"two-machines",title:"One input, two jobs",taskId:"run-two-machines"},{id:"output-shapes",title:"What shape is the answer?",taskId:"sort-output-shapes"},{id:"token-factory",title:"Generate by predicting the next piece",taskId:"token-factory"},{id:"prediction-lab",title:"Build a predictive score",taskId:"predictive-score"},{id:"generation-lab",title:"Control a generator",taskId:"generation-controls"},{id:"same-model",title:"One model can serve different product jobs",taskId:"same-model-modes"},{id:"choose-pattern",title:"Generative, predictive or hybrid?",taskId:"choose-product-pattern"},{id:"failure-modes",title:"How the failures differ",taskId:"compare-failures"},{id:"explain-gen-pred",title:"Explain it back",taskId:"explain-gen-pred"}
+];
+export const symbolicNeuralSections: readonly LessonSectionDefinition[] = [
+  {id:"open-two-minds",title:"Open two kinds of intelligence",taskId:"inspect-two-minds"},
+  {id:"knowledge-graph",title:"Reason through explicit symbols",taskId:"prove-symbolic-chain"},
+  {id:"neural-learner",title:"Learn a pattern from examples",taskId:"train-neural-pattern"},
+  {id:"break-symbolic",title:"Break the rule world",taskId:"repair-symbolic"},
+  {id:"break-neural",title:"Poison the examples",taskId:"repair-neural"},
+  {id:"inside-decision",title:"Inspect how decisions differ",taskId:"inspect-decisions"},
+  {id:"tradeoff-console",title:"Compare strengths and costs",taskId:"compare-symbolic-neural"},
+  {id:"hybrid-brain",title:"Build a neuro-symbolic pipeline",taskId:"build-hybrid-brain"},
+  {id:"explain-symbolic-neural",title:"Explain it back",taskId:"explain-symbolic-neural"}
 ];
