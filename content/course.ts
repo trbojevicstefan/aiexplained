@@ -10,7 +10,7 @@ export const courseModules: CourseModule[] = [
     {id:"ai-ml-dl",title:"AI vs Machine Learning vs Deep Learning",shortTitle:"AI / ML / DL",slug:"/lessons/ai-ml-dl",status:"available",estimatedMinutes:30},
     {id:"generative-vs-predictive",title:"Generative AI vs predictive AI",shortTitle:"Generative vs predictive",slug:"/lessons/generative-vs-predictive",status:"available",estimatedMinutes:30},
     {id:"symbolic-vs-neural",title:"Symbolic AI vs neural AI",shortTitle:"Symbolic vs neural",slug:"/lessons/symbolic-vs-neural",status:"available",estimatedMinutes:32},
-    {id:"training-vs-inference",title:"Training vs inference",shortTitle:"Training vs inference",slug:"/lessons/training-vs-inference",status:"planned",estimatedMinutes:20},
+    {id:"training-vs-inference",title:"Training vs inference",shortTitle:"Training vs inference",slug:"/lessons/training-vs-inference",status:"available",estimatedMinutes:34},
     {id:"models-algorithms-data",title:"Models, algorithms and datasets",shortTitle:"Model / algorithm / data",slug:"/lessons/models-algorithms-data",status:"planned",estimatedMinutes:22},
     {id:"parameters",title:"Parameters vs hyperparameters",shortTitle:"Parameters",slug:"/lessons/parameters",status:"planned",estimatedMinutes:18},
     {id:"features-labels",title:"Features and labels",shortTitle:"Features & labels",slug:"/lessons/features-labels",status:"planned",estimatedMinutes:16},
@@ -37,13 +37,16 @@ export const generativePredictiveSections: readonly LessonSectionDefinition[] = 
   {id:"two-machines",title:"One input, two jobs",taskId:"run-two-machines"},{id:"output-shapes",title:"What shape is the answer?",taskId:"sort-output-shapes"},{id:"token-factory",title:"Generate by predicting the next piece",taskId:"token-factory"},{id:"prediction-lab",title:"Build a predictive score",taskId:"predictive-score"},{id:"generation-lab",title:"Control a generator",taskId:"generation-controls"},{id:"same-model",title:"One model can serve different product jobs",taskId:"same-model-modes"},{id:"choose-pattern",title:"Generative, predictive or hybrid?",taskId:"choose-product-pattern"},{id:"failure-modes",title:"How the failures differ",taskId:"compare-failures"},{id:"explain-gen-pred",title:"Explain it back",taskId:"explain-gen-pred"}
 ];
 export const symbolicNeuralSections: readonly LessonSectionDefinition[] = [
-  {id:"open-two-minds",title:"Open two kinds of intelligence",taskId:"inspect-two-minds"},
-  {id:"knowledge-graph",title:"Reason through explicit symbols",taskId:"prove-symbolic-chain"},
-  {id:"neural-learner",title:"Learn a pattern from examples",taskId:"train-neural-pattern"},
-  {id:"break-symbolic",title:"Break the rule world",taskId:"repair-symbolic"},
-  {id:"break-neural",title:"Poison the examples",taskId:"repair-neural"},
-  {id:"inside-decision",title:"Inspect how decisions differ",taskId:"inspect-decisions"},
-  {id:"tradeoff-console",title:"Compare strengths and costs",taskId:"compare-symbolic-neural"},
-  {id:"hybrid-brain",title:"Build a neuro-symbolic pipeline",taskId:"build-hybrid-brain"},
-  {id:"explain-symbolic-neural",title:"Explain it back",taskId:"explain-symbolic-neural"}
+  {id:"open-two-minds",title:"Open two kinds of intelligence",taskId:"inspect-two-minds"},{id:"knowledge-graph",title:"Reason through explicit symbols",taskId:"prove-symbolic-chain"},{id:"neural-learner",title:"Learn a pattern from examples",taskId:"train-neural-pattern"},{id:"break-symbolic",title:"Break the rule world",taskId:"repair-symbolic"},{id:"break-neural",title:"Poison the examples",taskId:"repair-neural"},{id:"inside-decision",title:"Inspect how decisions differ",taskId:"inspect-decisions"},{id:"tradeoff-console",title:"Compare strengths and costs",taskId:"compare-symbolic-neural"},{id:"hybrid-brain",title:"Build a neuro-symbolic pipeline",taskId:"build-hybrid-brain"},{id:"explain-symbolic-neural",title:"Explain it back",taskId:"explain-symbolic-neural"}
+];
+export const trainingInferenceSections: readonly LessonSectionDefinition[] = [
+  {id:"two-floors",title:"Training floor vs inference floor",taskId:"inspect-factory-floors"},
+  {id:"training-line",title:"Run the training loop",taskId:"run-training-line"},
+  {id:"optimizer-hill",title:"Walk downhill on loss",taskId:"optimize-weight"},
+  {id:"checkpoint",title:"Freeze a checkpoint",taskId:"freeze-checkpoint"},
+  {id:"inference-line",title:"Serve new requests",taskId:"serve-inference"},
+  {id:"accidental-learning",title:"Catch accidental weight updates",taskId:"stop-accidental-learning"},
+  {id:"compute-console",title:"Compare compute and latency",taskId:"compare-compute"},
+  {id:"lifecycle",title:"Build the model lifecycle",taskId:"build-lifecycle"},
+  {id:"explain-train-infer",title:"Explain it back",taskId:"explain-train-infer"}
 ];
