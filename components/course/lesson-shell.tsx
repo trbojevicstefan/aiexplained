@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import { CSSProperties, ReactNode, useEffect, useMemo, useState } from "react";
 import { courseModules } from "@/content/course-registry";
 import { AiMascot, mascotVariants } from "@/components/mascots/ai-mascot";
 import {
@@ -29,7 +29,9 @@ export type LessonProgressApi = {
 };
 type Props = { lessonId: string; lessonTitle: string; sections: readonly LessonSectionDefinition[]; children: (api: LessonProgressApi) => ReactNode; };
 
-function hashLessonId(value: string) { return [...value].reduce((total, character) => ((total * 31) + character.charCodeAt(0)) >>> 0, 7); }
+function hashLessonId(value: string) {
+  return [...value].reduce((total, character) => ((total * 31) + character.charCodeAt(0)) >>> 0, 7);
+}
 
 export function LessonShell({ lessonId, lessonTitle, sections, children }: Props) {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -75,20 +77,40 @@ export function LessonShell({ lessonId, lessonTitle, sections, children }: Props
   const activeModule = courseModules[moduleIndex] ?? courseModules[0];
   const guideVariant = mascotVariants[hashLessonId(lessonId) % mascotVariants.length];
   const guideMood = lesson.quizPassed || percent >= 90 ? "excited" : tasksDone > 0 ? "happy" : "thinking";
+  const headerStyle = { "--module-accent": activeModule?.color ?? "#5ab8ff" } as CSSProperties;
 
   return <div className="lesson-app-shell">
-    <header className="lesson-topbar">
-      <button className="drawer-button tactile" onClick={() => setDrawerOpen(true)} aria-label="Open lessons drawer"><span className="drawer-lines"><i /><i /><i /></span><span>Lessons</span></button>
-      <Link className="brand-mark" href="/"><span className="brand-dot" /> AI EXPLAINED</Link>
-      <div aria-hidden="true" style={{ display: "grid", placeItems: "center", width: 52, height: 46, marginInline: 4 }}><AiMascot variant={guideVariant} mood={guideMood} accent={activeModule.color} size={46} /></div>
-      <div className="topbar-progress" aria-label={`Lesson progress ${percent}%`}><div className="topbar-progress-copy"><strong>{percent}%</strong><span>lesson progress</span></div><div className="progress-pill"><motion.i animate={{ width: `${percent}%` }} /></div></div>
+    <header className="lesson-topbar" style={headerStyle}>
+      <button className="drawer-button tactile" onClick={() => setDrawerOpen(true)} aria-label="Open lessons drawer">
+        <span className="drawer-lines"><i /><i /><i /></span><span className="drawer-button-label">Lessons</span>
+      </button>
+
+      <div className="lesson-topbar-center">
+        <Link className="brand-mark" href="/"><span className="brand-dot" /><span className="brand-copy">AI EXPLAINED</span></Link>
+        <div className="topbar-guide" aria-hidden="true">
+          <AiMascot variant="bot" mood={guideMood} accent={activeModule?.color} size={48} />
+        </div>
+        <div className="topbar-lesson-identity">
+          <small>{activeModule?.eyebrow ?? "LEARNING LAB"}</small>
+          <strong>{lessonTitle}</strong>
+        </div>
+      </div>
+
+      <div className="topbar-progress" aria-label={`Lesson progress ${percent}%`}>
+        <div className="topbar-progress-copy">
+          <strong>{percent}%</strong>
+          <span>{tasksDone}/{requiredTasks.length} activities</span>
+        </div>
+        <div className="progress-pill" aria-hidden="true"><motion.i initial={false} animate={{ width: `${percent}%` }} transition={{ type: "spring", stiffness: 190, damping: 25 }} /></div>
+        <span className={`topbar-complete-dot ${lesson.quizPassed ? "is-complete" : ""}`} title={lesson.quizPassed ? "Quiz passed" : "Quiz not passed yet"}>✓</span>
+      </div>
     </header>
 
     <AnimatePresence>{drawerOpen && <>
       <motion.button className="drawer-backdrop" aria-label="Close drawer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }} onClick={() => setDrawerOpen(false)} />
       <motion.aside className="lesson-drawer" initial={{ x: -560, rotate: -1 }} animate={{ x: 0, rotate: 0 }} exit={{ x: -580, rotate: -1 }} transition={{ type: "spring", stiffness: 320, damping: 31 }}>
         <div className="drawer-head"><div><span className="eyebrow">YOUR LEARNING MAP</span><h2>Jump anywhere.</h2><p>Your progress stays with you.</p></div><button className="icon-close tactile" onClick={() => setDrawerOpen(false)} aria-label="Close lessons drawer">×</button></div>
-        <div className="drawer-meter-card" style={{ gap: 14 }}><AiMascot variant={guideVariant} mood={guideMood} accent={activeModule.color} size={74} label={percent >= 90 ? "READY" : "GUIDE"} /><div className="drawer-meter-orb"><span>{percent}%</span></div><div><strong>{lessonTitle}</strong><p>{tasksDone}/{requiredTasks.length} activities · {sectionsRead}/{sections.length} sections</p></div></div>
+        <div className="drawer-meter-card" style={{ gap: 14 }}><AiMascot variant={guideVariant} mood={guideMood} accent={activeModule?.color} size={82} label={percent >= 90 ? "READY" : "GUIDE"} /><div className="drawer-meter-orb"><span>{percent}%</span></div><div><strong>{lessonTitle}</strong><p>{tasksDone}/{requiredTasks.length} activities · {sectionsRead}/{sections.length} sections</p></div></div>
         <nav className="section-jump-list" aria-label="Current lesson sections"><span className="drawer-label">Inside this lesson</span>{sections.map((section, index) => { const visited = lesson.visitedSections.includes(section.id); const done = Boolean(lesson.completedTasks[section.taskId]); return <a key={section.id} href={`#${section.id}`} onClick={() => setDrawerOpen(false)} className={done ? "done" : visited ? "visited" : ""}><span className="section-index">{String(index + 1).padStart(2, "0")}</span><span>{section.title}</span><b>{done ? "✓" : visited ? "•" : ""}</b></a>; })}</nav>
         <div className="drawer-course-list">{courseModules.map((module) => <section key={module.id} className="drawer-module"><div className="drawer-module-title"><span style={{ background: module.color }} /><div><small>{module.eyebrow}</small><strong>{module.title}</strong></div></div>{module.lessons.length > 0 && <div className="drawer-lessons">{module.lessons.map((item, index) => { const current = item.id === lessonId; const itemProgress = progress[item.id]; const itemPercent = itemProgress?.quizPassed ? 100 : current ? percent : 0; return item.status === "available" ? <Link key={item.id} href={item.slug} className={`drawer-lesson-row ${current ? "current" : ""}`} onClick={() => setDrawerOpen(false)}><span>{index + 1}</span><div><strong>{item.shortTitle}</strong><small>{item.estimatedMinutes} min</small></div><b>{itemPercent ? `${itemPercent}%` : "→"}</b></Link> : <div key={item.id} className="drawer-lesson-row planned" title="This lesson is in the build queue"><span>{index + 1}</span><div><strong>{item.shortTitle}</strong><small>{item.estimatedMinutes} min · planned</small></div><b>○</b></div>; })}</div>}</section>)}</div>
       </motion.aside>
