@@ -11,9 +11,9 @@ Status: **implemented in code**
 - [x] living `AiMascot` design-system primitive with bot/star/briefcase/tile/mail toy variants.
 - [x] mascot gaze follows pointer with spring motion, random blinking, breathing, hover/tap reaction and mood states.
 - [x] living mascot companion integrated globally into lesson topbar + lesson drawer.
-- [x] foundation drawer registry plus separate advanced-module registry for Module 8+.
+- [x] foundation drawer registry plus advanced-module registry for Module 8+.
 
-## Modules 1–7
+## Modules 1–8
 Status: **content implemented in code**
 - [x] Module 1 foundations + Boss Level.
 - [x] Module 2 real toy neural-network curriculum + Boss Lab.
@@ -22,30 +22,41 @@ Status: **content implemented in code**
 - [x] Module 5 LLM generation/sampling/model-zoo/routing curriculum + Boss Lab.
 - [x] Module 6 context/prompting/instruction-hierarchy/security curriculum + Boss Lab.
 - [x] Module 7 pretraining/post-training/PEFT curriculum + Boss Lab.
+- [x] Module 8 reasoning/test-time-compute/search/verification curriculum + Boss Lab.
 
-## Module 8 — Reasoning & Test-Time Compute
+## Module 9 — RAG & Knowledge Retrieval
 Status: **content implemented in code**
-- [x] operational definition of reasoning as additional inference-time planning/search/verification compute.
-- [x] reasoning/test-time-compute budget slider with toy quality/latency/cost trade-off.
-- [x] visible planning scaffold without presenting private model chain-of-thought as required output.
-- [x] candidate search and Best-of-N intuition.
-- [x] explicit verifier criteria and generator/verifier pattern.
-- [x] self-correction using concrete failed tests/feedback.
-- [x] critic/revision loop.
-- [x] process reward model (PRM) vs outcome reward model (ORM) intuition.
-- [x] tree-search and Tree-of-Thoughts propose/evaluate/expand-prune pattern.
-- [x] majority voting and shared-error caveat.
-- [x] self-consistency over multiple sampled solution paths.
-- [x] reasoning-vs-memorization diagnosis using novel/controlled evaluation framing.
-- [x] verifier/proxy failure and reward-hacking warning.
-- [x] quality/latency/cost routing by task importance.
-- [x] Module 8 Reasoning Boss Lab.
-- [x] 12-question Module 8 mastery exam, pass threshold 10/12.
+- [x] why RAG exists; RAG vs model weights/fine-tuning distinction.
+- [x] document ingestion, parsing and source normalization.
+- [x] cleaning/boilerplate removal.
+- [x] real interactive chunk-size generator.
+- [x] overlap slider and duplicate-token/index-cost intuition.
+- [x] metadata for tenant, source, type, version/freshness and language.
+- [x] chunk → embedding → vector + metadata → index pipeline.
+- [x] grounded context assembly and source/citation example.
+- [x] lexical/BM25 intuition with explicit simplified-toy disclaimer.
+- [x] semantic retrieval via cosine similarity.
+- [x] hybrid lexical/semantic blending.
+- [x] tenant/document-type metadata filtering as relevance + security scope.
+- [x] query rewriting and multi-query retrieval.
+- [x] HyDE hypothetical-document retrieval intuition with evidence caveat.
+- [x] query-document reranking / cross-encoder intuition.
+- [x] vector-database role and examples: pgvector, Pinecone, Qdrant, Weaviate, Milvus, Chroma.
+- [x] exact nearest neighbor vs ANN trade-off.
+- [x] HNSW graph-walk intuition.
+- [x] IVF coarse-cluster/probe intuition.
+- [x] similarity threshold tuning.
+- [x] retrieval precision vs recall with live calculation.
+- [x] separate retrieval vs groundedness/faithfulness vs citation evaluation layers.
+- [x] embedding-model/index migration workflow.
+- [x] RAG Boss Lab fixing chunk boundaries, wrong tenant/version, hybrid weights, query rewrite, reranking, threshold, grounding/citations and embedding migration.
+- [x] 12-question Module 9 mastery exam, pass threshold 10/12.
 
-## Current Module 8 routes
-- [x] `/lessons/reasoning-solver-arena`
-- [x] `/lessons/search-verification-lab`
-- [x] `/lessons/module-8-capstone`
+## Current Module 9 routes
+- [x] `/lessons/rag-ingestion-chunking`
+- [x] `/lessons/retrieval-ranking-lab`
+- [x] `/lessons/vector-index-rag-evals`
+- [x] `/lessons/module-9-capstone`
 
 ## QA / platform work still open
 - [ ] Fresh `npm ci` + `npm run typecheck` + `npm run build` on an environment with repository/network access.
@@ -59,4 +70,4 @@ Status: **content implemented in code**
 - [ ] migrate remaining legacy one-off lesson mascots into the canonical `AiMascot` primitive.
 
 ## Next batch
-Build **Module 9 — RAG & Knowledge Retrieval**: document ingestion/cleaning → chunk size/overlap → embeddings/index → keyword/BM25 vs semantic vs hybrid retrieval → metadata filters/query rewriting/HyDE → reranking/cross-encoders → grounded context/citations → precision/recall evaluation → vector DB/HNSW/IVF trade-offs and embedding migrations before the RAG Boss Lab.
+Build **Module 10 — What Is an AI Agent?**: chatbot vs workflow vs agent → goal/environment/state/actions/tools/memory/planning/autonomy/permissions/policy/runtime → Observe→Decide→Act→Observe loop → tool result back into context → completion/stop decisions → interactive “turn a chatbot into an agent” lab and Module 10 mastery Boss Lab.
