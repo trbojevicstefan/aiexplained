@@ -12,14 +12,24 @@ export const courseModules: CourseModule[] = [
     {id:"symbolic-vs-neural",title:"Symbolic AI vs neural AI",shortTitle:"Symbolic vs neural",slug:"/lessons/symbolic-vs-neural",status:"available",estimatedMinutes:32},
     {id:"training-vs-inference",title:"Training vs inference",shortTitle:"Training vs inference",slug:"/lessons/training-vs-inference",status:"available",estimatedMinutes:34},
     {id:"models-algorithms-data",title:"Models, algorithms and datasets",shortTitle:"Model / algorithm / data",slug:"/lessons/models-algorithms-data",status:"available",estimatedMinutes:32},
-    {id:"parameters",title:"Parameters vs hyperparameters",shortTitle:"Parameters",slug:"/lessons/parameters",status:"planned",estimatedMinutes:18},
-    {id:"features-labels",title:"Features and labels",shortTitle:"Features & labels",slug:"/lessons/features-labels",status:"planned",estimatedMinutes:16},
-    {id:"learning-types",title:"Supervised, unsupervised and self-supervised learning",shortTitle:"Learning types",slug:"/lessons/learning-types",status:"planned",estimatedMinutes:28},
-    {id:"reinforcement-learning",title:"Reinforcement learning",shortTitle:"Reinforcement learning",slug:"/lessons/reinforcement-learning",status:"planned",estimatedMinutes:24},
-    {id:"generalization",title:"Generalization, overfitting and underfitting",shortTitle:"Generalization",slug:"/lessons/generalization",status:"planned",estimatedMinutes:26},
-    {id:"splits-checkpoints",title:"Train / validation / test sets and checkpoints",shortTitle:"Splits & checkpoints",slug:"/lessons/splits-checkpoints",status:"planned",estimatedMinutes:22}
+    {id:"parameters",title:"Parameters vs hyperparameters",shortTitle:"Parameters",slug:"/lessons/parameters",status:"available",estimatedMinutes:30},
+    {id:"features-labels",title:"Features and labels",shortTitle:"Features & labels",slug:"/lessons/features-labels",status:"available",estimatedMinutes:28},
+    {id:"learning-types",title:"Supervised, unsupervised and self-supervised learning",shortTitle:"Learning types",slug:"/lessons/learning-types",status:"available",estimatedMinutes:32},
+    {id:"reinforcement-learning",title:"Reinforcement learning",shortTitle:"Reinforcement learning",slug:"/lessons/reinforcement-learning",status:"available",estimatedMinutes:32},
+    {id:"generalization",title:"Generalization, overfitting and underfitting",shortTitle:"Generalization",slug:"/lessons/generalization",status:"available",estimatedMinutes:30},
+    {id:"splits-checkpoints",title:"Train / validation / test sets and checkpoints",shortTitle:"Splits & checkpoints",slug:"/lessons/splits-checkpoints",status:"available",estimatedMinutes:30},
+    {id:"learning-across-time-tasks",title:"Online, transfer and representation learning",shortTitle:"Learning across time",slug:"/lessons/learning-across-time-tasks",status:"available",estimatedMinutes:34},
+    {id:"scope-uncertainty",title:"Scope and uncertainty",shortTitle:"Scope & uncertainty",slug:"/lessons/scope-uncertainty",status:"available",estimatedMinutes:28},
+    {id:"module-1-capstone",title:"Module 1 Boss Level",shortTitle:"Boss Level",slug:"/lessons/module-1-capstone",status:"available",estimatedMinutes:40}
   ]},
-  {id:"module-2",title:"Neural Networks Without the Mystery",eyebrow:"NEXT MODULE",color:"#ff5f57",lessons:[]},
+  {id:"module-2",title:"Neural Networks Without the Mystery",eyebrow:"NEURAL NETWORKS",color:"#ff5f57",lessons:[
+    {id:"neural-networks",title:"What is a neural network?",shortTitle:"Neural networks",slug:"/lessons/neural-networks",status:"available",estimatedMinutes:36},
+    {id:"weights-bias-activations",title:"Weights, bias and activation functions",shortTitle:"Weights / bias / activations",slug:"/lessons/weights-bias-activations",status:"available",estimatedMinutes:34},
+    {id:"loss-gradients-backprop",title:"Loss, gradient descent and backpropagation",shortTitle:"Loss & backprop",slug:"/lessons/loss-gradients-backprop",status:"available",estimatedMinutes:38},
+    {id:"sgd-batches-epochs",title:"SGD, batches and epochs",shortTitle:"SGD / batches / epochs",slug:"/lessons/sgd-batches-epochs",status:"available",estimatedMinutes:32},
+    {id:"gradient-health-normalization",title:"Vanishing, exploding gradients and normalization",shortTitle:"Gradient health",slug:"/lessons/gradient-health-normalization",status:"available",estimatedMinutes:36},
+    {id:"regularization-dropout",title:"Regularization and dropout",shortTitle:"Regularization & dropout",slug:"/lessons/regularization-dropout",status:"planned",estimatedMinutes:32}
+  ]},
   {id:"module-3",title:"How Language Becomes Numbers",eyebrow:"COMING NEXT",color:"#9e6cff",lessons:[]},
   {id:"module-4",title:"Transformers Visually, Step by Step",eyebrow:"COMING NEXT",color:"#16a66a",lessons:[]}
 ];
