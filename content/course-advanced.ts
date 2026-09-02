@@ -24,4 +24,49 @@ export const advancedCourseModules: CourseModule[] = [
       { id: "module-9-capstone", title: "Module 9 RAG Boss Lab", shortTitle: "RAG Boss Lab", slug: "/lessons/module-9-capstone", status: "available", estimatedMinutes: 46 },
     ],
   },
+  {
+    id: "module-10",
+    title: "What Is an AI Agent?",
+    eyebrow: "AGENT FOUNDATIONS",
+    color: "#ff8a5b",
+    lessons: [
+      { id: "agent-foundations", title: "Chatbot vs workflow vs agent", shortTitle: "What is an agent?", slug: "/lessons/agent-foundations", status: "available", estimatedMinutes: 40 },
+      { id: "agent-loop-builder", title: "Build the agent loop", shortTitle: "Agent Loop Builder", slug: "/lessons/agent-loop-builder", status: "available", estimatedMinutes: 44 },
+      { id: "module-10-capstone", title: "Module 10 Agent Boss Lab", shortTitle: "Agent Boss Lab", slug: "/lessons/module-10-capstone", status: "available", estimatedMinutes: 46 },
+    ],
+  },
+  {
+    id: "module-11",
+    title: "Agent Harness, Framework & Runtime",
+    eyebrow: "AGENT RUNTIME",
+    color: "#4d9dff",
+    lessons: [
+      { id: "harness-framework-runtime", title: "Harness vs framework vs runtime", shortTitle: "Harness / Runtime / Framework", slug: "/lessons/harness-framework-runtime", status: "available", estimatedMinutes: 40 },
+      { id: "harness-runtime-lab", title: "Inside an agent harness", shortTitle: "Harness Runtime Lab", slug: "/lessons/harness-runtime-lab", status: "available", estimatedMinutes: 44 },
+      { id: "framework-atlas", title: "Agent framework concepts and ecosystem", shortTitle: "Framework Atlas", slug: "/lessons/framework-atlas", status: "available", estimatedMinutes: 40 },
+      { id: "module-11-capstone", title: "Module 11 Harness Boss Lab", shortTitle: "Harness Boss Lab", slug: "/lessons/module-11-capstone", status: "available", estimatedMinutes: 46 },
+    ],
+  },
+  {
+    id: "module-12",
+    title: "Tool Calling",
+    eyebrow: "TOOLS & ACTIONS",
+    color: "#f6b93b",
+    lessons: [
+      { id: "tool-calling-lifecycle", title: "Tool calling lifecycle", shortTitle: "Tool Call Inspector", slug: "/lessons/tool-calling-lifecycle", status: "available", estimatedMinutes: 42 },
+      { id: "tool-design-safety", title: "Tool design, reliability and safety", shortTitle: "Tool Design & Safety", slug: "/lessons/tool-design-safety", status: "available", estimatedMinutes: 42 },
+      { id: "module-12-capstone", title: "Module 12 Tool Calling Boss Lab", shortTitle: "Tool Boss Lab", slug: "/lessons/module-12-capstone", status: "available", estimatedMinutes: 46 },
+    ],
+  },
+  {
+    id: "module-13",
+    title: "MCP & Agent-to-Agent Protocols",
+    eyebrow: "AI PROTOCOLS",
+    color: "#7b75ff",
+    lessons: [
+      { id: "mcp-capability-lab", title: "MCP Capability Lab", shortTitle: "MCP Capability Lab", slug: "/lessons/mcp-capability-lab", status: "available", estimatedMinutes: 42 },
+      { id: "a2a-delegation-lab", title: "Agent-to-Agent Delegation Lab", shortTitle: "A2A Delegation", slug: "/lessons/a2a-delegation-lab", status: "available", estimatedMinutes: 42 },
+      { id: "module-13-capstone", title: "Module 13 Protocol Boss Lab", shortTitle: "Protocol Boss Lab", slug: "/lessons/module-13-capstone", status: "available", estimatedMinutes: 46 },
+    ],
+  },
 ];
