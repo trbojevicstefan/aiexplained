@@ -1,0 +1,82 @@
+"use client";
+
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import { LessonProgressApi } from "@/components/course/lesson-shell";
+import { LessonSection, TaskStamp } from "@/components/course/lesson-primitives";
+import { calculateCost, CostInputs, CostMeter, CostRates } from "@/components/visualizations/cost-meter";
+import styles from "./ai-cost-challenge.module.css";
+
+type Props={progress:LessonProgressApi};
+const tokenCases=[
+["Prompt/system/history tokens sent to model","input"],["Generated completion tokens","output"],["Eligible reused prefix billed at discounted cache rate in a supported service","cached-input"],["Extra test-time reasoning budget/billing unit where applicable","reasoning"],
+] as const;
+const extraCases=[
+["Generate vector for one document/query","embedding"],["Paid web/search/geocoding/API action","tool"],["Database query on your own already-paid infrastructure","depends"],["Assume every tool is free because LLM selected it","false"],
+] as const;
+const gpuCases=[
+["One-time/large model pretraining run","training"],["Domain fine-tuning job","fine-tuning"],["Every production request using self-hosted GPU time","inference"],["Hosted API request has zero infrastructure cost to provider","false"],
+] as const;
+const retryCases=[
+["One successful model call","1x"],["Two failed full calls then one successful call","3x"],["Tool retries after model step can amplify both model and tool spend","true"],["Infinite agent retry loop has bounded cost automatically","false"],
+] as const;
+const successCases=[
+["$0.02 average attempt cost, 50% task success","$0.04"],["$0.03 attempt cost, 75% task success","$0.04"],["$0.05 attempt cost, 100% task success","$0.05"],["Cost per request and cost per successful outcome are always identical","false"],
+] as const;
+const budgetCases=[
+["Stop after 12 model/tool steps","step-budget"],["Stop when estimated task cost exceeds $0.10","cost-budget"],["Limit context/output tokens","token-budget"],["Let autonomous agent spend without ceilings","bad"],
+] as const;
+const routingCases=[
+["Use cheap small model for high-volume easy classification","small"],["Escalate uncertain legal synthesis to stronger model","large"],["Run expensive model first on every trivial request","bad"],["Route based on quality requirement + cost/latency constraints","smart"],
+] as const;
+const economicsCases=[
+["Revenue $0.20 per completed task, variable AI cost $0.04","positive"],["Revenue $0.03, variable AI cost $0.08","negative"],["Gross margin ignores all non-AI product costs forever","false"],["Quality failures/refunds can change effective unit economics","true"],
+] as const;
+const quiz=[
+["Input-token cost is driven by…",["Tokens/context sent into the model under the service's billing model","Only output length","Only GPU temperature","Only user count"],0],
+["Output tokens can be priced differently from input tokens.",["True","False"],0],
+["Cached-input pricing means…",["Eligible repeated input work may be billed/served differently when provider/runtime caching is used","Final answer is always reused","Model weights disappear","All tools are cached"],0],
+["Embedding calls and tool/API calls can add cost outside generation-token billing.",["True","False"],0],
+["Retries can multiply…",["Model, tool and infrastructure work per successful task","Only CSS","Only model weights","Only citations"],0],
+["Cost per successful task equals…",["Total spend divided by successful completed outcomes over the measured set","Only cheapest request price","Only output-token cost","Only GPU rental"],0],
+["An agent budget can cap…",["Steps, tokens, cost and/or time","Only font size","Only tokenizer vocabulary","Only source titles"],0],
+["Model routing can reduce cost by…",["Sending easy work to cheaper eligible models and escalating harder/uncertain work","Always using the largest model","Disabling evaluation","Removing auth"],0],
+["Self-hosted inference still has variable/allocated infrastructure cost.",["True","False"],0],
+["Unit economics should consider quality/success rate, not just cost per API request.",["True","False"],0],
+] as const;
+
+export function AiCostChallengeLesson({progress}:Props){
+ const [inputs,setInputs]=useState<CostInputs>({inputTokens:6000,outputTokens:800,cachedInputTokens:2000,reasoningUnits:0,embeddingCalls:1,toolCalls:2,gpuSeconds:0,retries:0}),[rates,setRates]=useState<CostRates>({inputPerM:3,outputPerM:12,cachedPerM:.75,reasoningPerK:.002,embeddingEach:.0002,toolEach:.002,gpuPerSecond:.0008}),[budget,setBudget]=useState(.05),[tokenAnswers,setTokenAnswers]=useState<Record<number,string>>({}),[extras,setExtras]=useState<Record<number,string>>({}),[gpu,setGpu]=useState<Record<number,string>>({}),[retryAnswers,setRetryAnswers]=useState<Record<number,string>>({}),[success,setSuccess]=useState<Record<number,string>>({}),[successRate,setSuccessRate]=useState(70),[budgets,setBudgets]=useState<Record<number,string>>({}),[routing,setRouting]=useState<Record<number,string>>({}),[economics,setEconomics]=useState<Record<number,string>>({}),[volume,setVolume]=useState(10000),[explain,setExplain]=useState(""),[feedback,setFeedback]=useState(""),[answers,setAnswers]=useState<Record<number,number>>({});
+ const tasks=["cost-tokens","cost-extras","cost-gpu","cost-retries","cost-success","cost-budget","cost-routing","cost-economics","cost-forecast","cost-explain"],sections=["tokens","extras","gpu","retries","success","budget","routing","economics","forecast","explain"];
+ const done=tasks.filter(t=>progress.completedTasks[t]).length,read=sections.filter(s=>progress.visitedSections.has(s)).length,unlocked=done===10&&read===10;
+ const score=quiz.reduce((n,q,i)=>n+(answers[i]===q[2]?1:0),0),quizDone=Object.keys(answers).length===quiz.length;
+ const cost=useMemo(()=>calculateCost(inputs,rates),[inputs,rates]);const costPerSuccess=cost.total/Math.max(.01,successRate/100);const monthly=cost.total*volume;
+ const solve=(current:Record<number,string>,setter:(next:Record<number,string>)=>void,cases:readonly (readonly [string,string])[],i:number,answer:string,task:string)=>{const next={...current,[i]:answer};setter(next);if(cases.every((x,j)=>next[j]===x[1]))progress.completeTask(task)};
+ const submit=()=>{const t=explain.toLowerCase();const hits=["input","output","cached","reason","embedding","tool","gpu","retry","success","budget","routing","margin"].filter(w=>t.includes(w)).length;if(explain.length<165||hits<9){setFeedback("Go deeper: include model token categories, embeddings/tools/GPU, retry amplification, cost per successful task, budgets, routing and unit economics.");return;}setFeedback("Strong. You are costing outcomes and system work, not just quoting one token rate.");progress.completeTask("cost-explain")};
+ return <main className={styles.root}>
+  <section className={styles.hero}><div><span className={styles.eyebrow}>MODULE 23 · AI COST CHALLENGE</span><h1>A $0.02 request can become a $0.12 successful task after retries.</h1><p>Follow every variable-cost layer through one agent run: tokens, reasoning budget, embeddings, paid tools, GPU time and failures. Then optimize the <b>cost of successful work</b>, not the cheapest-looking API call.</p><TaskStamp done={done===10}>{done}/10 economics missions complete</TaskStamp></div><CostMeter inputs={inputs} rates={rates} budget={budget}/></section>
+
+  <LessonSection id="tokens" onVisit={progress.markVisited} className={styles.scene}><h2>1. Separate input, output, cached-input and reasoning cost.</h2>{tokenCases.map((c,i)=><div className={styles.card} key={c[0]}><p>{c[0]}</p>{["input","output","cached-input","reasoning"].map(answer=><button key={answer} className={`${styles.button} ${tokenAnswers[i]===answer?(answer===c[1]?styles.good:styles.bad):""}`} onClick={()=>solve(tokenAnswers,setTokenAnswers,tokenCases,i,answer,"cost-tokens")}>{answer}</button>)}</div>)}<div className={styles.sliders}><label>Input <b>{inputs.inputTokens}</b><input type="range" min="500" max="30000" step="500" value={inputs.inputTokens} onChange={e=>setInputs(x=>({...x,inputTokens:+e.target.value}))}/></label><label>Output <b>{inputs.outputTokens}</b><input type="range" min="100" max="5000" step="100" value={inputs.outputTokens} onChange={e=>setInputs(x=>({...x,outputTokens:+e.target.value}))}/></label><label>Cached input <b>{inputs.cachedInputTokens}</b><input type="range" min="0" max={inputs.inputTokens} step="500" value={Math.min(inputs.cachedInputTokens,inputs.inputTokens)} onChange={e=>setInputs(x=>({...x,cachedInputTokens:+e.target.value}))}/></label><label>Reasoning units <b>{inputs.reasoningUnits}</b><input type="range" min="0" max="10000" step="250" value={inputs.reasoningUnits} onChange={e=>setInputs(x=>({...x,reasoningUnits:+e.target.value}))}/></label></div><CostMeter inputs={inputs} rates={rates} budget={budget}/></LessonSection>
+
+  <LessonSection id="extras" onVisit={progress.markVisited} className={styles.scene}><h2>2. The model is not the only billable system component.</h2>{extraCases.map((c,i)=><div className={styles.card} key={c[0]}><p>{c[0]}</p>{["embedding","tool","depends","false"].map(answer=><button key={answer} className={`${styles.button} ${extras[i]===answer?(answer===c[1]?styles.good:styles.bad):""}`} onClick={()=>solve(extras,setExtras,extraCases,i,answer,"cost-extras")}>{answer}</button>)}</div>)}<div className={styles.sliders}><label>Embedding calls <b>{inputs.embeddingCalls}</b><input type="range" min="0" max="20" value={inputs.embeddingCalls} onChange={e=>setInputs(x=>({...x,embeddingCalls:+e.target.value}))}/></label><label>Paid tool calls <b>{inputs.toolCalls}</b><input type="range" min="0" max="20" value={inputs.toolCalls} onChange={e=>setInputs(x=>({...x,toolCalls:+e.target.value}))}/></label></div></LessonSection>
+
+  <LessonSection id="gpu" onVisit={progress.markVisited} className={styles.scene}><h2>3. Training, fine-tuning and inference are different cost shapes.</h2>{gpuCases.map((c,i)=><div className={styles.card} key={c[0]}><p>{c[0]}</p>{["training","fine-tuning","inference","false"].map(answer=><button key={answer} className={`${styles.button} ${gpu[i]===answer?(answer===c[1]?styles.good:styles.bad):""}`} onClick={()=>solve(gpu,setGpu,gpuCases,i,answer,"cost-gpu")}>{answer}</button>)}</div>)}<label className={styles.slider}>Self-hosted GPU seconds allocated to this task <b>{inputs.gpuSeconds}s</b><input type="range" min="0" max="30" value={inputs.gpuSeconds} onChange={e=>setInputs(x=>({...x,gpuSeconds:+e.target.value}))}/></label></LessonSection>
+
+  <LessonSection id="retries" onVisit={progress.markVisited} className={styles.scene}><h2>4. Retries amplify expensive steps.</h2>{retryCases.map((c,i)=><div className={styles.card} key={c[0]}><p>{c[0]}</p>{["1x","3x","true","false"].map(answer=><button key={answer} className={`${styles.button} ${retryAnswers[i]===answer?(answer===c[1]?styles.good:styles.bad):""}`} onClick={()=>solve(retryAnswers,setRetryAnswers,retryCases,i,answer,"cost-retries")}>{answer}</button>)}</div>)}<label className={styles.slider}>Failed full retries before success <b>{inputs.retries}</b><input type="range" min="0" max="5" value={inputs.retries} onChange={e=>setInputs(x=>({...x,retries:+e.target.value}))}/></label><CostMeter inputs={inputs} rates={rates} budget={budget}/></LessonSection>
+
+  <LessonSection id="success" onVisit={progress.markVisited} className={styles.scene}><h2>5. Cost per successful task includes failures.</h2>{successCases.map((c,i)=><div className={styles.card} key={c[0]}><p>{c[0]}</p>{["$0.04","$0.05","false"].map(answer=><button key={answer} className={`${styles.button} ${success[i]===answer?(answer===c[1]?styles.good:styles.bad):""}`} onClick={()=>solve(success,setSuccess,successCases,i,answer,"cost-success")}>{answer}</button>)}</div>)}<label className={styles.slider}>Observed task success rate <b>{successRate}%</b><input type="range" min="20" max="100" value={successRate} onChange={e=>{setSuccessRate(+e.target.value);progress.completeTask("cost-success")}}/></label><div className={styles.bigMetric}><span>attempt cost</span><b>${cost.total.toFixed(4)}</b><span>÷ {successRate}% success</span><strong>${costPerSuccess.toFixed(4)} / successful task</strong></div></LessonSection>
+
+  <LessonSection id="budget" onVisit={progress.markVisited} className={styles.scene}><h2>6. Give autonomous systems economic guardrails.</h2>{budgetCases.map((c,i)=><div className={styles.card} key={c[0]}><p>{c[0]}</p>{["step-budget","cost-budget","token-budget","bad"].map(answer=><button key={answer} className={`${styles.button} ${budgets[i]===answer?(answer===c[1]?styles.good:styles.bad):""}`} onClick={()=>solve(budgets,setBudgets,budgetCases,i,answer,"cost-budget")}>{answer}</button>)}</div>)}<label className={styles.slider}>Task cost budget <b>${budget.toFixed(3)}</b><input type="range" min="0.005" max="0.2" step="0.005" value={budget} onChange={e=>setBudget(+e.target.value)}/></label></LessonSection>
+
+  <LessonSection id="routing" onVisit={progress.markVisited} className={styles.scene}><h2>7. Route by minimum eligible quality, not maximum prestige.</h2>{routingCases.map((c,i)=><div className={styles.card} key={c[0]}><p>{c[0]}</p>{["small","large","bad","smart"].map(answer=><button key={answer} className={`${styles.button} ${routing[i]===answer?(answer===c[1]?styles.good:styles.bad):""}`} onClick={()=>solve(routing,setRouting,routingCases,i,answer,"cost-routing")}>{answer}</button>)}</div>)}<div className={styles.route}><span>easy classifier <b>$</b></span><i>→ small model</i><span>uncertain/legal <b>$$$$</b></span><i>→ stronger model</i></div></LessonSection>
+
+  <LessonSection id="economics" onVisit={progress.markVisited} className={styles.scene}><h2>8. Cost is meaningful only relative to value and success.</h2>{economicsCases.map((c,i)=><div className={styles.card} key={c[0]}><p>{c[0]}</p>{["positive","negative","true","false"].map(answer=><button key={answer} className={`${styles.button} ${economics[i]===answer?(answer===c[1]?styles.good:styles.bad):""}`} onClick={()=>solve(economics,setEconomics,economicsCases,i,answer,"cost-economics")}>{answer}</button>)}</div>)}</LessonSection>
+
+  <LessonSection id="forecast" onVisit={progress.markVisited} className={styles.scene}><h2>9. Multiply by real traffic before calling something “cheap.”</h2><label className={styles.slider}>Monthly task attempts <b>{volume.toLocaleString()}</b><input type="range" min="1000" max="1000000" step="1000" value={volume} onChange={e=>{setVolume(+e.target.value);progress.completeTask("cost-forecast")}}/></label><div className={styles.forecast}><span>attempt cost <b>${cost.total.toFixed(4)}</b></span><span>monthly attempts <b>{volume.toLocaleString()}</b></span><span>toy variable spend <b>${monthly.toFixed(2)}</b></span><span>successful tasks <b>{Math.round(volume*successRate/100).toLocaleString()}</b></span></div></LessonSection>
+
+  <LessonSection id="explain" onVisit={progress.markVisited} className={styles.scene}><h2>10. Explain AI economics as a system.</h2><textarea className={styles.textarea} value={explain} onChange={e=>setExplain(e.target.value)} placeholder="Explain input/output/cached/reasoning cost, embeddings/tools/GPU, retries, success rate, budgets, routing and unit economics."/><button className={styles.primary} onClick={submit}>Check explanation</button>{feedback&&<p className={styles.feedback}>{feedback}</p>}</LessonSection>
+
+  <section className={styles.quiz}><h2>AI Cost Challenge quiz</h2>{!unlocked?<div className={styles.locked}>🔒 Complete all 10 rooms. {done}/10 tasks · {read}/10 sections.</div>:<>{quiz.map((q,i)=><div className={styles.question} key={q[0]}><strong>{i+1}. {q[0]}</strong>{q[1].map((option,oi)=><button key={option} className={answers[i]===oi?styles.selected:""} onClick={()=>setAnswers(a=>({...a,[i]:oi}))}>{option}</button>)}{answers[i]!==undefined&&<small>{answers[i]===q[2]?"✓ Correct":`Correct: ${q[1][q[2]]}`}</small>}</div>)}<button className={styles.primary} disabled={!quizDone} onClick={()=>progress.saveQuiz(score,score>=9)}>Submit · {score}/10</button>{quizDone&&<p className={styles.feedback}>{score>=9?"★ AI TASK ECONOMICS MASTERED":"Pass is 9/10. Revisit cost-per-success and retries."}</p>}</>}</section>
+  <div className={styles.footer}><Link href="/lessons/module-22-capstone">← Inference Infrastructure</Link><Link href="/lessons/cache-lab">Caching Lab →</Link></div>
+ </main>
+}
