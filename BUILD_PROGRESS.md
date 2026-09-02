@@ -17,39 +17,22 @@ Status: **implemented**
 - [x] Build reusable `Simple / Real / Expert` depth switch.
 - [x] Persist explanation depth with lesson progress.
 - [x] Build reusable `LessonShell`.
-- [x] Build lesson/progress drawer.
-- [x] Build section jump navigation.
-- [x] Build lesson progress HUD and lesson trail.
-- [x] Build per-section visited state.
-- [x] Build per-activity completion state.
-- [x] Build quiz gating: quiz remains locked until every section is visited and every required activity is complete.
-- [x] Build quiz engine v1 with explanations for wrong answers, retries, best score and persistent completion.
-- [x] Add responsive layouts.
-- [x] Add `prefers-reduced-motion` fallback.
+- [x] Build lesson/progress drawer and section jump navigation.
+- [x] Build lesson progress HUD, per-section visited state and per-activity completion state.
+- [x] Build quiz gating and quiz engine v1 with explanations, retries, best score and persistent completion.
+- [x] Add responsive layouts and `prefers-reduced-motion` fallback.
 
 ### Lesson 01 — What is Artificial Intelligence?
 
-- [x] Cold open: classify six everyday systems as AI / not AI.
-- [x] Immediate misconception feedback for every classification.
-- [x] Interactive `See → Find → Guess` drag exercise.
-- [x] Explain rules-based software vs learned behavior.
-- [x] Drag/tap six examples into a tiny learner and train it.
-- [x] Reveal inference on a new example after training.
-- [x] Seven-layer AI X-ray: Experience → System → Model → Network Layers → Weights → Math → Data/Training.
-- [x] Simple / Real / Expert copy for every X-ray layer.
-- [x] Interactive training loop with epochs, loss, mistakes and confidence.
-- [x] Require user to reach 8+ epochs and freeze/checkpoint the model.
-- [x] Interactive inference probability playground.
-- [x] Temperature slider changes output distribution.
-- [x] Require at least three output samples.
-- [x] Draggable AI → Machine Learning → Deep Learning family-tree challenge.
-- [x] Clarify that not all AI is machine learning.
-- [x] Typed explain-back / Feynman exercise.
-- [x] Validate the explain-back response against minimum detail and core mechanism vocabulary.
-- [x] Six-question end-of-lesson quiz.
-- [x] 5/6 pass threshold.
-- [x] Locked quiz until all 8 sections + all 8 activities are complete.
-- [x] Lesson mastery celebration.
+- [x] AI/not-AI classification cold open.
+- [x] `See → Find → Guess` drag exercise.
+- [x] Rules vs learning tiny-model exercise.
+- [x] Seven-layer AI X-ray with Simple / Real / Expert copy.
+- [x] Training loop with epochs/loss/confidence and checkpoint action.
+- [x] Probability / temperature playground with repeated samples.
+- [x] AI → ML → Deep Learning reorder challenge.
+- [x] Typed Feynman explain-back validation.
+- [x] Six-question quiz, pass 5/6, locked behind all 8 sections + 8 tasks.
 
 ---
 
@@ -59,35 +42,25 @@ Status: **implemented in code; local runtime QA pending**
 
 ### Lesson engine refactor
 
-- [x] Refactor `LessonShell` from a hard-coded Lesson 01 shell into a reusable multi-lesson shell.
-- [x] `LessonShell` now accepts `lessonId`, `lessonTitle` and a lesson-specific section/task map.
-- [x] Progress calculation is now lesson-specific.
-- [x] Drawer current-lesson section navigation is now lesson-specific.
-- [x] Multiple available lessons can coexist in the drawer and persist progress independently.
-- [x] Extract reusable `LessonSection` intersection/entrance behavior.
-- [x] Extract reusable `DepthSwitch`.
-- [x] Extract reusable `TaskStamp`.
-- [x] Keep Lesson 01 compatible with the generic shell.
-- [x] Mark Lesson 02 as available in the course map.
+- [x] Refactor `LessonShell` into reusable multi-lesson shell accepting `lessonId`, `lessonTitle` and section/task map.
+- [x] Make progress, drawer navigation and local persistence independent per lesson.
+- [x] Extract reusable `LessonSection`, `DepthSwitch` and `TaskStamp` primitives.
+- [x] Keep Lesson 01 compatible with generic shell.
 
 ### Lesson 02 — AI vs normal software
 
-- [x] Create `/lessons/ai-vs-software` route.
-- [x] Distinct Lesson 02 art direction with RULEY and PIX guide characters.
-- [x] Simple / Real / Expert intro explaining explicit logic vs learned behavior.
+- [x] Create `/lessons/ai-vs-software`.
+- [x] Add RULEY and PIX guide characters and distinct visual direction.
 - [x] Package IF-rule trace game.
 - [x] Deterministic repeat experiment.
 - [x] Cat-detector rule explosion with four edge cases.
-- [x] Decision-boundary slider with live accuracy.
-- [x] Toy auto-fit action demonstrating learning a boundary from examples.
+- [x] Decision-boundary slider with live accuracy and toy auto-fit.
 - [x] Six-scenario Rules / ML / Hybrid decision game.
 - [x] Draggable safe hybrid payment-risk pipeline.
 - [x] Rule-trace vs learned-model debugging comparison.
 - [x] Anti-hype “boring software wins” challenge.
-- [x] Typed Feynman explain-back with mechanism validation.
-- [x] Seven-question quiz with explanations; pass 6/7.
-- [x] Quiz gated behind all 9 scenes + 9 tasks.
-- [x] Independent Lesson 02 local progress and quiz persistence.
+- [x] Typed mechanism-level explain-back.
+- [x] Seven-question quiz, pass 6/7, gated behind all 9 scenes + 9 tasks.
 - [x] Responsive CSS module and reduced-motion fallback.
 
 ---
@@ -98,44 +71,68 @@ Status: **implemented in code; local runtime QA pending**
 
 ### Course navigation
 
-- [x] Add Lesson 03 to the course drawer as an available lesson.
-- [x] Create `/lessons/ai-ml-dl` route.
-- [x] Give Lesson 03 its own nine-section progress/task map.
-- [x] Lesson 03 progress persists independently through the generic lesson engine.
+- [x] Add Lesson 03 as available in drawer.
+- [x] Create `/lessons/ai-ml-dl` and its independent nine-section progress map.
 
 ### Lesson 03 — AI vs Machine Learning vs Deep Learning
 
-- [x] Create a distinct “nested worlds / science museum” visual direction for the hierarchy lesson.
-- [x] Add three new visual guide creatures: AURA (AI), MILO (ML), DEEP (Deep Learning).
-- [x] Activity 01: clickable concentric AI → ML → DL world with progressive Simple / Real / Expert explanations.
-- [x] Force learner to enter hierarchy from broadest to narrowest.
-- [x] Activity 02: six-example most-specific-level classification game.
-- [x] Include AI-but-not-ML examples: search-based chess and symbolic expert rules.
-- [x] Include ML-but-not-DL examples: linear regression and decision trees.
-- [x] Include DL examples: deep vision networks and LLMs.
-- [x] Reveal explanation after the learner commits each classification.
-- [x] Activity 03: symbolic/search AI maze with explicit state transitions and no training dataset.
-- [x] Activity 04: classic nearest-neighbor ML lab with movable mystery point.
-- [x] Require at least three nearest-neighbor predictions.
-- [x] Explicitly teach machine learning without deep learning.
-- [x] Activity 05: six-floor “deep learning layer elevator.”
-- [x] Visual representation progression: Pixels → Edges → Textures → Parts → Objects → Meaning.
-- [x] Slider and floor buttons both change the active representation layer.
-- [x] Require learner to inspect all six levels.
-- [x] Explicitly kill the myth that “deep” means conscious, wise or human-style deep thinking.
-- [x] Activity 06: interactive approach comparison console for symbolic AI, classic ML and deep learning.
-- [x] Live comparison meters for data need, compute, explainability and adaptability.
-- [x] Require all three approaches to be inspected.
-- [x] Activity 07: draggable/reorder hierarchy challenge.
-- [x] Required order: AI → Machine Learning → Deep Learning.
-- [x] Activity 08: four 3D-style myth flip cards.
-- [x] Cover “all AI is ML,” “all ML is DL,” “all DL is ML,” and “LLMs are DL.”
-- [x] Require all myths to be flipped.
-- [x] Activity 09: typed Feynman explanation requiring scope + mechanism vocabulary.
-- [x] Seven-question end-of-lesson quiz with per-question explanations.
+- [x] Create nested-world visual direction with AURA, MILO and DEEP characters.
+- [x] Clickable concentric AI → ML → DL world with Simple / Real / Expert explanations.
+- [x] Six-example most-specific-level classification game.
+- [x] AI-but-not-ML examples: symbolic/search chess and expert rules.
+- [x] ML-but-not-DL examples: linear regression and decision tree.
+- [x] Deep-learning examples: deep vision model and LLM.
+- [x] Symbolic/search AI maze with state transitions and no training dataset.
+- [x] Classic nearest-neighbor ML lab with movable mystery point.
+- [x] Six-floor deep-learning layer elevator: Pixels → Edges → Textures → Parts → Objects → Meaning.
+- [x] Symbolic AI / classic ML / deep learning tradeoff console.
+- [x] Draggable AI → ML → DL hierarchy challenge.
+- [x] Four 3D myth-flip cards.
+- [x] Typed hierarchy explain-back.
+- [x] Seven-question quiz, pass 6/7, gated behind all 9 sections + 9 tasks.
+- [x] Responsive CSS module and reduced-motion fallback.
+
+---
+
+## Batch 04 — Lesson 04: Generative AI vs Predictive AI
+
+Status: **implemented in code; local runtime QA pending**
+
+### Course navigation
+
+- [x] Add Lesson 04 as an available drawer lesson.
+- [x] Create `/lessons/generative-vs-predictive`.
+- [x] Give Lesson 04 its own nine-section task/progress map.
+- [x] Preserve independent local progress, depth, quiz attempts and best score through the generic shell.
+
+### Lesson 04 — Generative AI vs Predictive AI
+
+- [x] Create a distinct “two-machine AI workshop / printing factory” visual direction.
+- [x] Add PREDI score-machine character and GENI generator/printer character.
+- [x] Simple / Real / Expert explanation of product-level predictive vs generative tasks.
+- [x] Explicitly teach the central nuance: an autoregressive generator can generate by repeatedly predicting next-token distributions.
+- [x] Activity 01: feed one customer message into two machines — predictive churn/urgency scoring vs generative reply drafting.
+- [x] Require both machines to be run before completion.
+- [x] Activity 02: classify six outputs as Predictive / Generative / Hybrid by output shape.
+- [x] Cover probability, label, forecast, generated text, generated image and score+generation hybrid examples.
+- [x] Activity 03: next-token conveyor/factory with visible candidate probability bars.
+- [x] Require five learner-selected next-token prediction steps to construct a sentence.
+- [x] Activity 04: predictive churn score lab with usage, support-ticket and late-payment sliders.
+- [x] Live score updates as all three features move.
+- [x] Clearly label scoring formula as a teaching toy rather than a production model.
+- [x] Activity 05: generator lab with tone, length and temperature controls.
+- [x] Require at least three generated drafts.
+- [x] Activity 06: same conceptual foundation language model used with two product contracts — constrained JSON classification vs free-form generation.
+- [x] Explicitly separate model capability from application/output contract.
+- [x] Activity 07: six-scenario Predictive / Generative / Hybrid product-architecture game.
+- [x] Include forecasting, artwork, support drafting, fraud-score+summary, inventory forecasting and conceptual urgency-score+handoff scenarios.
+- [x] Activity 08: failure-mode sorter covering false positives, calibration, drift, hallucination, instruction failure and hybrid error cascades.
+- [x] Activity 09: typed Feynman explain-back answering “If LLMs predict next tokens, why are they generative?”
+- [x] Explain-back validation requires both product-output vocabulary and internal prediction/token vocabulary.
+- [x] Seven-question final quiz with wrong-answer explanations.
 - [x] 6/7 pass threshold.
-- [x] Quiz locked until all 9 sections are visited and all 9 activities are complete.
-- [x] Responsive CSS module for nested worlds, maze, nearest-neighbor line, layer elevator, tradeoff dashboard, reorder challenge, flip cards and quiz.
+- [x] Quiz locked until all 9 sections are visited and all 9 tasks are complete.
+- [x] Responsive CSS module for two-machine lab, token conveyor, score lab, generator controls, same-model modes, architecture cards, failures and quiz.
 - [x] Reduced-motion fallback.
 
 ### Explicitly not complete yet
@@ -152,4 +149,4 @@ Status: **implemented in code; local runtime QA pending**
 
 ## Next batch
 
-Build **Lesson 04 — Generative AI vs Predictive AI**. The signature interaction should let the learner use the same underlying input in two machines: one predicts a label/value, while the other generates a new artifact token-by-token. It should clearly teach that generative models still perform prediction internally while the product-level task is generation.
+Build **Lesson 05 — Symbolic AI vs Neural AI**. It should let the learner inspect a transparent symbolic knowledge/rule graph beside a neural pattern learner, solve the same problem through both approaches, deliberately break each system, compare interpretability/data requirements, and finish by building a hybrid symbolic+neural pipeline before its locked quiz.
