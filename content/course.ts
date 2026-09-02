@@ -32,7 +32,7 @@ export const courseModules: CourseModule[] = [
     lessons: [
       { id: "what-is-ai", title: "What is Artificial Intelligence?", shortTitle: "What is AI?", slug: "/lessons/what-is-ai", status: "available", estimatedMinutes: 24 },
       { id: "ai-vs-software", title: "AI vs normal software", shortTitle: "AI vs software", slug: "/lessons/ai-vs-software", status: "available", estimatedMinutes: 28 },
-      { id: "ai-ml-dl", title: "AI vs Machine Learning vs Deep Learning", shortTitle: "AI / ML / DL", slug: "/lessons/ai-ml-dl", status: "planned", estimatedMinutes: 20 },
+      { id: "ai-ml-dl", title: "AI vs Machine Learning vs Deep Learning", shortTitle: "AI / ML / DL", slug: "/lessons/ai-ml-dl", status: "available", estimatedMinutes: 30 },
       { id: "generative-vs-predictive", title: "Generative AI vs predictive AI", shortTitle: "Generative vs predictive", slug: "/lessons/generative-vs-predictive", status: "planned", estimatedMinutes: 18 },
       { id: "symbolic-vs-neural", title: "Symbolic AI vs neural AI", shortTitle: "Symbolic vs neural", slug: "/lessons/symbolic-vs-neural", status: "planned", estimatedMinutes: 20 },
       { id: "training-vs-inference", title: "Training vs inference", shortTitle: "Training vs inference", slug: "/lessons/training-vs-inference", status: "planned", estimatedMinutes: 20 },
@@ -45,27 +45,9 @@ export const courseModules: CourseModule[] = [
       { id: "splits-checkpoints", title: "Train / validation / test sets and checkpoints", shortTitle: "Splits & checkpoints", slug: "/lessons/splits-checkpoints", status: "planned", estimatedMinutes: 22 }
     ]
   },
-  {
-    id: "module-2",
-    title: "Neural Networks Without the Mystery",
-    eyebrow: "NEXT MODULE",
-    color: "#ff5f57",
-    lessons: []
-  },
-  {
-    id: "module-3",
-    title: "How Language Becomes Numbers",
-    eyebrow: "COMING NEXT",
-    color: "#9e6cff",
-    lessons: []
-  },
-  {
-    id: "module-4",
-    title: "Transformers Visually, Step by Step",
-    eyebrow: "COMING NEXT",
-    color: "#16a66a",
-    lessons: []
-  }
+  { id: "module-2", title: "Neural Networks Without the Mystery", eyebrow: "NEXT MODULE", color: "#ff5f57", lessons: [] },
+  { id: "module-3", title: "How Language Becomes Numbers", eyebrow: "COMING NEXT", color: "#9e6cff", lessons: [] },
+  { id: "module-4", title: "Transformers Visually, Step by Step", eyebrow: "COMING NEXT", color: "#16a66a", lessons: [] }
 ];
 
 export const whatIsAiSections: readonly LessonSectionDefinition[] = [
@@ -89,4 +71,16 @@ export const aiVsSoftwareSections: readonly LessonSectionDefinition[] = [
   { id: "debug-it", title: "Debugging feels different", taskId: "debug-contrast" },
   { id: "boring-wins", title: "When boring software wins", taskId: "boring-wins" },
   { id: "explain-software", title: "Explain the difference", taskId: "explain-software" }
+];
+
+export const aiMlDlSections: readonly LessonSectionDefinition[] = [
+  { id: "nested-world", title: "Walk inside the hierarchy", taskId: "enter-zones" },
+  { id: "sort-examples", title: "Put examples on the right level", taskId: "sort-spectrum" },
+  { id: "symbolic-ai", title: "AI without machine learning", taskId: "solve-symbolic" },
+  { id: "classic-ml", title: "Machine learning without deep learning", taskId: "nearest-neighbor" },
+  { id: "deep-learning", title: "Why deep is deep", taskId: "layer-elevator" },
+  { id: "tradeoffs", title: "Compare the three approaches", taskId: "compare-approaches" },
+  { id: "build-hierarchy", title: "Build the nesting yourself", taskId: "hierarchy-build" },
+  { id: "myths", title: "Destroy the common myths", taskId: "myth-flips" },
+  { id: "explain-hierarchy", title: "Explain AI / ML / DL", taskId: "explain-hierarchy" }
 ];

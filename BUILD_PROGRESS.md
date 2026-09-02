@@ -73,37 +73,70 @@ Status: **implemented in code; local runtime QA pending**
 ### Lesson 02 — AI vs normal software
 
 - [x] Create `/lessons/ai-vs-software` route.
-- [x] Create distinct Lesson 02 art direction with more color, objects and two opposing guide characters: RULEY and PIX.
+- [x] Distinct Lesson 02 art direction with RULEY and PIX guide characters.
 - [x] Simple / Real / Expert intro explaining explicit logic vs learned behavior.
-- [x] Activity 01: package rule-trace game where learner selects which IF rules fire.
-- [x] Immediate feedback explaining that the computer follows authored conditions, not common sense.
-- [x] Activity 02: deterministic repeat experiment — run identical coupon code three times and observe identical output.
-- [x] Explicitly teach that deterministic does not mean small or trivial.
-- [x] Activity 03: hand-written cat-detector rulebook that grows as four edge cases are introduced.
-- [x] Clarify that rules are not bad; rule cost becomes painful for fuzzy/high-dimensional inputs.
-- [x] Activity 04: draggable/slider decision boundary with labeled safe/risky examples.
-- [x] Live training accuracy updates as learner moves the threshold.
-- [x] “Let the model fit it” action that demonstrates learning a boundary from examples.
-- [x] Clarify toy threshold fitting vs real multi-parameter model optimization.
-- [x] Activity 05: six-scenario Rules / ML / Hybrid decision game.
-- [x] Scenarios cover exact tax logic, computer vision, fraud, password policy, spam and high-value refunds.
-- [x] Each scenario reveals mechanism-level reasoning after the learner commits to a choice.
-- [x] Activity 06: draggable hybrid payment-risk pipeline.
-- [x] Required safe order: Hard rules → ML risk score → Human approval → Action.
-- [x] Animated run result through the completed hybrid pipeline.
-- [x] Activity 07: debugging comparison between an exact rule trace and learned model signals.
-- [x] Require inspection of both systems and a traceability answer.
-- [x] Activity 08: “anti-hype” challenge where the learner must deliberately choose boring deterministic software when it is the better tool.
-- [x] Teach the rule of thumb: exact/stable → rules; fuzzy/pattern-heavy → consider ML; high stakes → combine mechanisms and safeguards.
-- [x] Activity 09: typed Feynman explain-back that rejects “AI is smarter” as an insufficient explanation.
-- [x] Explain-back validation requires mechanism vocabulary and sufficient detail.
-- [x] Seven-question final quiz.
+- [x] Package IF-rule trace game.
+- [x] Deterministic repeat experiment.
+- [x] Cat-detector rule explosion with four edge cases.
+- [x] Decision-boundary slider with live accuracy.
+- [x] Toy auto-fit action demonstrating learning a boundary from examples.
+- [x] Six-scenario Rules / ML / Hybrid decision game.
+- [x] Draggable safe hybrid payment-risk pipeline.
+- [x] Rule-trace vs learned-model debugging comparison.
+- [x] Anti-hype “boring software wins” challenge.
+- [x] Typed Feynman explain-back with mechanism validation.
+- [x] Seven-question quiz with explanations; pass 6/7.
+- [x] Quiz gated behind all 9 scenes + 9 tasks.
+- [x] Independent Lesson 02 local progress and quiz persistence.
+- [x] Responsive CSS module and reduced-motion fallback.
+
+---
+
+## Batch 03 — Lesson 03: AI / ML / Deep Learning
+
+Status: **implemented in code; local runtime QA pending**
+
+### Course navigation
+
+- [x] Add Lesson 03 to the course drawer as an available lesson.
+- [x] Create `/lessons/ai-ml-dl` route.
+- [x] Give Lesson 03 its own nine-section progress/task map.
+- [x] Lesson 03 progress persists independently through the generic lesson engine.
+
+### Lesson 03 — AI vs Machine Learning vs Deep Learning
+
+- [x] Create a distinct “nested worlds / science museum” visual direction for the hierarchy lesson.
+- [x] Add three new visual guide creatures: AURA (AI), MILO (ML), DEEP (Deep Learning).
+- [x] Activity 01: clickable concentric AI → ML → DL world with progressive Simple / Real / Expert explanations.
+- [x] Force learner to enter hierarchy from broadest to narrowest.
+- [x] Activity 02: six-example most-specific-level classification game.
+- [x] Include AI-but-not-ML examples: search-based chess and symbolic expert rules.
+- [x] Include ML-but-not-DL examples: linear regression and decision trees.
+- [x] Include DL examples: deep vision networks and LLMs.
+- [x] Reveal explanation after the learner commits each classification.
+- [x] Activity 03: symbolic/search AI maze with explicit state transitions and no training dataset.
+- [x] Activity 04: classic nearest-neighbor ML lab with movable mystery point.
+- [x] Require at least three nearest-neighbor predictions.
+- [x] Explicitly teach machine learning without deep learning.
+- [x] Activity 05: six-floor “deep learning layer elevator.”
+- [x] Visual representation progression: Pixels → Edges → Textures → Parts → Objects → Meaning.
+- [x] Slider and floor buttons both change the active representation layer.
+- [x] Require learner to inspect all six levels.
+- [x] Explicitly kill the myth that “deep” means conscious, wise or human-style deep thinking.
+- [x] Activity 06: interactive approach comparison console for symbolic AI, classic ML and deep learning.
+- [x] Live comparison meters for data need, compute, explainability and adaptability.
+- [x] Require all three approaches to be inspected.
+- [x] Activity 07: draggable/reorder hierarchy challenge.
+- [x] Required order: AI → Machine Learning → Deep Learning.
+- [x] Activity 08: four 3D-style myth flip cards.
+- [x] Cover “all AI is ML,” “all ML is DL,” “all DL is ML,” and “LLMs are DL.”
+- [x] Require all myths to be flipped.
+- [x] Activity 09: typed Feynman explanation requiring scope + mechanism vocabulary.
+- [x] Seven-question end-of-lesson quiz with per-question explanations.
 - [x] 6/7 pass threshold.
-- [x] Wrong-answer explanations for every quiz question.
-- [x] Quiz locked until all 9 scenes are visited and all 9 required activities are complete.
-- [x] Lesson 02 local progress, quiz attempts, best score and explanation depth persist independently from Lesson 01.
-- [x] Lesson 02 responsive CSS module.
-- [x] Lesson 02 reduced-motion CSS fallback.
+- [x] Quiz locked until all 9 sections are visited and all 9 activities are complete.
+- [x] Responsive CSS module for nested worlds, maze, nearest-neighbor line, layer elevator, tradeoff dashboard, reorder challenge, flip cards and quiz.
+- [x] Reduced-motion fallback.
 
 ### Explicitly not complete yet
 
@@ -119,4 +152,4 @@ Status: **implemented in code; local runtime QA pending**
 
 ## Next batch
 
-Build **Lesson 03 — AI vs Machine Learning vs Deep Learning**. It should turn the nesting relationship into a physical explorable world, show examples that are AI-but-not-ML, ML-but-not-deep-learning, and deep-learning systems, then force the learner to classify and assemble the hierarchy before the quiz unlocks.
+Build **Lesson 04 — Generative AI vs Predictive AI**. The signature interaction should let the learner use the same underlying input in two machines: one predicts a label/value, while the other generates a new artifact token-by-token. It should clearly teach that generative models still perform prediction internally while the product-level task is generation.
