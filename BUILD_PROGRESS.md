@@ -4,84 +4,77 @@ This is the execution log for `BUILD_GUIDE.md`. `[x]` means implemented in repos
 
 ## Batch 01 — Foundation + Lesson 01
 Status: **implemented**
-- [x] Next.js + TypeScript application foundation, Motion layer, visual tokens and Firebase App Hosting config.
+- [x] Next.js + TypeScript foundation, Motion layer, visual tokens and Firebase App Hosting config.
 - [x] localStorage lesson progress, Simple / Real / Expert state, drawer, section jumps, progress HUD and locked quiz engine.
 - [x] Responsive/reduced-motion foundation.
-- [x] Lesson 01: AI/not-AI, See→Find→Guess, rules-vs-learning, AI X-ray, training loop, probability/temperature, AI/ML/DL reorder, explain-back, locked 6-question quiz.
+- [x] Lesson 01: AI/not-AI, See→Find→Guess, rules-vs-learning, AI X-ray, training loop, probability/temperature, AI/ML/DL reorder, explain-back, gated quiz.
 
 ## Batch 02 — Generic lesson engine + Lesson 02
 Status: **implemented in code; local runtime QA pending**
-- [x] Generic `LessonShell` with independent lesson id/title/section map and local persistence.
-- [x] Reusable `LessonSection`, `DepthSwitch`, `TaskStamp`.
-- [x] Lesson 02 `/lessons/ai-vs-software`: RULEY/PIX, rule trace, deterministic repeat, rule explosion, decision boundary, Rules/ML/Hybrid game, draggable hybrid pipeline, debug comparison, anti-hype challenge, explain-back, 7-question gated quiz.
+- [x] Generic `LessonShell` and independent per-lesson progress.
+- [x] Reusable `LessonSection`, `DepthSwitch`, `TaskStamp` primitives.
+- [x] Lesson 02 `/lessons/ai-vs-software`: rule trace, deterministic repeat, rule explosion, decision boundary, Rules/ML/Hybrid game, draggable hybrid pipeline, debugging comparison, anti-hype challenge, explain-back and gated quiz.
 
 ## Batch 03 — Lesson 03: AI / ML / Deep Learning
 Status: **implemented in code; local runtime QA pending**
-- [x] `/lessons/ai-ml-dl` + drawer/progress map.
-- [x] AURA/MILO/DEEP nested worlds.
-- [x] Most-specific-level classifier, symbolic/search maze, nearest-neighbor ML, six-floor deep-learning elevator, tradeoff console, reorder hierarchy, myth flips, explain-back, 7-question gated quiz.
+- [x] `/lessons/ai-ml-dl`, AURA/MILO/DEEP nested worlds, scope classifier, symbolic maze, nearest-neighbor lab, layer elevator, tradeoffs, hierarchy reorder, myths, explain-back and gated quiz.
 
 ## Batch 04 — Lesson 04: Generative vs Predictive AI
 Status: **implemented in code; local runtime QA pending**
-- [x] `/lessons/generative-vs-predictive` + drawer/progress map.
-- [x] PREDI/GENI two-machine workshop.
-- [x] Output-shape classifier, next-token conveyor, churn-score sliders, generation controls, same-model/two-output-contract demo, product architecture game, failure sorter, explain-back, 7-question gated quiz.
+- [x] `/lessons/generative-vs-predictive`, PREDI/GENI workshop, output-shape classifier, next-token conveyor, predictive score sliders, generator controls, same-model output contracts, product architecture, failure sorter, explain-back and gated quiz.
 - [x] Explicitly teach that autoregressive generation can be repeated next-token prediction.
 
-## Batch 05 — Lesson 05: Symbolic AI vs Neural AI
+## Batch 05 — Lesson 05: Symbolic vs Neural AI
 Status: **implemented in code; local runtime QA pending**
-- [x] `/lessons/symbolic-vs-neural` + drawer/progress map.
-- [x] LOGI/NOVA split glass laboratory.
-- [x] Explicit symbolic proof graph, visual neural learner, break/repair symbolic knowledge, poison/repair neural data, trace-vs-activation inspection, tradeoff console, neuro-symbolic pipeline, explain-back, 7-question gated quiz.
+- [x] `/lessons/symbolic-vs-neural`, LOGI/NOVA lab, explicit proof graph, visual neural learner, break/repair symbolic knowledge, poison/repair neural data, trace-vs-activation inspection, tradeoffs, neuro-symbolic pipeline, explain-back and gated quiz.
+
+## Batch 06 — Lesson 06: Training vs Inference
+Status: **implemented in code; local runtime QA pending**
+- [x] `/lessons/training-vs-inference`, FORGE/ZIP two-floor factory.
+- [x] Forward → Loss → Gradient → Update training line.
+- [x] Loss hill / optimizer-step interaction.
+- [x] Freeze checkpoint `v1.0` and serve five new inference requests without changing weights.
+- [x] Deliberately enable update-on-request, demonstrate serving drift, then recover checkpoint.
+- [x] Training-vs-serving compute console.
+- [x] Controlled lifecycle reorder and explain-back.
+- [x] Seven-question quiz, pass 6/7, gated behind all 9 sections + 9 tasks.
 
 ---
 
-## Batch 06 — Lesson 06: Training vs Inference
-
+## Batch 07 — Lesson 07: Models, Algorithms and Datasets
 Status: **implemented in code; local runtime QA pending**
 
-### Course navigation
-- [x] Add Lesson 06 as available in drawer.
-- [x] Create `/lessons/training-vs-inference`.
+### Course/navigation
+- [x] Add Lesson 07 as available in course drawer.
+- [x] Create `/lessons/models-algorithms-data`.
 - [x] Add independent nine-section task/progress map.
+- [x] Add visible Simple / Real / Expert depth switch to Lesson 07 hero.
 
-### Lesson 06 — Training vs Inference
-- [x] Create a distinct two-floor AI factory art direction.
-- [x] Add FORGE training-line character and ZIP inference-serving character.
-- [x] Activity 01: inspect Training floor and Inference floor with Simple / Real / Expert explanations.
-- [x] Explicitly teach core distinction: training changes model parameters; ordinary inference uses a selected checkpoint with weights fixed.
-- [x] Activity 02: interactive training conveyor with six labeled examples.
-- [x] Expose Forward → Loss → Gradient → Update phases.
-- [x] Run multiple training batches with live toy loss and weight changes.
-- [x] Require all four phases + six batches before completion.
-- [x] Activity 03: one-dimensional optimizer/loss hill.
-- [x] Manual parameter slider and repeated optimizer-step control.
-- [x] Require learner to move the weight manually, take at least four optimizer steps and reach low loss.
-- [x] Explicitly mark the hill as one-dimensional intuition rather than a realistic model parameter space.
-- [x] Activity 04: checkpoint/freezer station.
-- [x] Require sufficient training before saving model checkpoint `v1.0`.
-- [x] Show live changing training model beside frozen/versioned checkpoint.
-- [x] Activity 05: inference serving line with five new unseen requests.
-- [x] Require all five requests to pass through the frozen checkpoint.
-- [x] Visually prove checkpoint weight is unchanged before/after inference requests.
-- [x] Activity 06: deliberately enable `UPDATE WEIGHTS AFTER REQUEST` during serving.
-- [x] Show serving-weight drift after accidental online-learning-like updates.
-- [x] Require at least two accidental updates and recovery from known-good checkpoint.
-- [x] Explicitly explain that ordinary inference/context does not imply permanent model-weight learning.
-- [x] Distinguish deliberately designed online/continual learning from normal inference.
-- [x] Activity 07: training/inference compute economics console.
-- [x] Training GPU, batch size and inference replica sliders.
-- [x] Live illustrative training compute/time and serving latency/throughput readouts.
-- [x] Explicitly label metrics as teaching numbers, not hardware benchmarks.
-- [x] Activity 08: draggable controlled ML lifecycle.
-- [x] Required order: Collect data → Train/update weights → Evaluate+checkpoint → Deploy frozen version → Run inference → Monitor → Retrain when needed.
-- [x] Activity 09: typed Feynman explain-back answering why chatting with a model does not automatically retrain its weights.
-- [x] Explain-back validation requires training/update/loss/checkpoint/inference/frozen vocabulary.
-- [x] Seven-question final quiz with wrong-answer explanations.
+### Lesson 07 interactions
+- [x] Create fresh workshop visual language with DOT (dataset), LOOP (algorithm) and MOD (model) characters.
+- [x] Activity 01: inspect data, algorithm and model as physically distinct objects/roles.
+- [x] Activity 02: draggable pipeline `Dataset → Training algorithm → Learned model → New input → Prediction`.
+- [x] Explicitly separate training-time model creation from inference-time model use.
+- [x] Activity 03: train the same conceptual linear algorithm on City vs Suburb housing datasets.
+- [x] Show two different fitted coefficient sets and different 80m² predictions from the same procedure.
+- [x] Activity 04: train two different algorithms on the same conceptual customer dataset.
+- [x] Compare smooth linear/logistic score with decision-tree piecewise rule structure.
+- [x] Activity 05: classify six realistic artifacts/files as Data / Algorithm / Model.
+- [x] Cover CSV/image examples, training procedure code and saved model/checkpoint artifacts.
+- [x] Activity 06: deliberately add a bad outlier to a tiny dataset and watch fitted prediction shift.
+- [x] Require learner to verify/clean the row and see model behavior recover.
+- [x] Activity 07: six-scenario diagnostic game requiring exact layer diagnosis — data, algorithm/procedure or model artifact.
+- [x] Activity 08: kitchen analogy `ingredients ≈ data`, `recipe ≈ algorithm`, `dish ≈ model`.
+- [x] Immediately require learner to reveal three technical limits of the analogy.
+- [x] Activity 09: typed Feynman explain-back requiring evidence/procedure/fitted-artifact vocabulary.
+- [x] Seven-question final quiz with explanations.
 - [x] 6/7 pass threshold.
 - [x] Quiz locked behind all 9 sections + 9 tasks.
-- [x] Responsive CSS module for factory floors, training belt, loss hill, freezer, serving line, drift recovery, compute console, lifecycle and quiz.
-- [x] Reduced-motion fallback.
+- [x] Responsive CSS module and reduced-motion fallback.
+
+### Cross-lesson compile-safety maintenance
+- [x] Mark lesson `page.tsx` routes 01–07 as client boundaries where they pass the `(progress) => ...` render prop into client `LessonShell`.
+- [x] Avoid Server Component → Client Component function-prop serialization failure in the lesson route pattern.
 
 ### Explicitly not complete yet
 - [ ] Firebase Authentication.
@@ -96,4 +89,4 @@ Status: **implemented in code; local runtime QA pending**
 
 ## Next batch
 
-Build **Lesson 07 — Models, Algorithms and Datasets**. The learner should physically assemble the relationship: data is examples/observations, an algorithm is a procedure, and a model is the learned/fitted artifact used for predictions. Include a “kitchen” analogy but immediately expose its limits, train the same algorithm on two datasets to create two different models, use two algorithms on one dataset to create different models, inspect model files/checkpoints, and force the learner to diagnose which layer changed before the locked quiz.
+Build **Lesson 08 — Parameters vs Hyperparameters**. The signature interaction should open a model control room where learned parameters visibly change during training while hyperparameters remain user/developer-selected controls that shape training or model behavior. Learners should deliberately set a terrible learning rate, watch optimization fail, tune it, compare model parameters before/after training, and finish with a classification/diagnosis challenge before the locked quiz.
