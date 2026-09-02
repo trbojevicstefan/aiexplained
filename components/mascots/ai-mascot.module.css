@@ -1,0 +1,229 @@
+.wrap {
+  --accent: #5ab8ff;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: var(--mascot-size, 92px);
+  height: var(--mascot-size, 92px);
+  isolation: isolate;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.shadow {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 5%;
+  height: 12%;
+  border-radius: 999px;
+  background: rgba(10, 16, 34, .22);
+  filter: blur(7px);
+  transform: scaleX(.95);
+  z-index: -2;
+}
+
+.body {
+  position: relative;
+  width: 72%;
+  height: 58%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.85);
+  background:
+    radial-gradient(circle at 30% 18%, rgba(255,255,255,.98), rgba(255,255,255,0) 34%),
+    linear-gradient(155deg, #ffffff 0%, #f4f6fb 48%, #d7dbe5 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,1),
+    inset 0 -8px 14px rgba(45,54,78,.08),
+    0 8px 16px rgba(13,20,40,.18),
+    0 2px 3px rgba(13,20,40,.16);
+  border-radius: 30% 30% 35% 35% / 38% 38% 30% 30%;
+  transform-style: preserve-3d;
+}
+
+.body::after {
+  content: "";
+  position: absolute;
+  inset: 5% 9% auto;
+  height: 22%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,.76), rgba(255,255,255,0));
+  pointer-events: none;
+}
+
+.side {
+  position: absolute;
+  top: 43%;
+  width: 15%;
+  height: 24%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #e9edf5, #c9ced9);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.8), 0 2px 4px rgba(15,20,36,.14);
+  z-index: -1;
+}
+.sideLeft { left: 8%; transform: rotate(-9deg); }
+.sideRight { right: 8%; transform: rotate(9deg); }
+
+.antenna {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 4%;
+  height: 24%;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #cbd3df, #f8fafc 55%, #aeb8c8);
+  z-index: -1;
+}
+
+.antennaTip {
+  position: absolute;
+  top: -18%;
+  left: 50%;
+  width: 330%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, #9bdcff 0 18%, var(--accent) 34%, #1875c9 100%);
+  box-shadow: 0 2px 4px rgba(10,70,140,.3), inset 0 1px 2px rgba(255,255,255,.6);
+}
+
+.face {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12%;
+  width: 55%;
+  height: 48%;
+  transform: translateY(3%);
+}
+
+.eye {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 25%;
+  height: 70%;
+  min-width: 9px;
+  border-radius: 48% 48% 52% 52% / 45% 45% 58% 58%;
+  background: linear-gradient(180deg, #252b42 0%, #101426 65%, #080b16 100%);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.16), 0 1px 1px rgba(255,255,255,.5);
+  overflow: hidden;
+  transform-origin: 50% 50%;
+}
+
+.pupil {
+  position: absolute;
+  width: 42%;
+  aspect-ratio: .78;
+  top: 19%;
+  left: 29%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 45% 35%, #ffffff 0 28%, #c9e7ff 31% 44%, rgba(255,255,255,.08) 47% 100%);
+  filter: drop-shadow(0 0 2px rgba(145,209,255,.45));
+}
+
+.cheek {
+  position: absolute;
+  top: 68%;
+  width: 13%;
+  height: 6%;
+  border-radius: 999px;
+  opacity: 0;
+  background: rgba(255, 117, 142, .35);
+  filter: blur(.2px);
+  transition: opacity 180ms ease-out;
+}
+.cheekLeft { left: 14%; }
+.cheekRight { right: 14%; }
+
+.wrap:hover .cheek,
+.wrap[data-mood="happy"] .cheek,
+.wrap[data-mood="excited"] .cheek { opacity: 1; }
+
+.spark {
+  position: absolute;
+  width: 8%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 16%, transparent);
+  opacity: 0;
+  right: 4%;
+  top: 17%;
+}
+
+.wrap[data-mood="excited"] .spark { opacity: 1; }
+
+/* Toy variants: same face language, different collectible body silhouettes. */
+.star .body {
+  width: 72%;
+  height: 72%;
+  border-radius: 30%;
+  clip-path: polygon(50% 2%, 62% 31%, 94% 34%, 70% 55%, 78% 88%, 50% 70%, 22% 88%, 30% 55%, 6% 34%, 38% 31%);
+  background: radial-gradient(circle at 35% 20%, #fff5a9, rgba(255,255,255,0) 28%), linear-gradient(145deg, #ffe45b, #ffc41d 70%, #e79800);
+  border: none;
+}
+.star .antenna, .star .side { display: none; }
+.star .face { width: 45%; height: 34%; transform: translateY(3%); }
+
+.briefcase .body {
+  width: 76%;
+  height: 60%;
+  border-radius: 22% 22% 26% 26%;
+  background: radial-gradient(circle at 35% 17%, #a4fbf3, rgba(255,255,255,0) 30%), linear-gradient(145deg, #54dfd1, #21b9b3 72%, #148f91);
+}
+.briefcase .body::before {
+  content: "";
+  position: absolute;
+  left: 34%; top: -18%; width: 32%; height: 19%;
+  border: 5px solid #2daea9;
+  border-bottom: 0;
+  border-radius: 9px 9px 0 0;
+}
+.briefcase .antenna, .briefcase .side { display: none; }
+
+.tile .body {
+  width: 76%; height: 56%;
+  border-radius: 22%;
+  transform: rotate(13deg);
+  background: radial-gradient(circle at 35% 18%, #caffb3, rgba(255,255,255,0) 28%), linear-gradient(145deg, #a1ee7b, #62cf5f 72%, #38a94d);
+}
+.tile .face { transform: rotate(-13deg) translateY(3%); }
+.tile .antenna, .tile .side { display: none; }
+
+.mail .body {
+  width: 77%; height: 54%;
+  border-radius: 15% 15% 20% 20%;
+  background: linear-gradient(150deg, #ffffff, #e9edf4 72%, #c9d0dc);
+}
+.mail .body::before {
+  content: "";
+  position: absolute; inset: 6% 5% auto; height: 58%;
+  clip-path: polygon(0 0, 50% 64%, 100% 0, 100% 22%, 50% 88%, 0 22%);
+  background: linear-gradient(180deg, rgba(184,194,210,.8), rgba(230,235,242,.7));
+}
+.mail .face { z-index: 2; }
+.mail .antenna, .mail .side { display: none; }
+
+.label {
+  position: absolute;
+  left: 50%;
+  bottom: -16%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(16,20,31,.86);
+  color: white;
+  font-size: clamp(9px, calc(var(--mascot-size) * .105), 12px);
+  font-weight: 800;
+  letter-spacing: .08em;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(10,14,28,.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap, .body, .antenna, .antennaTip, .pupil { transition: none !important; }
+}
