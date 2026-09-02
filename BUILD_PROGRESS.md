@@ -4,60 +4,56 @@
 
 ## Foundation
 Status: **implemented in code**
-- [x] Next.js + TypeScript foundation.
-- [x] Motion-based interaction layer and visual tokens.
-- [x] Firebase App Hosting config.
-- [x] localStorage per-lesson progress fallback.
-- [x] reusable `LessonShell`, drawer, section jumps and progress HUD.
-- [x] reusable `LessonSection`, `DepthSwitch`, `TaskStamp` primitives.
-- [x] gated quiz pattern with persistent best score / pass state.
+- [x] Next.js + TypeScript foundation, Motion interaction layer and Firebase App Hosting config.
+- [x] localStorage lesson progress, generic `LessonShell`, drawer, section jumps, progress HUD and gated quiz pattern.
+- [x] reusable `LessonSection`, `DepthSwitch`, `TaskStamp`, `VectorPlot2D` and `AttentionMatrix` primitives.
 - [x] responsive and reduced-motion support across the lesson system.
-- [x] reusable `VectorPlot2D` primitive.
-- [x] course drawer synchronized with all built Module 1–3 routes.
+- [x] course drawer synchronized with all built Module 1–4 routes.
 
 ## Module 1 — AI From Absolute Zero
 Status: **content implemented in code**
-- [x] What is AI, software/rules vs learning, AI/ML/DL, generative/predictive, symbolic/neural.
-- [x] Training/inference, model/algorithm/data, parameters/hyperparameters, features/labels.
-- [x] Supervised/unsupervised/self-supervised/semi-supervised/RL.
-- [x] Generalization, overfit/underfit, bias-variance, splits/checkpoints.
-- [x] Online/transfer/representation learning, scope/AGI framing and probabilistic systems.
-- [x] Module 1 Boss Level + mastery exam.
+- [x] Core AI/software/ML/DL/generative/symbolic/training/data/parameter/feature concepts.
+- [x] Learning types, RL, generalization, splits/checkpoints, online/transfer/representation learning.
+- [x] Scope/AGI/probabilistic framing and Module 1 Boss Level.
 
 ## Module 2 — Neural Networks Without the Mystery
 Status: **content implemented in code**
-- [x] Real 2→4→1 toy neural-network math engine.
-- [x] neurons, I/O, hidden layers, weights, bias, ReLU/sigmoid/softmax, forward pass.
-- [x] loss, gradients, GD/SGD, backprop, learning rate, batches and epochs.
-- [x] vanishing/exploding gradients, clipping and normalization.
-- [x] regularization, L2, dropout and early stopping.
-- [x] residual connections and MLPs.
-- [x] CNN, RNN, LSTM and why attention displaced much recurrence for modern LLMs.
-- [x] Module 2 Boss Lab + 12-question mastery exam.
+- [x] Real 2→4→1 toy network, forward pass, weights/bias/activations.
+- [x] loss, gradient descent, SGD, backprop, LR/batches/epochs.
+- [x] gradient health, clipping, normalization, regularization/dropout/early stopping.
+- [x] residual/MLP, CNN/RNN/LSTM/attention evolution and Module 2 Boss Lab.
 
 ## Module 3 — How Language Becomes Numbers
 Status: **content implemented in code**
-- [x] Tokens vs words; word/character/byte/subword units.
-- [x] Vocabulary, token IDs, BOS/EOS and context-token limits.
-- [x] Toy BPE merge lab.
-- [x] BPE vs WordPiece vs SentencePiece workshop, including continuation and whitespace-marker intuition.
-- [x] Same text → different tokenizer boundaries/counts.
-- [x] Token ID → learned embedding lookup mental model.
-- [x] Vector dimensions and reusable 2-D embedding plot.
-- [x] Cosine similarity, dot product and Euclidean distance.
-- [x] Semantic search and nearest-neighbor ranking.
-- [x] Text/image multimodal embedding-space intuition.
-- [x] Clustering.
-- [x] Exact nearest neighbors vs ANN trade-off.
-- [x] Drag/drop Module 3 challenge: place words into semantic regions.
-- [x] Module 3 Boss Lab pipeline: text → tokens → IDs → embeddings → retrieval.
-- [x] 12-question Module 3 mastery exam, pass threshold 10/12.
+- [x] Tokens, vocabulary, IDs, special tokens and context-token limits.
+- [x] BPE, WordPiece and SentencePiece workshop.
+- [x] embeddings, dimensions, cosine/dot/Euclidean, semantic search, multimodal space, clustering and ANN.
+- [x] drag/drop semantic-space challenge and Module 3 Boss Lab.
 
-## Current Module 3 routes
-- [x] `/lessons/tokens-tokenization`
-- [x] `/lessons/tokenizer-families`
-- [x] `/lessons/embeddings-vectors`
-- [x] `/lessons/module-3-capstone`
+## Module 4 — Transformers Visually, Step by Step
+Status: **content implemented in code**
+- [x] Why transformer attention shortens dependency paths and enables parallel-friendly training.
+- [x] token representations through Q/K/V learned projections.
+- [x] attention scores, scaled dot-product attention and row-wise softmax.
+- [x] weighted value mixing and multi-head attention with distinct projection sets.
+- [x] residual connections, LayerNorm intuition and transformer MLP/FFN.
+- [x] transformer block flow.
+- [x] absolute sinusoidal vs learned positional information.
+- [x] RoPE rotation intuition.
+- [x] causal masks and attention masks.
+- [x] KV cache decode intuition.
+- [x] Flash Attention vs sparse attention distinction.
+- [x] sparse and sliding-window attention patterns.
+- [x] encoder, decoder, encoder-only, decoder-only and encoder-decoder families.
+- [x] cross-attention with decoder queries over encoder keys/values.
+- [x] signature challenge: manually edit attention weights and watch output representation move.
+- [x] Module 4 Boss Lab + 12-question mastery exam.
+
+## Current Module 4 routes
+- [x] `/lessons/transformer-block-flow`
+- [x] `/lessons/positions-masks-cache`
+- [x] `/lessons/encoder-decoder-architectures`
+- [x] `/lessons/module-4-capstone`
 
 ## QA / platform work still open
 - [ ] Fresh `npm ci` + `npm run typecheck` + `npm run build` on an environment with repository/network access.
@@ -70,4 +66,4 @@ Status: **content implemented in code**
 - [ ] TokenStream homepage demo.
 
 ## Next batch
-Build **Module 4 — Transformers Visually, Step by Step**. Start with a transformer-block flow lab and reusable attention heatmap: embeddings → position information → Q/K/V projections → scaled dot-product scores → softmax weights → weighted values → multi-head concat → residual + LayerNorm → MLP.
+Build **Module 5 — How an LLM Actually Produces Text**: a real seeded next-token sampler for logits → softmax → greedy / temperature / top-k / top-p / repetition penalties / stop / max tokens, followed by a Model Zoo lesson for dense, sparse, MoE, routing and model families.
