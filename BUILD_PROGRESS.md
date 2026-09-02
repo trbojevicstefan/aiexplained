@@ -11,9 +11,9 @@ Status: **implemented in code**
 - [x] living `AiMascot` design-system primitive with bot/star/briefcase/tile/mail toy variants.
 - [x] mascot gaze follows pointer with spring motion, random blinking, breathing, hover/tap reaction and mood states.
 - [x] living mascot companion integrated globally into lesson topbar + lesson drawer.
-- [x] course drawer synchronized with all built Module 1–7 routes.
+- [x] foundation drawer registry plus separate advanced-module registry for Module 8+.
 
-## Modules 1–6
+## Modules 1–7
 Status: **content implemented in code**
 - [x] Module 1 foundations + Boss Level.
 - [x] Module 2 real toy neural-network curriculum + Boss Lab.
@@ -21,40 +21,31 @@ Status: **content implemented in code**
 - [x] Module 4 transformer/attention curriculum + Boss Lab.
 - [x] Module 5 LLM generation/sampling/model-zoo/routing curriculum + Boss Lab.
 - [x] Module 6 context/prompting/instruction-hierarchy/security curriculum + Boss Lab.
+- [x] Module 7 pretraining/post-training/PEFT curriculum + Boss Lab.
 
-## Module 7 — Training & Post-Training
+## Module 8 — Reasoning & Test-Time Compute
 Status: **content implemented in code**
-- [x] Pretraining corpus construction, filtering, data quality and deduplication.
-- [x] evaluation/benchmark contamination detection.
-- [x] synthetic-data mix intuition and quality caveats.
-- [x] next-token cross-entropy objective.
-- [x] backpropagation at distributed-cluster scale.
-- [x] data, tensor, pipeline and model-parallelism distinctions.
-- [x] checkpoint save/failure/recovery flow.
-- [x] base pretrained behavior vs SFT behavior.
-- [x] instruction-tuning demonstration data.
-- [x] chosen/rejected preference-pair construction.
-- [x] reward-model scoring intuition and reward-hacking caveat.
-- [x] PPO-style RLHF reward-vs-policy-drift/KL intuition.
-- [x] DPO chosen-vs-rejected relative-likelihood intuition.
-- [x] RLAIF and Constitutional AI critique/revision principles.
-- [x] comparison game choosing SFT vs DPO vs PPO vs RLAIF by supervision type.
-- [x] full fine-tuning vs parameter-efficient fine-tuning.
-- [x] LoRA low-rank A/B update and rank/parameter-count slider.
-- [x] QLoRA quantized frozen base + trainable LoRA stack.
-- [x] adapter/domain fine-tuning intuition.
-- [x] teacher/student knowledge distillation.
-- [x] model-merging trade-off and interference warning.
-- [x] continual learning + catastrophic forgetting simulation.
-- [x] quantization-aware training intuition.
-- [x] Module 7 end-to-end Training Control Room Boss Lab.
-- [x] 12-question Module 7 mastery exam, pass threshold 10/12.
+- [x] operational definition of reasoning as additional inference-time planning/search/verification compute.
+- [x] reasoning/test-time-compute budget slider with toy quality/latency/cost trade-off.
+- [x] visible planning scaffold without presenting private model chain-of-thought as required output.
+- [x] candidate search and Best-of-N intuition.
+- [x] explicit verifier criteria and generator/verifier pattern.
+- [x] self-correction using concrete failed tests/feedback.
+- [x] critic/revision loop.
+- [x] process reward model (PRM) vs outcome reward model (ORM) intuition.
+- [x] tree-search and Tree-of-Thoughts propose/evaluate/expand-prune pattern.
+- [x] majority voting and shared-error caveat.
+- [x] self-consistency over multiple sampled solution paths.
+- [x] reasoning-vs-memorization diagnosis using novel/controlled evaluation framing.
+- [x] verifier/proxy failure and reward-hacking warning.
+- [x] quality/latency/cost routing by task importance.
+- [x] Module 8 Reasoning Boss Lab.
+- [x] 12-question Module 8 mastery exam, pass threshold 10/12.
 
-## Current Module 7 routes
-- [x] `/lessons/pretraining-factory`
-- [x] `/lessons/posttraining-arena`
-- [x] `/lessons/efficient-adaptation`
-- [x] `/lessons/module-7-capstone`
+## Current Module 8 routes
+- [x] `/lessons/reasoning-solver-arena`
+- [x] `/lessons/search-verification-lab`
+- [x] `/lessons/module-8-capstone`
 
 ## QA / platform work still open
 - [ ] Fresh `npm ci` + `npm run typecheck` + `npm run build` on an environment with repository/network access.
@@ -68,4 +59,4 @@ Status: **content implemented in code**
 - [ ] migrate remaining legacy one-off lesson mascots into the canonical `AiMascot` primitive.
 
 ## Next batch
-Build **Module 8 — Reasoning & Test-Time Compute**: compare instant answer vs deliberate planning vs generator+verifier; expose reasoning/test-time-compute budgets, search trees, verification/self-correction, PRM/ORM intuition, Best-of-N and self-consistency, and quality/latency/cost trade-offs before the locked mastery exam.
+Build **Module 9 — RAG & Knowledge Retrieval**: document ingestion/cleaning → chunk size/overlap → embeddings/index → keyword/BM25 vs semantic vs hybrid retrieval → metadata filters/query rewriting/HyDE → reranking/cross-encoders → grounded context/citations → precision/recall evaluation → vector DB/HNSW/IVF trade-offs and embedding migrations before the RAG Boss Lab.
