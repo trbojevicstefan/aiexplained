@@ -1,92 +1,78 @@
 # AI Explained — Build Progress
 
-This is the execution log for `BUILD_GUIDE.md`. `[x]` means implemented in repository code. Runtime/browser verification remains separate and is never marked complete unless actually performed.
+`[x]` means implemented in repository code. Runtime/browser QA is tracked separately and is never marked complete unless actually performed.
 
-## Batch 01 — Foundation + Lesson 01
-Status: **implemented**
-- [x] Next.js + TypeScript foundation, Motion layer, visual tokens and Firebase App Hosting config.
-- [x] localStorage lesson progress, Simple / Real / Expert state, drawer, section jumps, progress HUD and locked quiz engine.
-- [x] Responsive/reduced-motion foundation.
-- [x] Lesson 01: AI/not-AI, See→Find→Guess, rules-vs-learning, AI X-ray, training loop, probability/temperature, AI/ML/DL reorder, explain-back, gated quiz.
+## Foundation
+Status: **implemented in code**
+- [x] Next.js + TypeScript foundation.
+- [x] Motion-based interaction layer and visual tokens.
+- [x] Firebase App Hosting config.
+- [x] localStorage per-lesson progress fallback.
+- [x] reusable `LessonShell`, drawer, section jumps and progress HUD.
+- [x] reusable `LessonSection`, `DepthSwitch`, `TaskStamp` primitives.
+- [x] gated quiz pattern with persistent best score / pass state.
+- [x] responsive and reduced-motion support across the lesson system.
+- [x] course drawer synchronized with all built Module 1 and Module 2 routes.
 
-## Batch 02 — Generic lesson engine + Lesson 02
-Status: **implemented in code; local runtime QA pending**
-- [x] Generic `LessonShell` and independent per-lesson progress.
-- [x] Reusable `LessonSection`, `DepthSwitch`, `TaskStamp` primitives.
-- [x] Lesson 02 `/lessons/ai-vs-software`: rule trace, deterministic repeat, rule explosion, decision boundary, Rules/ML/Hybrid game, draggable hybrid pipeline, debugging comparison, anti-hype challenge, explain-back and gated quiz.
+## Module 1 — AI From Absolute Zero
+Status: **content implemented in code**
+- [x] What is AI?
+- [x] AI vs normal software / rules vs learned behavior.
+- [x] AI vs ML vs DL.
+- [x] Generative vs predictive AI.
+- [x] Symbolic vs neural AI.
+- [x] Training vs inference.
+- [x] Model vs algorithm vs dataset.
+- [x] Parameters vs hyperparameters.
+- [x] Features and labels + target leakage.
+- [x] Supervised / unsupervised / self-supervised / semi-supervised learning.
+- [x] Reinforcement learning + reward hacking.
+- [x] Generalization / overfitting / underfitting / bias-variance intuition.
+- [x] Train / validation / test sets + checkpoints + contamination traps.
+- [x] Online / transfer / representation learning.
+- [x] Narrow/specialized AI, AGI framing, deterministic vs probabilistic systems.
+- [x] Module 1 Boss Level and mastery exam.
 
-## Batch 03 — Lesson 03: AI / ML / Deep Learning
-Status: **implemented in code; local runtime QA pending**
-- [x] `/lessons/ai-ml-dl`, AURA/MILO/DEEP nested worlds, scope classifier, symbolic maze, nearest-neighbor lab, layer elevator, tradeoffs, hierarchy reorder, myths, explain-back and gated quiz.
+## Module 2 — Neural Networks Without the Mystery
+Status: **content implemented in code**
+- [x] Real 2→4→1 toy neural-network math engine in `lib/toy-neural-network.ts`.
+- [x] Neural network anatomy, neurons, inputs/outputs, layers and hidden layers.
+- [x] Weights, biases, ReLU, sigmoid and softmax.
+- [x] Forward pass.
+- [x] Loss functions, gradient intuition, gradient descent and backpropagation.
+- [x] Learning rate, SGD, batches and epochs with real mini-batch updates.
+- [x] Vanishing and exploding gradients.
+- [x] Gradient clipping.
+- [x] Normalization, including BatchNorm-vs-LayerNorm axis intuition.
+- [x] Regularization, L2 weight decay, dropout and early stopping.
+- [x] Residual connections and dense MLP intuition.
+- [x] CNN local kernels and weight sharing.
+- [x] RNN recurrent state and long-dependency limitation.
+- [x] LSTM gated memory intuition.
+- [x] Why attention replaced much sequential recurrence for modern LLM training.
+- [x] Module 2 Boss Lab using the real toy-network engine.
+- [x] 12-question Module 2 mastery exam, pass threshold 10/12.
 
-## Batch 04 — Lesson 04: Generative vs Predictive AI
-Status: **implemented in code; local runtime QA pending**
-- [x] `/lessons/generative-vs-predictive`, PREDI/GENI workshop, output-shape classifier, next-token conveyor, predictive score sliders, generator controls, same-model output contracts, product architecture, failure sorter, explain-back and gated quiz.
-- [x] Explicitly teach that autoregressive generation can be repeated next-token prediction.
+## Current routes added in Module 2
+- [x] `/lessons/neural-networks`
+- [x] `/lessons/weights-bias-activations`
+- [x] `/lessons/loss-gradients-backprop`
+- [x] `/lessons/sgd-batches-epochs`
+- [x] `/lessons/gradient-health-normalization`
+- [x] `/lessons/regularization-dropout`
+- [x] `/lessons/residual-mlp`
+- [x] `/lessons/cnn-rnn-lstm-attention`
+- [x] `/lessons/module-2-capstone`
 
-## Batch 05 — Lesson 05: Symbolic vs Neural AI
-Status: **implemented in code; local runtime QA pending**
-- [x] `/lessons/symbolic-vs-neural`, LOGI/NOVA lab, explicit proof graph, visual neural learner, break/repair symbolic knowledge, poison/repair neural data, trace-vs-activation inspection, tradeoffs, neuro-symbolic pipeline, explain-back and gated quiz.
-
-## Batch 06 — Lesson 06: Training vs Inference
-Status: **implemented in code; local runtime QA pending**
-- [x] `/lessons/training-vs-inference`, FORGE/ZIP two-floor factory.
-- [x] Forward → Loss → Gradient → Update training line.
-- [x] Loss hill / optimizer-step interaction.
-- [x] Freeze checkpoint `v1.0` and serve five new inference requests without changing weights.
-- [x] Deliberately enable update-on-request, demonstrate serving drift, then recover checkpoint.
-- [x] Training-vs-serving compute console.
-- [x] Controlled lifecycle reorder and explain-back.
-- [x] Seven-question quiz, pass 6/7, gated behind all 9 sections + 9 tasks.
-
----
-
-## Batch 07 — Lesson 07: Models, Algorithms and Datasets
-Status: **implemented in code; local runtime QA pending**
-
-### Course/navigation
-- [x] Add Lesson 07 as available in course drawer.
-- [x] Create `/lessons/models-algorithms-data`.
-- [x] Add independent nine-section task/progress map.
-- [x] Add visible Simple / Real / Expert depth switch to Lesson 07 hero.
-
-### Lesson 07 interactions
-- [x] Create fresh workshop visual language with DOT (dataset), LOOP (algorithm) and MOD (model) characters.
-- [x] Activity 01: inspect data, algorithm and model as physically distinct objects/roles.
-- [x] Activity 02: draggable pipeline `Dataset → Training algorithm → Learned model → New input → Prediction`.
-- [x] Explicitly separate training-time model creation from inference-time model use.
-- [x] Activity 03: train the same conceptual linear algorithm on City vs Suburb housing datasets.
-- [x] Show two different fitted coefficient sets and different 80m² predictions from the same procedure.
-- [x] Activity 04: train two different algorithms on the same conceptual customer dataset.
-- [x] Compare smooth linear/logistic score with decision-tree piecewise rule structure.
-- [x] Activity 05: classify six realistic artifacts/files as Data / Algorithm / Model.
-- [x] Cover CSV/image examples, training procedure code and saved model/checkpoint artifacts.
-- [x] Activity 06: deliberately add a bad outlier to a tiny dataset and watch fitted prediction shift.
-- [x] Require learner to verify/clean the row and see model behavior recover.
-- [x] Activity 07: six-scenario diagnostic game requiring exact layer diagnosis — data, algorithm/procedure or model artifact.
-- [x] Activity 08: kitchen analogy `ingredients ≈ data`, `recipe ≈ algorithm`, `dish ≈ model`.
-- [x] Immediately require learner to reveal three technical limits of the analogy.
-- [x] Activity 09: typed Feynman explain-back requiring evidence/procedure/fitted-artifact vocabulary.
-- [x] Seven-question final quiz with explanations.
-- [x] 6/7 pass threshold.
-- [x] Quiz locked behind all 9 sections + 9 tasks.
-- [x] Responsive CSS module and reduced-motion fallback.
-
-### Cross-lesson compile-safety maintenance
-- [x] Mark lesson `page.tsx` routes 01–07 as client boundaries where they pass the `(progress) => ...` render prop into client `LessonShell`.
-- [x] Avoid Server Component → Client Component function-prop serialization failure in the lesson route pattern.
-
-### Explicitly not complete yet
+## QA / platform work still open
+- [ ] Fresh `npm ci` + `npm run typecheck` + `npm run build` on an environment with repository/network access.
+- [ ] Browser visual QA across desktop and touch devices.
+- [ ] Formal Playwright E2E tests.
 - [ ] Firebase Authentication.
 - [ ] Firestore cloud progress synchronization.
 - [ ] Anonymous → authenticated progress merge.
 - [ ] Full visual learning-map/planet view.
 - [ ] TokenStream homepage demo.
-- [ ] Formal E2E/Playwright tests.
-- [ ] Local `npm install` / `npm run typecheck` / `npm run build` verification by the user environment.
-- [ ] Browser visual QA across desktop + touch devices.
-- [ ] Remaining Module 1 lessons.
 
 ## Next batch
-
-Build **Lesson 08 — Parameters vs Hyperparameters**. The signature interaction should open a model control room where learned parameters visibly change during training while hyperparameters remain user/developer-selected controls that shape training or model behavior. Learners should deliberately set a terrible learning rate, watch optimization fail, tune it, compare model parameters before/after training, and finish with a classification/diagnosis challenge before the locked quiz.
+Build **Module 3 — How Language Becomes Numbers**, starting with a signature tokenizer lab: type text → split into visible tokens → inspect token IDs → compare tokenization strategies → transform tokens into draggable vectors and inspect similarity.
