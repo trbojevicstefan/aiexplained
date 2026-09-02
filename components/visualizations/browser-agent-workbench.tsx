@@ -7,8 +7,9 @@ import styles from "./browser-agent-workbench.module.css";
 export type BrowserAction={label:string;status:"done"|"active"|"pending"|"error"};
 
 export function BrowserAgentWorkbench({view="page",highlight="",actions=[],loggedIn=true}:{view?:"page"|"dom"|"a11y";highlight?:string;actions?:BrowserAction[];loggedIn?:boolean}){
+ const hasError=actions.some(a=>a.status==="error"),isActive=actions.some(a=>a.status==="active");
  return <div className={styles.wrap}>
-  <div className={styles.chrome}><div className={styles.dots}><i/><i/><i/></div><div className={styles.url}>https://book.example/meeting</div><AiMascot variant="mail" accent="#8db4ff" mood={actions.some(a=>a.status==="error")?"wow":actions.some(a=>a.status==="active")?"thinking":"happy"} size={45}/></div>
+  <div className={styles.chrome}><div className={styles.dots}><i/><i/><i/></div><div className={styles.url}>https://book.example/meeting</div><AiMascot variant="bot" accent={hasError?"#ff7d89":"#8db4ff"} mood={hasError?"thinking":isActive?"excited":"happy"} size={48} label="WEB"/></div>
   <div className={styles.body}>
    <aside className={styles.views}><span>GROUNDING</span>{["page","dom","a11y"].map(item=><div key={item} className={view===item?styles.current:""}>{item==="page"?"Rendered page":item==="dom"?"DOM tree":"Accessibility tree"}</div>)}</aside>
    <section className={styles.viewport}>
