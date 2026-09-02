@@ -10,7 +10,22 @@ Status: **implemented in code**
 - [x] responsive and reduced-motion support across the lesson system.
 - [x] living `AiMascot` toy-character system with pointer-following eyes, random blinking, breathing, hover/tap reaction and mood states.
 - [x] mascot companion integrated globally into topbar/drawer and specialist mascots used inside lessons.
-- [x] foundation + advanced registries; Modules 1–17 are reachable through the lesson drawer.
+- [x] foundation + advanced registries composed into one lesson drawer.
+
+## Global Visual Polish V2
+Status: **implemented in code; browser QA still open**
+- [x] rebuilt lesson topbar as a stable responsive 3-column layout instead of the old fragile `1fr / auto / 1fr` chrome.
+- [x] module-colored progress bar, current lesson identity, activity counter and quiz-complete indicator in the global topbar.
+- [x] mobile topbar progressively collapses lesson identity, mascot and verbose progress instead of overflowing.
+- [x] `AiMascot` upgraded with stronger plastic/toy depth, shell highlights, ear pods, antenna LED, glossy capsule eyes, ground shadow and shared face language across bot/star/briefcase/tile/mail variants.
+- [x] mascot pupils follow pointer with springs and the full face subtly tilts toward pointer; blink, breathing, hover, tap and excited states remain available.
+- [x] reusable `AgentIdentityCard` added for consistent living agent/worker presentation with role/status/activity pulse.
+- [x] Coding Agent workbench migrated to `AgentIdentityCard` and invalid legacy mascot mood removed.
+- [x] Browser/Computer-Use workbench migrated to canonical living bot status instead of flat/legacy agent treatment.
+- [x] Voice pipeline migrated to a living `Echo` voice-agent identity card with real-time/barge-in status.
+- [x] homepage moved into the same art direction with a dark mascot stage, living GUIDE/IDEA/BUILD characters and interactive gaze.
+- [x] `AgentLoop` primitive hardened for empty/custom step sets and type-safe CSS variables.
+- [x] legacy `/lessons/agent-foundations` and `/lessons/tool-calling-lifecycle` URLs redirect to the canonical routes.
 
 ## Modules 1–13
 Status: **content implemented in code**
@@ -57,9 +72,24 @@ Status: **content implemented in code**
 - [x] integrated coding + browser Boss Lab: repo fix → unit test → sandbox → browser grounding → UI postcondition → Git artifact.
 - [x] 12-question Module 17 mastery exam, pass threshold 10/12.
 
-## Current advanced routes
-- [x] Modules 10–16 routes tracked in prior batches.
-- [x] Module 17: `/lessons/coding-agent-lab`, `/lessons/browser-computer-use-lab`, `/lessons/module-17-capstone`
+## Advanced Registry Reconciliation
+Status: **navigation reconciled with routes already present in the repository**
+- [x] fixed Module 10 canonical lesson id/slug to `what-is-an-agent` / `/lessons/what-is-an-agent`.
+- [x] fixed Module 12 canonical lesson id/slug to `tool-call-lifecycle` / `/lessons/tool-call-lifecycle`.
+- [x] Module 18 registered: Multimodal Room, Image Generation Lab, Voice Agent Lab, Multimodal Boss Lab.
+- [x] Module 19 registered: Knowledge/Search Lab, Knowledge Graph Lab, Knowledge Boss Lab.
+- [x] Module 20 registered: AI API Request Builder, Structured Output Lab, API Boss Lab.
+- [x] Module 21 registered: Model Provider Map, Local Model Garage, Local Model Boss Lab.
+- [x] Module 22 registered: Inference Factory, Scaling & Serving Lab, Infrastructure Boss Lab.
+- [x] Module 23 registered: Cache Lab, AI Cost Challenge, Economics Boss Lab.
+- [x] Module 24 registered with existing Evals Lab and Observability/Trace Lab.
+- [ ] Module 24 Boss Lab route/content still needs to be built; drawer intentionally shows it as `planned`.
+
+## Agent Loop Builder Repair
+- [x] removed the temporary placeholder that said interactive content was not built.
+- [x] implemented 9 interactive scenes: naked-model contrast, agent assembly, observe/context rack, tool decision, tool-call execution x-ray, result reinjection, state-vs-memory classification, approval/retry policy and explain-back.
+- [x] integrated living `Nova` agent identity + `AgentLoop` + `ToolCallInspector`.
+- [x] quiz remains locked until all nine sections and nine activities are complete; pass threshold 7/8.
 
 ## QA / platform work still open
 - [ ] Fresh `npm ci` + `npm run typecheck` + `npm run build` on an environment with repository/network access.
@@ -71,6 +101,7 @@ Status: **content implemented in code**
 - [ ] Full visual learning-map/planet view.
 - [ ] TokenStream homepage demo.
 - [ ] migrate remaining legacy one-off lesson mascots into the canonical `AiMascot` primitive.
+- [ ] continue page-by-page layout QA for old lesson-local hero/agent implementations after user local feedback.
 
 ## Next batch
-Build **Module 18 — Multimodal AI**: text/image/audio/video representation room → VLM/image understanding → diffusion/noise/denoising/latent/VAE/DiT + conditioning/ControlNet/inpainting/outpainting/image-to-image → ASR/TTS/VAD/diarization/streaming/turn-taking/interruption → real-time voice-agent pipeline → Multimodal Boss Lab.
+Continue the **visual consistency sweep first**, then build the missing **Module 24 Evals & Observability Boss Lab**. After that continue Build Guide Module 25 — Security, Guardrails & Permissions.
