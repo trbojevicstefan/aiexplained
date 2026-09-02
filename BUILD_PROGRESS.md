@@ -6,12 +6,11 @@
 Status: **implemented in code**
 - [x] Next.js + TypeScript foundation, Motion interaction layer and Firebase App Hosting config.
 - [x] localStorage lesson progress, generic `LessonShell`, drawer, section jumps, progress HUD and gated quiz pattern.
-- [x] reusable `LessonSection`, `DepthSwitch`, `TaskStamp`, `VectorPlot2D`, `AttentionMatrix`, `AgentLoop`, `ToolCallInspector`, `MemoryShelf`, `StateMachineViewer`, `QueueVisualizer` and `RouterPlayground` primitives.
+- [x] reusable `LessonSection`, `DepthSwitch`, `TaskStamp`, `VectorPlot2D`, `AttentionMatrix`, `AgentLoop`, `ToolCallInspector`, `MemoryShelf`, `StateMachineViewer`, `QueueVisualizer`, `RouterPlayground`, `CodeAgentWorkbench` and `BrowserAgentWorkbench` primitives.
 - [x] responsive and reduced-motion support across the lesson system.
-- [x] living `AiMascot` design-system primitive with bot/star/briefcase/tile/mail toy variants.
-- [x] mascot gaze follows pointer with spring motion, random blinking, breathing, hover/tap reaction and mood states.
-- [x] living mascot companion integrated globally into lesson topbar + lesson drawer.
-- [x] foundation + advanced course registries; Modules 1–16 are reachable through the lesson drawer.
+- [x] living `AiMascot` toy-character system with pointer-following eyes, random blinking, breathing, hover/tap reaction and mood states.
+- [x] mascot companion integrated globally into topbar/drawer and specialist mascots used inside lessons.
+- [x] foundation + advanced registries; Modules 1–17 are reachable through the lesson drawer.
 
 ## Modules 1–13
 Status: **content implemented in code**
@@ -29,59 +28,38 @@ Status: **content implemented in code**
 - [x] Module 12 — Tool-call lifecycle, JSON Schema, tool design/reliability/safety + Boss Lab.
 - [x] Module 13 — MCP host/client/server + capability discovery + A2A task delegation + Protocol Boss Lab.
 
-## Module 14 — Memory & State
+## Modules 14–16
 Status: **content implemented in code**
-- [x] context vs persistent memory vs execution state vs model weights.
-- [x] working, episodic, semantic, procedural and preference memory.
-- [x] memory extraction, normalization, provenance, storage, embeddings/retrieval/ranking and context injection.
-- [x] memory conflicts, deduplication, consolidation, update, decay and explicit deletion.
-- [x] user / agent / entity / shared-memory scopes.
-- [x] SQL/vector/Redis/graph/event-log storage mental models.
-- [x] reusable animated `MemoryShelf`.
-- [x] ephemeral/session/persistent task state.
-- [x] state machines, transition events and reusable `StateMachineViewer`.
-- [x] checkpoints, crash/resume, durable state, idempotent recovery and snapshot vs event-log intuition.
-- [x] Module 14 Memory + State Boss Lab with post-side-effect crash recovery.
+- [x] Module 14 — Memory & State: MemoryShelf, extraction/storage/retrieval/injection/conflicts/deletion, state machines/checkpoints/crash recovery + Boss Lab.
+- [x] Module 15 — Agent Architecture & Orchestration: QueueVisualizer, roles/queues/DAG/events/retries/DLQ/handoffs/multi-agent failures/durable orchestration + Boss Lab.
+- [x] Module 16 — Model Routing & Systems of Models: RouterPlayground, constraints/fallback/cascade/frontier, ensembles/judges/correlated failures/economics + Boss Lab.
 
-## Module 15 — Agent Architecture & Orchestration
+## Module 17 — Coding, Browser & Computer-Use Agents
 Status: **content implemented in code**
-- [x] single-agent, supervisor/worker, hierarchical, peer and swarm topology intuition.
-- [x] planner/router/supervisor/worker/critic/specialist roles.
-- [x] task decomposition and goal decomposition.
-- [x] queues, scheduler/dispatch, workers and reusable animated `QueueVisualizer`.
-- [x] sequential, parallel and async execution.
-- [x] fan-out/fan-in and DAG dependency intuition.
-- [x] events, webhooks, Pub/Sub and schedules.
-- [x] retries, backoff classifications and dead-letter queues.
-- [x] structured agent handoffs, ownership and shared-workspace coordination.
-- [x] ReAct, plan-and-execute, reflection and backtracking.
-- [x] static vs dynamic agentic workflows.
-- [x] infinite-loop, duplicate-work and deadlock prevention.
-- [x] debate/voting/verification with shared-error caveat.
-- [x] durable orchestration semantics.
-- [x] Module 15 Broken Swarm Boss Lab.
-
-## Module 16 — Model Routing & Systems of Models
-Status: **content implemented in code**
-- [x] reusable `RouterPlayground` with quality/latency/cost/context/modality profiles and living model mascots.
-- [x] task/complexity routing.
-- [x] hard quality, latency, cost, context, modality and provider constraints.
-- [x] rules-based, semantic and learned-router mental models.
-- [x] fallback models/providers.
-- [x] cascades and escalation thresholds.
-- [x] quality/cost/latency frontier.
-- [x] explicit internal MoE expert routing vs external model routing distinction.
-- [x] ensembles, generator+judge, cascades and specialist composition as distinct systems-of-models patterns.
-- [x] correlated-failure/diversity caveat.
-- [x] hard policy constraints before soft routing optimization.
-- [x] aggregate multi-model cost/latency/quality accounting.
-- [x] Module 16 Routing Boss Lab with workload routing and toy quality-cost-latency target.
+- [x] reusable animated `CodeAgentWorkbench` with file tree, editor, run timeline and test state.
+- [x] repository context selection, file discovery and code search/reference/test search.
+- [x] AST node intuition and import/dependency graph.
+- [x] constrained shell/sandbox command policy.
+- [x] scoped patch editing.
+- [x] test execution, assertion failure reading and iterative repair loop.
+- [x] planning/run checkpoints.
+- [x] Git diff/status/commit/PR verification mental model.
+- [x] reusable `BrowserAgentWorkbench` with rendered-page, DOM-tree and accessibility-tree views.
+- [x] DOM/CSS selectors and semantic target grounding.
+- [x] accessibility roles/names/status grounding.
+- [x] browser cookies/session/profile/authentication-state handling.
+- [x] forms and authentication workflow.
+- [x] screenshot/visual grounding vs semantic DOM interaction.
+- [x] mouse, drag and keyboard action categories.
+- [x] coordinate clicking vs DOM/accessibility targeting trade-off.
+- [x] post-action/postcondition verification.
+- [x] CAPTCHA / site-policy / anti-bot boundary handling.
+- [x] integrated coding + browser Boss Lab: repo fix → unit test → sandbox → browser grounding → UI postcondition → Git artifact.
+- [x] 12-question Module 17 mastery exam, pass threshold 10/12.
 
 ## Current advanced routes
-- [x] Modules 10–13 routes tracked in prior batches.
-- [x] Module 14: `/lessons/memory-palace`, `/lessons/state-machine-lab`, `/lessons/module-14-capstone`
-- [x] Module 15: `/lessons/orchestration-control-room`, `/lessons/multi-agent-patterns`, `/lessons/module-15-capstone`
-- [x] Module 16: `/lessons/model-routing-arena`, `/lessons/model-systems-lab`, `/lessons/module-16-capstone`
+- [x] Modules 10–16 routes tracked in prior batches.
+- [x] Module 17: `/lessons/coding-agent-lab`, `/lessons/browser-computer-use-lab`, `/lessons/module-17-capstone`
 
 ## QA / platform work still open
 - [ ] Fresh `npm ci` + `npm run typecheck` + `npm run build` on an environment with repository/network access.
@@ -95,4 +73,4 @@ Status: **content implemented in code**
 - [ ] migrate remaining legacy one-off lesson mascots into the canonical `AiMascot` primitive.
 
 ## Next batch
-Build **Module 17 — Coding, Browser & Computer-Use Agents**: repository/file discovery → code search/AST/dependencies → patch/test/failure-repair/Git verification loop → sandbox/checkpoints; then DOM/selectors/accessibility tree/browser state/cookies/forms/auth/screenshots/visual grounding/mouse-keyboard/coordinate vs DOM actions/action verification/CAPTCHA limitations → integrated coding+browser Boss Lab.
+Build **Module 18 — Multimodal AI**: text/image/audio/video representation room → VLM/image understanding → diffusion/noise/denoising/latent/VAE/DiT + conditioning/ControlNet/inpainting/outpainting/image-to-image → ASR/TTS/VAD/diarization/streaming/turn-taking/interruption → real-time voice-agent pipeline → Multimodal Boss Lab.
