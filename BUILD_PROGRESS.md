@@ -6,14 +6,14 @@
 Status: **implemented in code**
 - [x] Next.js + TypeScript foundation, Motion interaction layer and Firebase App Hosting config.
 - [x] localStorage lesson progress, generic `LessonShell`, drawer, section jumps, progress HUD and gated quiz pattern.
-- [x] reusable `LessonSection`, `DepthSwitch`, `TaskStamp`, `VectorPlot2D`, `AttentionMatrix`, `AgentLoop` and `ToolCallInspector` primitives.
+- [x] reusable `LessonSection`, `DepthSwitch`, `TaskStamp`, `VectorPlot2D`, `AttentionMatrix`, `AgentLoop`, `ToolCallInspector`, `MemoryShelf`, `StateMachineViewer`, `QueueVisualizer` and `RouterPlayground` primitives.
 - [x] responsive and reduced-motion support across the lesson system.
 - [x] living `AiMascot` design-system primitive with bot/star/briefcase/tile/mail toy variants.
 - [x] mascot gaze follows pointer with spring motion, random blinking, breathing, hover/tap reaction and mood states.
 - [x] living mascot companion integrated globally into lesson topbar + lesson drawer.
-- [x] foundation drawer registry plus advanced-module registry; Modules 1–13 are reachable through the lesson drawer.
+- [x] foundation + advanced course registries; Modules 1–16 are reachable through the lesson drawer.
 
-## Modules 1–9
+## Modules 1–13
 Status: **content implemented in code**
 - [x] Module 1 — AI From Absolute Zero + Boss Level.
 - [x] Module 2 — Neural Networks Without the Mystery + real toy network + Boss Lab.
@@ -24,64 +24,64 @@ Status: **content implemented in code**
 - [x] Module 7 — Pretraining, post-training, preference tuning, PEFT/adaptation + Boss Lab.
 - [x] Module 8 — Reasoning, search, verification, PRM/ORM, Best-of-N + Boss Lab.
 - [x] Module 9 — RAG ingestion, chunking, retrieval/reranking, vector indexes/evals + Boss Lab.
+- [x] Module 10 — Agent foundations, real agent loop, permissions/tools/state + Boss Lab.
+- [x] Module 11 — Harness/framework/runtime, sandbox/retries/tracing/framework atlas + Boss Lab.
+- [x] Module 12 — Tool-call lifecycle, JSON Schema, tool design/reliability/safety + Boss Lab.
+- [x] Module 13 — MCP host/client/server + capability discovery + A2A task delegation + Protocol Boss Lab.
 
-## Module 10 — What Is an AI Agent?
+## Module 14 — Memory & State
 Status: **content implemented in code**
-- [x] chatbot vs workflow vs agent comparison.
-- [x] goal, environment, state, actions, tools, memory, planning, autonomy, permissions and policy mental model.
-- [x] reusable Observe → Decide → Act → Environment → Result → Update/Stop visual loop.
-- [x] tool result re-enters context/state before the next model turn.
-- [x] interactive naked-LLM → working-agent builder.
-- [x] scheduling-agent lifecycle with read tool, write tool, permission gate and stop decision.
-- [x] Module 10 Agent Boss Lab.
+- [x] context vs persistent memory vs execution state vs model weights.
+- [x] working, episodic, semantic, procedural and preference memory.
+- [x] memory extraction, normalization, provenance, storage, embeddings/retrieval/ranking and context injection.
+- [x] memory conflicts, deduplication, consolidation, update, decay and explicit deletion.
+- [x] user / agent / entity / shared-memory scopes.
+- [x] SQL/vector/Redis/graph/event-log storage mental models.
+- [x] reusable animated `MemoryShelf`.
+- [x] ephemeral/session/persistent task state.
+- [x] state machines, transition events and reusable `StateMachineViewer`.
+- [x] checkpoints, crash/resume, durable state, idempotent recovery and snapshot vs event-log intuition.
+- [x] Module 14 Memory + State Boss Lab with post-side-effect crash recovery.
 
-## Module 11 — Agent Harness, Framework & Runtime
+## Module 15 — Agent Architecture & Orchestration
 Status: **content implemented in code**
-- [x] model vs harness vs runtime vs framework vs SDK/library distinction.
-- [x] prompt/context construction, tool registry/execution, permissions and state management.
-- [x] retry/error handling, timeout policy and resumability.
-- [x] sandbox, filesystem, shell, browser and code-execution capability boundaries.
-- [x] logging/tracing and token/context management.
-- [x] checkpoints, approvals and sessions.
-- [x] conceptual framework atlas covering agent/tool/message/state/graph/handoff patterns with ecosystem examples.
-- [x] Harness Incident Boss Lab.
+- [x] single-agent, supervisor/worker, hierarchical, peer and swarm topology intuition.
+- [x] planner/router/supervisor/worker/critic/specialist roles.
+- [x] task decomposition and goal decomposition.
+- [x] queues, scheduler/dispatch, workers and reusable animated `QueueVisualizer`.
+- [x] sequential, parallel and async execution.
+- [x] fan-out/fan-in and DAG dependency intuition.
+- [x] events, webhooks, Pub/Sub and schedules.
+- [x] retries, backoff classifications and dead-letter queues.
+- [x] structured agent handoffs, ownership and shared-workspace coordination.
+- [x] ReAct, plan-and-execute, reflection and backtracking.
+- [x] static vs dynamic agentic workflows.
+- [x] infinite-loop, duplicate-work and deadlock prevention.
+- [x] debate/voting/verification with shared-error caveat.
+- [x] durable orchestration semantics.
+- [x] Module 15 Broken Swarm Boss Lab.
 
-## Module 12 — Tool Calling
+## Module 16 — Model Routing & Systems of Models
 Status: **content implemented in code**
-- [x] reusable `ToolCallInspector`: model proposal → validation → execution → result.
-- [x] tool definition/name/description/JSON Schema/arguments.
-- [x] function calling vs tool calling mental model.
-- [x] sequential vs parallel tool calls.
-- [x] retries, errors, timeouts and result handling.
-- [x] tool descriptions and tool granularity.
-- [x] idempotency and retry-safe writes.
-- [x] read vs write vs destructive tools and confirmation requirements.
-- [x] rate limits and tool reliability.
-- [x] common tool-category routing examples.
-- [x] Tool Calling Boss Lab.
-
-## Module 13 — MCP & Agent-to-Agent Protocols
-Status: **content implemented in code**
-- [x] API vs tool vs MCP server distinction.
-- [x] MCP host/client/server roles.
-- [x] tools/resources/prompts capability discovery.
-- [x] local stdio-style vs remote HTTP transport intuition.
-- [x] authentication, authorization and local/remote trust boundaries.
-- [x] malicious/over-scoped MCP capability scenarios.
-- [x] A2A Agent Card/capability discovery.
-- [x] remote agent identity and task-scoped authorization.
-- [x] task delegation contract with goal/input/constraints/output/task id.
-- [x] task-scoped messages and submitted/working/input-required/completed lifecycle.
-- [x] returned artifact validation and handoff.
-- [x] discovery/marketplace layer vs identity/authorization/contract separation.
-- [x] Module 13 Protocol Boss Lab distinguishing API/tool/MCP/A2A boundaries.
-- [x] 12-question Module 13 mastery exam, pass threshold 10/12.
+- [x] reusable `RouterPlayground` with quality/latency/cost/context/modality profiles and living model mascots.
+- [x] task/complexity routing.
+- [x] hard quality, latency, cost, context, modality and provider constraints.
+- [x] rules-based, semantic and learned-router mental models.
+- [x] fallback models/providers.
+- [x] cascades and escalation thresholds.
+- [x] quality/cost/latency frontier.
+- [x] explicit internal MoE expert routing vs external model routing distinction.
+- [x] ensembles, generator+judge, cascades and specialist composition as distinct systems-of-models patterns.
+- [x] correlated-failure/diversity caveat.
+- [x] hard policy constraints before soft routing optimization.
+- [x] aggregate multi-model cost/latency/quality accounting.
+- [x] Module 16 Routing Boss Lab with workload routing and toy quality-cost-latency target.
 
 ## Current advanced routes
-- [x] Module 10: `/lessons/agent-foundations`, `/lessons/agent-loop-builder`, `/lessons/module-10-capstone`
-- [x] Module 11: `/lessons/harness-framework-runtime`, `/lessons/harness-runtime-lab`, `/lessons/framework-atlas`, `/lessons/module-11-capstone`
-- [x] Module 12: `/lessons/tool-calling-lifecycle`, `/lessons/tool-design-safety`, `/lessons/module-12-capstone`
-- [x] Module 13: `/lessons/mcp-capability-lab`, `/lessons/a2a-delegation-lab`, `/lessons/module-13-capstone`
+- [x] Modules 10–13 routes tracked in prior batches.
+- [x] Module 14: `/lessons/memory-palace`, `/lessons/state-machine-lab`, `/lessons/module-14-capstone`
+- [x] Module 15: `/lessons/orchestration-control-room`, `/lessons/multi-agent-patterns`, `/lessons/module-15-capstone`
+- [x] Module 16: `/lessons/model-routing-arena`, `/lessons/model-systems-lab`, `/lessons/module-16-capstone`
 
 ## QA / platform work still open
 - [ ] Fresh `npm ci` + `npm run typecheck` + `npm run build` on an environment with repository/network access.
@@ -95,4 +95,4 @@ Status: **content implemented in code**
 - [ ] migrate remaining legacy one-off lesson mascots into the canonical `AiMascot` primitive.
 
 ## Next batch
-Build **Module 14 — Memory & State** as a living Memory Palace: context vs memory vs state → short/long/working/episodic/semantic/procedural memory → extraction/normalization/storage/embeddings/retrieval/ranking/injection → consolidation/update/conflict/dedup/decay/deletion → storage backends → ephemeral/session/persistent workflow state → checkpoints/resume/state machine/event-log intuition → Memory Boss Lab.
+Build **Module 17 — Coding, Browser & Computer-Use Agents**: repository/file discovery → code search/AST/dependencies → patch/test/failure-repair/Git verification loop → sandbox/checkpoints; then DOM/selectors/accessibility tree/browser state/cookies/forms/auth/screenshots/visual grounding/mouse-keyboard/coordinate vs DOM actions/action verification/CAPTCHA limitations → integrated coding+browser Boss Lab.
