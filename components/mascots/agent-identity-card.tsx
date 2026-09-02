@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
+import type { CSSProperties } from "react";
 import { AiMascot, AiMascotMood, AiMascotVariant } from "./ai-mascot";
 import styles from "./agent-identity-card.module.css";
 
@@ -29,7 +30,7 @@ export function AgentIdentityCard({
   return (
     <motion.div
       className={`${styles.card} ${active ? styles.active : ""} ${compact ? styles.compact : ""}`}
-      style={{ "--agent-accent": accent } as React.CSSProperties}
+      style={{ "--agent-accent": accent } as CSSProperties}
       animate={active && !reduced ? { y: [0, -3, 0] } : undefined}
       transition={{ duration: 1.8, repeat: active ? Infinity : 0, ease: "easeInOut" }}
     >
