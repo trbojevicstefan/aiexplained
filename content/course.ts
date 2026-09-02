@@ -20,9 +20,13 @@ export const courseModules: CourseModule[] = [
     {id:"next-token-sampling",title:"Next-token prediction and sampling",shortTitle:"Next-token machine",slug:"/lessons/next-token-sampling",status:"available",estimatedMinutes:42},{id:"model-zoo-routing",title:"Model zoo, MoE and routing",shortTitle:"Model Zoo & routing",slug:"/lessons/model-zoo-routing",status:"available",estimatedMinutes:40},{id:"module-5-capstone",title:"Module 5 Boss Lab",shortTitle:"Boss Lab",slug:"/lessons/module-5-capstone",status:"available",estimatedMinutes:44}
   ]},
   {id:"module-6",title:"Context & Prompting",eyebrow:"CONTEXT ENGINEERING",color:"#b092ff",lessons:[
-    {id:"context-backpack",title:"Context window and context engineering",shortTitle:"Context Backpack",slug:"/lessons/context-backpack",status:"available",estimatedMinutes:42},
-    {id:"prompting-instruction-hierarchy",title:"Prompting and instruction hierarchy",shortTitle:"Prompting & hierarchy",slug:"/lessons/prompting-instruction-hierarchy",status:"available",estimatedMinutes:40},
-    {id:"module-6-capstone",title:"Module 6 Boss Lab",shortTitle:"Incident Boss Lab",slug:"/lessons/module-6-capstone",status:"available",estimatedMinutes:44}
+    {id:"context-backpack",title:"Context window and context engineering",shortTitle:"Context Backpack",slug:"/lessons/context-backpack",status:"available",estimatedMinutes:42},{id:"prompting-instruction-hierarchy",title:"Prompting and instruction hierarchy",shortTitle:"Prompting & hierarchy",slug:"/lessons/prompting-instruction-hierarchy",status:"available",estimatedMinutes:40},{id:"module-6-capstone",title:"Module 6 Boss Lab",shortTitle:"Incident Boss Lab",slug:"/lessons/module-6-capstone",status:"available",estimatedMinutes:44}
+  ]},
+  {id:"module-7",title:"Training & Post-Training",eyebrow:"TRAINING PIPELINE",color:"#ff9d62",lessons:[
+    {id:"pretraining-factory",title:"Pretraining Factory",shortTitle:"Pretraining Factory",slug:"/lessons/pretraining-factory",status:"available",estimatedMinutes:44},
+    {id:"posttraining-arena",title:"SFT, RLHF, DPO and RLAIF",shortTitle:"Post-Training Arena",slug:"/lessons/posttraining-arena",status:"available",estimatedMinutes:44},
+    {id:"efficient-adaptation",title:"LoRA, QLoRA and efficient adaptation",shortTitle:"Efficient Adaptation",slug:"/lessons/efficient-adaptation",status:"available",estimatedMinutes:42},
+    {id:"module-7-capstone",title:"Module 7 Boss Lab",shortTitle:"Training Boss Lab",slug:"/lessons/module-7-capstone",status:"available",estimatedMinutes:46}
   ]}
 ];
 
