@@ -1,0 +1,48 @@
+/* STAND-IN STYLESHEET.
+   Commit b96b982 added observability-trace-lab-lesson.tsx but never the
+   matching `style:` commit, so this module was missing and the import
+   failed. Derived from evals-lab.module.css (same design system) so the
+   route renders. Replace when the intended stylesheet lands. */
+
+.root{--ink:#17161b;--blue:#7fa1ff;--green:#78dca8;--yellow:#ffe06b;display:flex;flex-direction:column;gap:28px;padding:28px 0 80px;background:linear-gradient(180deg,#eff4ff,#f7f0ff 48%,#effff5)}
+.hero,.scene,.quiz{width:min(1200px,calc(100% - 32px));margin:0 auto;border:3px solid var(--ink);border-radius:31px;background:#fff;box-shadow:9px 9px 0 var(--ink)}
+.hero{padding:34px;display:grid;grid-template-columns:.82fr 1.18fr;gap:24px}
+.hero h1{font-size:clamp(43px,6.6vw,79px);line-height:.89;letter-spacing:-.058em;margin:12px 0}
+.hero p,.scene p{font-size:17px;line-height:1.55}
+.eyebrow{display:inline-flex;border:2px solid var(--ink);border-radius:999px;background:var(--blue);padding:7px 11px;font-size:12px;font-weight:950}
+.scene{padding:30px}
+.scene h2{font-size:clamp(31px,4vw,51px);line-height:.95;letter-spacing:-.042em;margin:0 0 10px}
+.card{border:2px solid var(--ink);border-radius:18px;padding:15px;background:#fff;margin:9px 0}
+.button,.primary{border:2px solid var(--ink);border-radius:12px;background:#fff;padding:9px 11px;margin:4px;font-weight:900;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.primary{background:var(--yellow)}
+.good{background:#baf28e!important}
+.bad{background:#ffd0d0!important}
+
+/* trace-lab specific */
+.spanCard{border:2px solid var(--ink);border-radius:18px;background:#faf9ff;padding:15px;margin:12px 0;display:grid;gap:7px}
+.spanCard code{display:block;border:1px solid #cdc7d6;border-radius:10px;background:#fff;padding:9px;font-size:12px;overflow-x:auto}
+.inspect{border:2px solid var(--ink);border-radius:18px;background:#1b1921;color:#fff;padding:16px;margin:12px 0;display:grid;gap:6px}
+.inspect b{font-size:19px}
+.inspect span{justify-self:start;border:1px solid #504a57;border-radius:999px;background:#27242d;padding:4px 10px;font-size:10px;text-transform:uppercase;font-weight:900}
+.inspect p{font-size:14px;line-height:1.5;margin:0;color:#d9d4e0}
+.metrics,.costs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin:14px 0}
+.metrics span,.costs span{border:2px solid var(--ink);border-radius:15px;background:#fff;padding:12px;font-size:11px;font-weight:900;text-transform:uppercase}
+.metrics b{display:block;font-size:24px;margin-top:5px;text-transform:none}
+.costs span{background:#fffbe8;text-transform:none;font-size:13px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.three>div{border:2px solid var(--ink);border-radius:16px;background:#fff;padding:14px;display:grid;gap:6px}
+.three b{font-size:15px}
+.three span{font-size:13px;line-height:1.45}
+
+.textarea{width:100%;min-height:170px;border:2px solid var(--ink);border-radius:14px;padding:13px;font:inherit}
+.feedback,.locked{border:2px solid var(--ink);border-radius:14px;padding:12px;margin-top:12px}
+.feedback{background:#e8ffdf}
+.quiz{padding:30px;background:#18171d;color:#fff}
+.quiz h2{font-size:40px;margin:0 0 14px}
+.question{border:1px solid #5f5967;border-radius:15px;padding:14px;margin:11px 0}
+.question button{display:block;width:100%;text-align:left;border:1px solid #736d7b;border-radius:10px;background:#292631;color:#fff;padding:9px 11px;margin:7px 0}
+.selected{background:#566fc9!important}
+.footer{width:min(1200px,calc(100% - 32px));margin:0 auto;display:flex;justify-content:space-between;gap:12px}
+.footer a{color:var(--ink);text-decoration:none;border:2px solid var(--ink);border-radius:12px;background:#fff;padding:10px 13px;font-weight:900;box-shadow:3px 3px 0 var(--ink)}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.three,.metrics{grid-template-columns:1fr 1fr}.hero,.scene,.quiz{padding:22px}}
+@media(max-width:580px){.three,.metrics,.costs{grid-template-columns:1fr}.footer{flex-direction:column}}
