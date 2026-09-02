@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { ReactNode, useEffect, useMemo, useState } from "react";
-import { courseModules, whatIsAiSections } from "@/content/course";
+import { courseModules } from "@/content/course";
 import {
   CourseProgress,
   emptyLessonProgress,
@@ -12,7 +12,11 @@ import {
   persistCourseProgress,
 } from "@/lib/course-progress";
 
-const lessonId = "what-is-ai";
+export type LessonSectionDefinition = {
+  id: string;
+  title: string;
+  taskId: string;
+};
 
 export type LessonProgressApi = {
   depth: ExplanationDepth;
@@ -29,10 +33,13 @@ export type LessonProgressApi = {
 };
 
 type Props = {
+  lessonId: string;
+  lessonTitle: string;
+  sections: readonly LessonSectionDefinition[];
   children: (api: LessonProgressApi) => ReactNode;
 };
 
-export function LessonShell({ children }: Props) {
+export function LessonShell({ lessonId, lessonTitle, sections, children }: Props) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [progress, setProgress] = useState<CourseProgress>({});
   const [hydrated, setHydrated] = useState(false);
@@ -77,14 +84,14 @@ export function LessonShell({ children }: Props) {
     })),
     resetLesson: () => updateLesson(() => emptyLessonProgress()),
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }), [lesson]);
+  }), [lesson, lessonId]);
 
-  const requiredTasks = whatIsAiSections.map((section) => section.taskId);
+  const requiredTasks = sections.map((section) => section.taskId);
   const tasksDone = requiredTasks.filter((id) => lesson.completedTasks[id]).length;
-  const sectionsRead = whatIsAiSections.filter((section) => lesson.visitedSections.includes(section.id)).length;
-  const totalMilestones = requiredTasks.length + whatIsAiSections.length + 1;
+  const sectionsRead = sections.filter((section) => lesson.visitedSections.includes(section.id)).length;
+  const totalMilestones = requiredTasks.length + sections.length + 1;
   const achieved = tasksDone + sectionsRead + (lesson.quizPassed ? 1 : 0);
-  const percent = hydrated ? Math.round((achieved / totalMilestones) * 100) : 0;
+  const percent = hydrated && totalMilestones > 0 ? Math.round((achieved / totalMilestones) * 100) : 0;
 
   return (
     <div className="lesson-app-shell">
@@ -138,14 +145,14 @@ export function LessonShell({ children }: Props) {
               <div className="drawer-meter-card">
                 <div className="drawer-meter-orb"><span>{percent}%</span></div>
                 <div>
-                  <strong>What is AI?</strong>
-                  <p>{tasksDone}/{requiredTasks.length} activities · {sectionsRead}/{whatIsAiSections.length} sections</p>
+                  <strong>{lessonTitle}</strong>
+                  <p>{tasksDone}/{requiredTasks.length} activities · {sectionsRead}/{sections.length} sections</p>
                 </div>
               </div>
 
               <nav className="section-jump-list" aria-label="Current lesson sections">
                 <span className="drawer-label">Inside this lesson</span>
-                {whatIsAiSections.map((section, index) => {
+                {sections.map((section, index) => {
                   const visited = lesson.visitedSections.includes(section.id);
                   const done = Boolean(lesson.completedTasks[section.taskId]);
                   return (

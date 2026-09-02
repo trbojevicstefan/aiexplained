@@ -17,6 +17,12 @@ export type CourseModule = {
   lessons: CourseLesson[];
 };
 
+export type LessonSectionDefinition = {
+  id: string;
+  title: string;
+  taskId: string;
+};
+
 export const courseModules: CourseModule[] = [
   {
     id: "module-1",
@@ -25,7 +31,7 @@ export const courseModules: CourseModule[] = [
     color: "#2357ff",
     lessons: [
       { id: "what-is-ai", title: "What is Artificial Intelligence?", shortTitle: "What is AI?", slug: "/lessons/what-is-ai", status: "available", estimatedMinutes: 24 },
-      { id: "ai-vs-software", title: "AI vs normal software", shortTitle: "AI vs software", slug: "/lessons/ai-vs-software", status: "planned", estimatedMinutes: 18 },
+      { id: "ai-vs-software", title: "AI vs normal software", shortTitle: "AI vs software", slug: "/lessons/ai-vs-software", status: "available", estimatedMinutes: 28 },
       { id: "ai-ml-dl", title: "AI vs Machine Learning vs Deep Learning", shortTitle: "AI / ML / DL", slug: "/lessons/ai-ml-dl", status: "planned", estimatedMinutes: 20 },
       { id: "generative-vs-predictive", title: "Generative AI vs predictive AI", shortTitle: "Generative vs predictive", slug: "/lessons/generative-vs-predictive", status: "planned", estimatedMinutes: 18 },
       { id: "symbolic-vs-neural", title: "Symbolic AI vs neural AI", shortTitle: "Symbolic vs neural", slug: "/lessons/symbolic-vs-neural", status: "planned", estimatedMinutes: 20 },
@@ -62,7 +68,7 @@ export const courseModules: CourseModule[] = [
   }
 ];
 
-export const whatIsAiSections = [
+export const whatIsAiSections: readonly LessonSectionDefinition[] = [
   { id: "cold-open", title: "AI or not AI?", taskId: "ai-or-not" },
   { id: "core-idea", title: "The three moves", taskId: "three-moves" },
   { id: "rules-vs-learning", title: "Rules vs learning", taskId: "teach-machine" },
@@ -71,4 +77,16 @@ export const whatIsAiSections = [
   { id: "probability", title: "AI makes guesses", taskId: "probability-lab" },
   { id: "family-tree", title: "AI / ML / DL", taskId: "family-tree" },
   { id: "explain-back", title: "Explain it back", taskId: "explain-back" }
-] as const;
+];
+
+export const aiVsSoftwareSections: readonly LessonSectionDefinition[] = [
+  { id: "be-the-computer", title: "Be the computer", taskId: "trace-rules" },
+  { id: "same-input", title: "Same input, same result", taskId: "repeat-program" },
+  { id: "rule-explosion", title: "When rules explode", taskId: "grow-rules" },
+  { id: "learn-boundary", title: "Let examples shape behavior", taskId: "learn-boundary" },
+  { id: "choose-engine", title: "Rules, ML or both?", taskId: "choose-engine" },
+  { id: "hybrid-system", title: "Build a hybrid system", taskId: "hybrid-builder" },
+  { id: "debug-it", title: "Debugging feels different", taskId: "debug-contrast" },
+  { id: "boring-wins", title: "When boring software wins", taskId: "boring-wins" },
+  { id: "explain-software", title: "Explain the difference", taskId: "explain-software" }
+];
