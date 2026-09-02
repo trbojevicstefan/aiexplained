@@ -12,57 +12,52 @@ Status: **implemented in code**
 - [x] reusable `LessonSection`, `DepthSwitch`, `TaskStamp` primitives.
 - [x] gated quiz pattern with persistent best score / pass state.
 - [x] responsive and reduced-motion support across the lesson system.
-- [x] course drawer synchronized with all built Module 1 and Module 2 routes.
+- [x] reusable `VectorPlot2D` primitive.
+- [x] course drawer synchronized with all built Module 1–3 routes.
 
 ## Module 1 — AI From Absolute Zero
 Status: **content implemented in code**
-- [x] What is AI?
-- [x] AI vs normal software / rules vs learned behavior.
-- [x] AI vs ML vs DL.
-- [x] Generative vs predictive AI.
-- [x] Symbolic vs neural AI.
-- [x] Training vs inference.
-- [x] Model vs algorithm vs dataset.
-- [x] Parameters vs hyperparameters.
-- [x] Features and labels + target leakage.
-- [x] Supervised / unsupervised / self-supervised / semi-supervised learning.
-- [x] Reinforcement learning + reward hacking.
-- [x] Generalization / overfitting / underfitting / bias-variance intuition.
-- [x] Train / validation / test sets + checkpoints + contamination traps.
-- [x] Online / transfer / representation learning.
-- [x] Narrow/specialized AI, AGI framing, deterministic vs probabilistic systems.
-- [x] Module 1 Boss Level and mastery exam.
+- [x] What is AI, software/rules vs learning, AI/ML/DL, generative/predictive, symbolic/neural.
+- [x] Training/inference, model/algorithm/data, parameters/hyperparameters, features/labels.
+- [x] Supervised/unsupervised/self-supervised/semi-supervised/RL.
+- [x] Generalization, overfit/underfit, bias-variance, splits/checkpoints.
+- [x] Online/transfer/representation learning, scope/AGI framing and probabilistic systems.
+- [x] Module 1 Boss Level + mastery exam.
 
 ## Module 2 — Neural Networks Without the Mystery
 Status: **content implemented in code**
-- [x] Real 2→4→1 toy neural-network math engine in `lib/toy-neural-network.ts`.
-- [x] Neural network anatomy, neurons, inputs/outputs, layers and hidden layers.
-- [x] Weights, biases, ReLU, sigmoid and softmax.
-- [x] Forward pass.
-- [x] Loss functions, gradient intuition, gradient descent and backpropagation.
-- [x] Learning rate, SGD, batches and epochs with real mini-batch updates.
-- [x] Vanishing and exploding gradients.
-- [x] Gradient clipping.
-- [x] Normalization, including BatchNorm-vs-LayerNorm axis intuition.
-- [x] Regularization, L2 weight decay, dropout and early stopping.
-- [x] Residual connections and dense MLP intuition.
-- [x] CNN local kernels and weight sharing.
-- [x] RNN recurrent state and long-dependency limitation.
-- [x] LSTM gated memory intuition.
-- [x] Why attention replaced much sequential recurrence for modern LLM training.
-- [x] Module 2 Boss Lab using the real toy-network engine.
-- [x] 12-question Module 2 mastery exam, pass threshold 10/12.
+- [x] Real 2→4→1 toy neural-network math engine.
+- [x] neurons, I/O, hidden layers, weights, bias, ReLU/sigmoid/softmax, forward pass.
+- [x] loss, gradients, GD/SGD, backprop, learning rate, batches and epochs.
+- [x] vanishing/exploding gradients, clipping and normalization.
+- [x] regularization, L2, dropout and early stopping.
+- [x] residual connections and MLPs.
+- [x] CNN, RNN, LSTM and why attention displaced much recurrence for modern LLMs.
+- [x] Module 2 Boss Lab + 12-question mastery exam.
 
-## Current routes added in Module 2
-- [x] `/lessons/neural-networks`
-- [x] `/lessons/weights-bias-activations`
-- [x] `/lessons/loss-gradients-backprop`
-- [x] `/lessons/sgd-batches-epochs`
-- [x] `/lessons/gradient-health-normalization`
-- [x] `/lessons/regularization-dropout`
-- [x] `/lessons/residual-mlp`
-- [x] `/lessons/cnn-rnn-lstm-attention`
-- [x] `/lessons/module-2-capstone`
+## Module 3 — How Language Becomes Numbers
+Status: **content implemented in code**
+- [x] Tokens vs words; word/character/byte/subword units.
+- [x] Vocabulary, token IDs, BOS/EOS and context-token limits.
+- [x] Toy BPE merge lab.
+- [x] BPE vs WordPiece vs SentencePiece workshop, including continuation and whitespace-marker intuition.
+- [x] Same text → different tokenizer boundaries/counts.
+- [x] Token ID → learned embedding lookup mental model.
+- [x] Vector dimensions and reusable 2-D embedding plot.
+- [x] Cosine similarity, dot product and Euclidean distance.
+- [x] Semantic search and nearest-neighbor ranking.
+- [x] Text/image multimodal embedding-space intuition.
+- [x] Clustering.
+- [x] Exact nearest neighbors vs ANN trade-off.
+- [x] Drag/drop Module 3 challenge: place words into semantic regions.
+- [x] Module 3 Boss Lab pipeline: text → tokens → IDs → embeddings → retrieval.
+- [x] 12-question Module 3 mastery exam, pass threshold 10/12.
+
+## Current Module 3 routes
+- [x] `/lessons/tokens-tokenization`
+- [x] `/lessons/tokenizer-families`
+- [x] `/lessons/embeddings-vectors`
+- [x] `/lessons/module-3-capstone`
 
 ## QA / platform work still open
 - [ ] Fresh `npm ci` + `npm run typecheck` + `npm run build` on an environment with repository/network access.
@@ -75,4 +70,4 @@ Status: **content implemented in code**
 - [ ] TokenStream homepage demo.
 
 ## Next batch
-Build **Module 3 — How Language Becomes Numbers**, starting with a signature tokenizer lab: type text → split into visible tokens → inspect token IDs → compare tokenization strategies → transform tokens into draggable vectors and inspect similarity.
+Build **Module 4 — Transformers Visually, Step by Step**. Start with a transformer-block flow lab and reusable attention heatmap: embeddings → position information → Q/K/V projections → scaled dot-product scores → softmax weights → weighted values → multi-head concat → residual + LayerNorm → MLP.
