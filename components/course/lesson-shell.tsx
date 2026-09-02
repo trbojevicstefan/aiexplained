@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { courseModules } from "@/content/course";
+import { AiMascot, mascotVariants } from "@/components/mascots/ai-mascot";
 import {
   CourseProgress,
   emptyLessonProgress,
@@ -39,6 +40,10 @@ type Props = {
   children: (api: LessonProgressApi) => ReactNode;
 };
 
+function hashLessonId(value: string) {
+  return [...value].reduce((total, character) => ((total * 31) + character.charCodeAt(0)) >>> 0, 7);
+}
+
 export function LessonShell({ lessonId, lessonTitle, sections, children }: Props) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [progress, setProgress] = useState<CourseProgress>({});
@@ -72,7 +77,7 @@ export function LessonShell({ lessonId, lessonTitle, sections, children }: Props
       : ({ ...current, visitedSections: [...current.visitedSections, id] })),
     completeTask: (id) => updateLesson((current) => current.completedTasks[id]
       ? current
-      : ({ ...current, completedTasks: { ...current.completedTasks, [id]: true } })),
+      : ({ ...current, completedTasks: { ...current.completedTasks, [id]: true })),
     quizPassed: lesson.quizPassed,
     quizScore: lesson.quizScore,
     quizAttempts: lesson.quizAttempts,
@@ -93,6 +98,11 @@ export function LessonShell({ lessonId, lessonTitle, sections, children }: Props
   const achieved = tasksDone + sectionsRead + (lesson.quizPassed ? 1 : 0);
   const percent = hydrated && totalMilestones > 0 ? Math.round((achieved / totalMilestones) * 100) : 0;
 
+  const moduleIndex = Math.max(0, courseModules.findIndex((module) => module.lessons.some((item) => item.id === lessonId)));
+  const activeModule = courseModules[moduleIndex] ?? courseModules[0];
+  const guideVariant = mascotVariants[hashLessonId(lessonId) % mascotVariants.length];
+  const guideMood = lesson.quizPassed || percent >= 90 ? "excited" : tasksDone > 0 ? "happy" : "thinking";
+
   return (
     <div className="lesson-app-shell">
       <header className="lesson-topbar">
@@ -104,6 +114,10 @@ export function LessonShell({ lessonId, lessonTitle, sections, children }: Props
         <Link className="brand-mark" href="/">
           <span className="brand-dot" /> AI EXPLAINED
         </Link>
+
+        <div aria-hidden="true" style={{ display: "grid", placeItems: "center", width: 52, height: 46, marginInline: 4 }}>
+          <AiMascot variant={guideVariant} mood={guideMood} accent={activeModule.color} size={46} />
+        </div>
 
         <div className="topbar-progress" aria-label={`Lesson progress ${percent}%`}>
           <div className="topbar-progress-copy">
@@ -142,7 +156,8 @@ export function LessonShell({ lessonId, lessonTitle, sections, children }: Props
                 <button className="icon-close tactile" onClick={() => setDrawerOpen(false)} aria-label="Close lessons drawer">×</button>
               </div>
 
-              <div className="drawer-meter-card">
+              <div className="drawer-meter-card" style={{ gap: 14 }}>
+                <AiMascot variant={guideVariant} mood={guideMood} accent={activeModule.color} size={74} label={percent >= 90 ? "READY" : "GUIDE"} />
                 <div className="drawer-meter-orb"><span>{percent}%</span></div>
                 <div>
                   <strong>{lessonTitle}</strong>
