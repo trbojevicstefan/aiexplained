@@ -8,7 +8,10 @@ Status: **implemented in code**
 - [x] localStorage lesson progress, generic `LessonShell`, drawer, section jumps, progress HUD and gated quiz pattern.
 - [x] reusable `LessonSection`, `DepthSwitch`, `TaskStamp`, `VectorPlot2D` and `AttentionMatrix` primitives.
 - [x] responsive and reduced-motion support across the lesson system.
-- [x] course drawer synchronized with all built Module 1–4 routes.
+- [x] living `AiMascot` design-system primitive with bot/star/briefcase/tile/mail toy variants.
+- [x] mascot gaze follows pointer with spring motion, plus random blinking, breathing, hover/tap reaction and mood states.
+- [x] living mascot companion integrated globally into lesson topbar + lesson drawer.
+- [x] course drawer synchronized with all built Module 1–5 routes.
 
 ## Module 1 — AI From Absolute Zero
 Status: **content implemented in code**
@@ -49,11 +52,33 @@ Status: **content implemented in code**
 - [x] signature challenge: manually edit attention weights and watch output representation move.
 - [x] Module 4 Boss Lab + 12-question mastery exam.
 
-## Current Module 4 routes
-- [x] `/lessons/transformer-block-flow`
-- [x] `/lessons/positions-masks-cache`
-- [x] `/lessons/encoder-decoder-architectures`
-- [x] `/lessons/module-4-capstone`
+## Module 5 — How an LLM Actually Produces Text
+Status: **content implemented in code**
+- [x] seeded toy autoregressive language-model engine in `lib/toy-language-model.ts`.
+- [x] logits vs probabilities vs decoding-policy distinction.
+- [x] softmax and conditional next-token probability intuition.
+- [x] greedy decoding and seeded sampling.
+- [x] temperature, top-K and top-P / nucleus filtering.
+- [x] repetition penalties, stop tokens/sequences and max output tokens.
+- [x] autoregressive token-by-token generation.
+- [x] why identical prompts can differ under sampling and why fixed seed/config can reproduce a toy path.
+- [x] hallucination as plausible generation without a built-in external truth guarantee.
+- [x] reasoning as a system/model behavior that can spend additional test-time compute.
+- [x] learned model parameters and parameter-count intuition.
+- [x] dense vs sparse compute.
+- [x] Mixture of Experts and token-level top-k expert routing.
+- [x] explicit MoE expert routing vs system-level model routing distinction.
+- [x] SLM, large model and foundation-model role/size distinctions.
+- [x] base vs instruct vs chat post-training families.
+- [x] reasoning-model quality/latency/cost trade-off.
+- [x] scaling curve + benchmark-threshold emergence nuance.
+- [x] Model Zoo uses living mascot experts that animate when router activates them.
+- [x] Module 5 Boss Lab + 12-question mastery exam, pass threshold 10/12.
+
+## Current Module 5 routes
+- [x] `/lessons/next-token-sampling`
+- [x] `/lessons/model-zoo-routing`
+- [x] `/lessons/module-5-capstone`
 
 ## QA / platform work still open
 - [ ] Fresh `npm ci` + `npm run typecheck` + `npm run build` on an environment with repository/network access.
@@ -64,6 +89,7 @@ Status: **content implemented in code**
 - [ ] Anonymous → authenticated progress merge.
 - [ ] Full visual learning-map/planet view.
 - [ ] TokenStream homepage demo.
+- [ ] migrate remaining legacy one-off lesson mascots into the new canonical `AiMascot` primitive.
 
 ## Next batch
-Build **Module 5 — How an LLM Actually Produces Text**: a real seeded next-token sampler for logits → softmax → greedy / temperature / top-k / top-p / repetition penalties / stop / max tokens, followed by a Model Zoo lesson for dense, sparse, MoE, routing and model families.
+Build **Module 6 — Context & Prompting** around a living “context backpack”: add/remove/reorder system instructions, user messages, history, RAG documents and tool results under a token budget, deliberately overflow/truncate/compress the context, then repair instruction hierarchy and prompt-injection failures before the locked mastery exam.
