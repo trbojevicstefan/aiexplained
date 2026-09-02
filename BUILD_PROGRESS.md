@@ -1,95 +1,153 @@
 # AI Explained — Build Progress
 
-`[x]` means implemented in repository code. Runtime/browser QA is tracked separately and is never marked complete unless actually performed.
+`[x]` means implemented in repository code. Runtime/browser QA is tracked separately and is **never** marked complete unless actually performed.
 
 ## Foundation
 Status: **implemented in code**
 - [x] Next.js + TypeScript foundation, Motion interaction layer and Firebase App Hosting config.
-- [x] localStorage lesson progress, generic `LessonShell`, drawer, section jumps, progress HUD and gated quiz pattern.
-- [x] reusable `LessonSection`, `DepthSwitch`, `TaskStamp`, `VectorPlot2D`, `AttentionMatrix`, `AgentLoop`, `ToolCallInspector`, `MemoryShelf`, `StateMachineViewer`, `QueueVisualizer`, `RouterPlayground`, `CodeAgentWorkbench` and `BrowserAgentWorkbench` primitives.
+- [x] localStorage lesson progress, generic `LessonShell`, drawer, section jumps, progress HUD and gated-quiz pattern.
+- [x] reusable `LessonSection`, `DepthSwitch`, `TaskStamp`, `VectorPlot2D`, `AttentionMatrix`, `AgentLoop`, `ToolCallInspector`, `MemoryShelf`, `StateMachineViewer`, `QueueVisualizer`, `RouterPlayground`, `TraceTimeline`, `CodeAgentWorkbench`, `BrowserAgentWorkbench`, `VoicePipeline`, `PermissionGate` and `SandboxBoundary` primitives.
 - [x] responsive and reduced-motion support across the lesson system.
-- [x] living `AiMascot` toy-character system with pointer-following eyes, random blinking, breathing, hover/tap reaction and mood states.
-- [x] mascot companion integrated globally into topbar/drawer and specialist mascots used inside lessons.
-- [x] foundation + advanced registries composed into one lesson drawer.
+- [x] foundation + advanced course registries composed into one lesson drawer.
 
 ## Global Visual Polish V2
-Status: **implemented in code; browser QA still open**
-- [x] rebuilt lesson topbar as a stable responsive 3-column layout instead of the old fragile `1fr / auto / 1fr` chrome.
-- [x] module-colored progress bar, current lesson identity, activity counter and quiz-complete indicator in the global topbar.
-- [x] mobile topbar progressively collapses lesson identity, mascot and verbose progress instead of overflowing.
-- [x] `AiMascot` upgraded with stronger plastic/toy depth, shell highlights, ear pods, antenna LED, glossy capsule eyes, ground shadow and shared face language across bot/star/briefcase/tile/mail variants.
-- [x] mascot pupils follow pointer with springs and the full face subtly tilts toward pointer; blink, breathing, hover, tap and excited states remain available.
-- [x] reusable `AgentIdentityCard` added for consistent living agent/worker presentation with role/status/activity pulse.
-- [x] Coding Agent workbench migrated to `AgentIdentityCard` and invalid legacy mascot mood removed.
-- [x] Browser/Computer-Use workbench migrated to canonical living bot status instead of flat/legacy agent treatment.
-- [x] Voice pipeline migrated to a living `Echo` voice-agent identity card with real-time/barge-in status.
-- [x] homepage moved into the same art direction with a dark mascot stage, living GUIDE/IDEA/BUILD characters and interactive gaze.
-- [x] `AgentLoop` primitive hardened for empty/custom step sets and type-safe CSS variables.
-- [x] legacy `/lessons/agent-foundations` and `/lessons/tool-calling-lifecycle` URLs redirect to the canonical routes.
+Status: **implemented in code; local/browser QA still open**
+- [x] rebuilt lesson topbar as a stable responsive 3-column layout.
+- [x] module-colored progress bar, current module/lesson identity, activity count and quiz-complete indicator.
+- [x] mobile chrome progressively removes verbose identity/mascot/progress pieces instead of overflowing.
+- [x] `AiMascot` upgraded to premium toy/plastic art direction with shell depth, highlights, ear pods, antenna LED, glossy capsule eyes and ground shadow.
+- [x] mascot pupils follow pointer with spring motion; full face subtly tilts toward pointer.
+- [x] random blink, breathing, hover lift, click squash/stretch and excited states retained.
+- [x] bot/star/briefcase/tile/mail variants share one consistent face DNA.
+- [x] reusable `AgentIdentityCard` created for agent/worker name, role, status and activity pulse.
+- [x] Coding Agent workbench migrated to living `Patch` identity.
+- [x] Browser/Computer-Use workbench migrated to canonical living browser agent.
+- [x] Voice pipeline migrated to living `Echo` identity with real-time/barge-in status.
+- [x] homepage rebuilt into the same visual world with GUIDE / IDEA / BUILD mascots on a dark interactive stage.
+- [x] `AgentLoop` hardened for custom/empty step sets and type-safe CSS variables.
+- [x] legacy `/lessons/agent-foundations` and `/lessons/tool-calling-lifecycle` URLs redirect to canonical routes.
+- [ ] migrate remaining old lesson-local mascots (for example legacy BYTE in the oldest lesson) after browser QA so we do not destabilize large lesson state files.
 
-## Modules 1–13
-Status: **content implemented in code**
-- [x] Module 1 — AI From Absolute Zero + Boss Level.
-- [x] Module 2 — Neural Networks Without the Mystery + real toy network + Boss Lab.
-- [x] Module 3 — Tokens, tokenizers, embeddings, vector search + Boss Lab.
-- [x] Module 4 — Transformers, attention, positions, masks, KV cache, architecture families + Boss Lab.
-- [x] Module 5 — Autoregressive generation, sampling, model families, MoE/model routing + Boss Lab.
-- [x] Module 6 — Context engineering, prompting, hierarchy, injection + Boss Lab.
-- [x] Module 7 — Pretraining, post-training, preference tuning, PEFT/adaptation + Boss Lab.
-- [x] Module 8 — Reasoning, search, verification, PRM/ORM, Best-of-N + Boss Lab.
-- [x] Module 9 — RAG ingestion, chunking, retrieval/reranking, vector indexes/evals + Boss Lab.
-- [x] Module 10 — Agent foundations, real agent loop, permissions/tools/state + Boss Lab.
-- [x] Module 11 — Harness/framework/runtime, sandbox/retries/tracing/framework atlas + Boss Lab.
-- [x] Module 12 — Tool-call lifecycle, JSON Schema, tool design/reliability/safety + Boss Lab.
-- [x] Module 13 — MCP host/client/server + capability discovery + A2A task delegation + Protocol Boss Lab.
+## Module 1 — AI From Absolute Zero
+- [x] foundations, learning types, scope/uncertainty and Boss Level.
 
-## Modules 14–16
-Status: **content implemented in code**
-- [x] Module 14 — Memory & State: MemoryShelf, extraction/storage/retrieval/injection/conflicts/deletion, state machines/checkpoints/crash recovery + Boss Lab.
-- [x] Module 15 — Agent Architecture & Orchestration: QueueVisualizer, roles/queues/DAG/events/retries/DLQ/handoffs/multi-agent failures/durable orchestration + Boss Lab.
-- [x] Module 16 — Model Routing & Systems of Models: RouterPlayground, constraints/fallback/cascade/frontier, ensembles/judges/correlated failures/economics + Boss Lab.
+## Module 2 — Neural Networks Without the Mystery
+- [x] real toy neural-network engine, forward/backprop, SGD, gradient health, regularization, residuals, CNN/RNN/LSTM/attention and Boss Lab.
+
+## Module 3 — How Language Becomes Numbers
+- [x] tokenization/tokenizer families, token IDs, embeddings/vector metrics, semantic search/ANN and Boss Lab.
+
+## Module 4 — Transformers
+- [x] Q/K/V, attention, multi-head, positions/RoPE, masks, KV cache, efficient attention, encoder/decoder/cross-attention and Boss Lab.
+
+## Module 5 — How an LLM Produces Text
+- [x] seeded autoregressive sampler, logits/softmax/decoding controls, hallucination/reasoning framing, model zoo, MoE/model routing and Boss Lab.
+
+## Module 6 — Context & Prompting
+- [x] context budget/overflow/compression/placement/cache, prompting/instruction hierarchy, direct/indirect injection and Boss Lab.
+
+## Module 7 — Training & Post-Training
+- [x] pretraining factory, SFT/preferences/RLHF/PPO/DPO/RLAIF, LoRA/QLoRA/PEFT/distillation/merging/continual learning and Boss Lab.
+
+## Module 8 — Reasoning & Test-Time Compute
+- [x] planning/search/verification, PRM/ORM, Best-of-N/self-consistency, quality-latency-cost tradeoff and Boss Lab.
+
+## Module 9 — RAG & Knowledge Retrieval
+- [x] ingestion/chunking, keyword/semantic/hybrid retrieval, filters/rewrites/HyDE/reranking, HNSW/IVF/evals/migrations and Boss Lab.
+
+## Module 10 — What Is an AI Agent?
+- [x] chatbot/workflow/agent distinction.
+- [x] full `Agent Loop Builder` restored from placeholder into 9 interactive scenes.
+- [x] living `Nova` + `AgentLoop` + `ToolCallInspector` + state/memory + permission/retry controls.
+- [x] Agent Boss Lab.
+
+## Module 11 — Harness, Framework & Runtime
+- [x] harness/runtime/framework/SDK separation, harness internals, sandbox/retries/tracing/framework atlas and Boss Lab.
+
+## Module 12 — Tool Calling
+- [x] tool lifecycle, schemas, selection/arguments/external execution/results, sequential/parallel, tool design/reliability/safety and Boss Lab.
+
+## Module 13 — MCP & Agent-to-Agent Protocols
+- [x] MCP host/client/server, tools/resources/prompts, transports/auth/trust.
+- [x] A2A identity/capabilities/task/status/artifact delegation.
+- [x] Protocol Boss Lab.
+
+## Module 14 — Memory & State
+- [x] memory types/extraction/storage/retrieval/injection/conflicts/deletion, state/checkpoints/resume and Boss Lab.
+
+## Module 15 — Agent Architecture & Orchestration
+- [x] roles, queues, workers, DAG/events/retries/DLQ/handoffs/multi-agent patterns/failures/durable orchestration and Boss Lab.
+
+## Module 16 — Model Routing & Systems of Models
+- [x] routing constraints/fallback/cascade/frontier, ensembles/judges/correlated failures/economics and Boss Lab.
 
 ## Module 17 — Coding, Browser & Computer-Use Agents
-Status: **content implemented in code**
-- [x] reusable animated `CodeAgentWorkbench` with file tree, editor, run timeline and test state.
-- [x] repository context selection, file discovery and code search/reference/test search.
-- [x] AST node intuition and import/dependency graph.
-- [x] constrained shell/sandbox command policy.
-- [x] scoped patch editing.
-- [x] test execution, assertion failure reading and iterative repair loop.
-- [x] planning/run checkpoints.
-- [x] Git diff/status/commit/PR verification mental model.
-- [x] reusable `BrowserAgentWorkbench` with rendered-page, DOM-tree and accessibility-tree views.
-- [x] DOM/CSS selectors and semantic target grounding.
-- [x] accessibility roles/names/status grounding.
-- [x] browser cookies/session/profile/authentication-state handling.
-- [x] forms and authentication workflow.
-- [x] screenshot/visual grounding vs semantic DOM interaction.
-- [x] mouse, drag and keyboard action categories.
-- [x] coordinate clicking vs DOM/accessibility targeting trade-off.
-- [x] post-action/postcondition verification.
-- [x] CAPTCHA / site-policy / anti-bot boundary handling.
-- [x] integrated coding + browser Boss Lab: repo fix → unit test → sandbox → browser grounding → UI postcondition → Git artifact.
-- [x] 12-question Module 17 mastery exam, pass threshold 10/12.
+- [x] code search/context/AST/dependencies/shell/patch/tests/Git verification.
+- [x] browser DOM/a11y/visual grounding/sessions/forms/mouse-keyboard/postcondition verification.
+- [x] integrated coding + browser Boss Lab and 12-question mastery exam.
 
-## Advanced Registry Reconciliation
-Status: **navigation reconciled with routes already present in the repository**
+## Module 18 — Multimodal AI
+- [x] Multimodal Room, Image Generation Lab, Voice Agent Lab and Multimodal Boss Lab registered and available.
+
+## Module 19 — Search, Knowledge Bases & Knowledge Graphs
+- [x] Knowledge Search Lab, Knowledge Graph Lab and Boss Lab registered and available.
+
+## Module 20 — AI APIs & Structured Outputs
+- [x] API Request Builder, Structured Output Lab and API Boss Lab registered and available.
+
+## Module 21 — Providers & Running Models Locally
+- [x] Provider Map, Local Model Garage and Local Model Boss Lab registered and available.
+
+## Module 22 — Inference & AI Infrastructure
+- [x] Inference Factory, Scaling & Serving Lab and Infrastructure Boss Lab registered and available.
+
+## Module 23 — Caching & AI Economics
+- [x] Cache Lab, AI Cost Challenge and Economics Boss Lab registered and available.
+
+## Module 24 — Evals & Observability
+Status: **content implemented in code**
+- [x] Evals Lab.
+- [x] Observability & Trace Lab.
+- [x] Module 24 Trace Detective Boss Lab.
+- [x] production incident with wrong retrieved policy and fluent-but-wrong generation.
+- [x] trace-span diagnosis using `TraceTimeline`.
+- [x] eval-suite design: golden, adversarial, agent/tool and efficiency evals.
+- [x] human vs LLM vs pairwise evaluation choices.
+- [x] live precision/recall/F1 threshold lab.
+- [x] retrieval vs groundedness vs citation failure diagnosis.
+- [x] telemetry keep/redact/drop privacy decisions.
+- [x] quality/groundedness/latency regression gate.
+- [x] controlled before/after replay.
+- [x] 12-question mastery exam, pass threshold 10/12.
+- [x] Module 24 Boss Lab marked `available` in drawer.
+
+## Module 25 — Security, Guardrails & Permissions
+Status: **content implemented in code**
+- [x] reusable living `PermissionGate` with low/medium/high/critical risk and allow/deny/approval decisions.
+- [x] reusable `SandboxBoundary` showing network/filesystem/command/resource containment.
+- [x] Security Red-Team Control Room.
+- [x] agent attack-surface mapping: prompts, retrieval, tools, memory, credentials and MCP/capability servers.
+- [x] direct vs indirect prompt-injection trust-boundary exercises.
+- [x] defensive data-exfiltration/credential-leakage boundary exercise.
+- [x] RAG, memory, tool and MCP poisoning diagnosis.
+- [x] excessive-agency / least-privilege capability reduction.
+- [x] destructive-action approval and permission-gate exercise.
+- [x] PII/secret keep/redact/drop exercise.
+- [x] threat-model builder: identity, asset, entry point, trust boundary, impact and control.
+- [x] Guardrails & Sandbox Lab.
+- [x] input/output/schema/tool guardrails.
+- [x] step/cost/rate limits.
+- [x] network/filesystem/command sandbox configuration.
+- [x] command/capability allowlist decisions.
+- [x] human-in-the-loop placement by consequence.
+- [x] Security Escape Room Boss Lab: repair injection trust, poisoned memory/knowledge, permissions, secrets, sandbox, runtime budgets, approvals and audit evidence.
+- [x] 12-question Module 25 mastery exam, pass threshold 10/12.
+- [x] complete Module 25 registered and available in drawer.
+
+## Navigation / Registry Reconciliation
 - [x] fixed Module 10 canonical lesson id/slug to `what-is-an-agent` / `/lessons/what-is-an-agent`.
 - [x] fixed Module 12 canonical lesson id/slug to `tool-call-lifecycle` / `/lessons/tool-call-lifecycle`.
-- [x] Module 18 registered: Multimodal Room, Image Generation Lab, Voice Agent Lab, Multimodal Boss Lab.
-- [x] Module 19 registered: Knowledge/Search Lab, Knowledge Graph Lab, Knowledge Boss Lab.
-- [x] Module 20 registered: AI API Request Builder, Structured Output Lab, API Boss Lab.
-- [x] Module 21 registered: Model Provider Map, Local Model Garage, Local Model Boss Lab.
-- [x] Module 22 registered: Inference Factory, Scaling & Serving Lab, Infrastructure Boss Lab.
-- [x] Module 23 registered: Cache Lab, AI Cost Challenge, Economics Boss Lab.
-- [x] Module 24 registered with existing Evals Lab and Observability/Trace Lab.
-- [ ] Module 24 Boss Lab route/content still needs to be built; drawer intentionally shows it as `planned`.
-
-## Agent Loop Builder Repair
-- [x] removed the temporary placeholder that said interactive content was not built.
-- [x] implemented 9 interactive scenes: naked-model contrast, agent assembly, observe/context rack, tool decision, tool-call execution x-ray, result reinjection, state-vs-memory classification, approval/retry policy and explain-back.
-- [x] integrated living `Nova` agent identity + `AgentLoop` + `ToolCallInspector`.
-- [x] quiz remains locked until all nine sections and nine activities are complete; pass threshold 7/8.
+- [x] Modules 18–25 now registered so `LessonShell` receives correct module identity/accent instead of silently falling back to Foundations.
 
 ## QA / platform work still open
 - [ ] Fresh `npm ci` + `npm run typecheck` + `npm run build` on an environment with repository/network access.
@@ -100,8 +158,7 @@ Status: **navigation reconciled with routes already present in the repository**
 - [ ] Anonymous → authenticated progress merge.
 - [ ] Full visual learning-map/planet view.
 - [ ] TokenStream homepage demo.
-- [ ] migrate remaining legacy one-off lesson mascots into the canonical `AiMascot` primitive.
-- [ ] continue page-by-page layout QA for old lesson-local hero/agent implementations after user local feedback.
+- [ ] continue page-by-page visual QA and migrate remaining legacy lesson-local mascot implementations.
 
 ## Next batch
-Continue the **visual consistency sweep first**, then build the missing **Module 24 Evals & Observability Boss Lab**. After that continue Build Guide Module 25 — Security, Guardrails & Permissions.
+Continue the visual consistency sweep from the oldest lessons, then build **Module 26 — Reliability & Production Agent Operations**: retries/backoff/timeouts/circuit breakers/fallbacks/idempotency/error classification/partial failures/graceful degradation/durable jobs/checkpoints/recovery/approval escalation and a production-incident Boss Lab.
