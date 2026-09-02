@@ -15,6 +15,11 @@ export const courseModules: CourseModule[] = [
   ]},
   {id:"module-4",title:"Transformers Visually, Step by Step",eyebrow:"TRANSFORMERS",color:"#16a66a",lessons:[
     {id:"transformer-block-flow",title:"Transformer block flow",shortTitle:"Transformer block",slug:"/lessons/transformer-block-flow",status:"available",estimatedMinutes:42},{id:"positions-masks-cache",title:"Position, masks, KV cache and efficient attention",shortTitle:"Position & efficiency",slug:"/lessons/positions-masks-cache",status:"available",estimatedMinutes:40},{id:"encoder-decoder-architectures",title:"Encoder, decoder and cross-attention",shortTitle:"Transformer families",slug:"/lessons/encoder-decoder-architectures",status:"available",estimatedMinutes:38},{id:"module-4-capstone",title:"Module 4 Boss Lab",shortTitle:"Boss Lab",slug:"/lessons/module-4-capstone",status:"available",estimatedMinutes:44}
+  ]},
+  {id:"module-5",title:"How an LLM Actually Produces Text",eyebrow:"LLM GENERATION",color:"#5f88ff",lessons:[
+    {id:"next-token-sampling",title:"Next-token prediction and sampling",shortTitle:"Next-token machine",slug:"/lessons/next-token-sampling",status:"available",estimatedMinutes:42},
+    {id:"model-zoo-routing",title:"Model zoo, MoE and routing",shortTitle:"Model Zoo & routing",slug:"/lessons/model-zoo-routing",status:"available",estimatedMinutes:40},
+    {id:"module-5-capstone",title:"Module 5 Boss Lab",shortTitle:"Boss Lab",slug:"/lessons/module-5-capstone",status:"available",estimatedMinutes:44}
   ]}
 ];
 
