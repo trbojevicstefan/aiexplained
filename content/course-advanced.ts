@@ -69,4 +69,15 @@ export const advancedCourseModules: CourseModule[] = [
       { id: "module-13-capstone", title: "Module 13 Protocol Boss Lab", shortTitle: "Protocol Boss Lab", slug: "/lessons/module-13-capstone", status: "available", estimatedMinutes: 46 },
     ],
   },
+  {
+    id: "module-14",
+    title: "Memory & State",
+    eyebrow: "PERSISTENCE & RECOVERY",
+    color: "#8ca6ff",
+    lessons: [
+      { id: "memory-palace", title: "Memory Palace", shortTitle: "Memory Palace", slug: "/lessons/memory-palace", status: "available", estimatedMinutes: 46 },
+      { id: "state-machine-lab", title: "State & Checkpoints Lab", shortTitle: "State & Checkpoints", slug: "/lessons/state-machine-lab", status: "available", estimatedMinutes: 44 },
+      { id: "module-14-capstone", title: "Module 14 Memory & State Boss Lab", shortTitle: "Memory + State Boss", slug: "/lessons/module-14-capstone", status: "available", estimatedMinutes: 48 },
+    ],
+  },
 ];
