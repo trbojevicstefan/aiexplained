@@ -33,7 +33,12 @@ export const courseModules: CourseModule[] = [
     {id:"cnn-rnn-lstm-attention",title:"CNN, RNN, LSTM and attention",shortTitle:"Architecture Museum",slug:"/lessons/cnn-rnn-lstm-attention",status:"available",estimatedMinutes:40},
     {id:"module-2-capstone",title:"Module 2 Boss Lab",shortTitle:"Boss Lab",slug:"/lessons/module-2-capstone",status:"available",estimatedMinutes:44}
   ]},
-  {id:"module-3",title:"How Language Becomes Numbers",eyebrow:"COMING NEXT",color:"#9e6cff",lessons:[]},
+  {id:"module-3",title:"How Language Becomes Numbers",eyebrow:"LANGUAGE → VECTORS",color:"#9e6cff",lessons:[
+    {id:"tokens-tokenization",title:"Tokens and tokenization",shortTitle:"Tokens & tokenization",slug:"/lessons/tokens-tokenization",status:"available",estimatedMinutes:36},
+    {id:"tokenizer-families",title:"BPE, WordPiece and SentencePiece",shortTitle:"Tokenizer families",slug:"/lessons/tokenizer-families",status:"available",estimatedMinutes:32},
+    {id:"embeddings-vectors",title:"Embeddings, vectors and semantic search",shortTitle:"Embeddings & vectors",slug:"/lessons/embeddings-vectors",status:"available",estimatedMinutes:38},
+    {id:"module-3-capstone",title:"Module 3 Boss Lab",shortTitle:"Boss Lab",slug:"/lessons/module-3-capstone",status:"available",estimatedMinutes:42}
+  ]},
   {id:"module-4",title:"Transformers Visually, Step by Step",eyebrow:"COMING NEXT",color:"#16a66a",lessons:[]}
 ];
 
