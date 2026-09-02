@@ -28,7 +28,10 @@ export const courseModules: CourseModule[] = [
     {id:"loss-gradients-backprop",title:"Loss, gradient descent and backpropagation",shortTitle:"Loss & backprop",slug:"/lessons/loss-gradients-backprop",status:"available",estimatedMinutes:38},
     {id:"sgd-batches-epochs",title:"SGD, batches and epochs",shortTitle:"SGD / batches / epochs",slug:"/lessons/sgd-batches-epochs",status:"available",estimatedMinutes:32},
     {id:"gradient-health-normalization",title:"Vanishing, exploding gradients and normalization",shortTitle:"Gradient health",slug:"/lessons/gradient-health-normalization",status:"available",estimatedMinutes:36},
-    {id:"regularization-dropout",title:"Regularization and dropout",shortTitle:"Regularization & dropout",slug:"/lessons/regularization-dropout",status:"planned",estimatedMinutes:32}
+    {id:"regularization-dropout",title:"Regularization and dropout",shortTitle:"Regularization & dropout",slug:"/lessons/regularization-dropout",status:"available",estimatedMinutes:32},
+    {id:"residual-mlp",title:"Residual connections and MLPs",shortTitle:"Residuals & MLPs",slug:"/lessons/residual-mlp",status:"available",estimatedMinutes:34},
+    {id:"cnn-rnn-lstm-attention",title:"CNN, RNN, LSTM and attention",shortTitle:"Architecture Museum",slug:"/lessons/cnn-rnn-lstm-attention",status:"available",estimatedMinutes:40},
+    {id:"module-2-capstone",title:"Module 2 Boss Lab",shortTitle:"Boss Lab",slug:"/lessons/module-2-capstone",status:"available",estimatedMinutes:44}
   ]},
   {id:"module-3",title:"How Language Becomes Numbers",eyebrow:"COMING NEXT",color:"#9e6cff",lessons:[]},
   {id:"module-4",title:"Transformers Visually, Step by Step",eyebrow:"COMING NEXT",color:"#16a66a",lessons:[]}
