@@ -9,45 +9,52 @@ Status: **implemented in code**
 - [x] reusable `LessonSection`, `DepthSwitch`, `TaskStamp`, `VectorPlot2D` and `AttentionMatrix` primitives.
 - [x] responsive and reduced-motion support across the lesson system.
 - [x] living `AiMascot` design-system primitive with bot/star/briefcase/tile/mail toy variants.
-- [x] mascot gaze follows pointer with spring motion, plus random blinking, breathing, hover/tap reaction and mood states.
+- [x] mascot gaze follows pointer with spring motion, random blinking, breathing, hover/tap reaction and mood states.
 - [x] living mascot companion integrated globally into lesson topbar + lesson drawer.
-- [x] course drawer synchronized with all built Module 1–6 routes.
+- [x] course drawer synchronized with all built Module 1–7 routes.
 
-## Modules 1–5
+## Modules 1–6
 Status: **content implemented in code**
 - [x] Module 1 foundations + Boss Level.
 - [x] Module 2 real toy neural-network curriculum + Boss Lab.
 - [x] Module 3 tokenization/embeddings/vector-search curriculum + Boss Lab.
 - [x] Module 4 transformer/attention curriculum + Boss Lab.
 - [x] Module 5 LLM generation/sampling/model-zoo/routing curriculum + Boss Lab.
+- [x] Module 6 context/prompting/instruction-hierarchy/security curriculum + Boss Lab.
 
-## Module 6 — Context & Prompting
+## Module 7 — Training & Post-Training
 Status: **content implemented in code**
-- [x] context vs weights vs persistent application memory.
-- [x] system instructions, user messages, history, documents and tool results inside context.
-- [x] real toy-token counting using the existing tokenizer lab.
-- [x] context-window budget and deliberate overflow.
-- [x] truncation vs summarization/compression vs relevance selection.
-- [x] context prioritization / evidence-per-token mental model.
-- [x] lost-in-the-middle failure intuition and context placement.
-- [x] long-context capacity vs effective-use/latency/cost distinction.
-- [x] prompt/prefix cache vs application/context cache vs KV cache.
-- [x] prompt engineering vs broader context engineering.
-- [x] simplified instruction hierarchy across system/developer/user and untrusted tool/document data.
-- [x] zero-shot, one-shot and few-shot in-context examples.
-- [x] persona/role, constraints and delimiters.
-- [x] structured-output schema + validation intuition.
-- [x] planning, critique/reflection and self-consistency patterns with cost/reliability caveats.
-- [x] direct prompt injection defense mental model.
-- [x] indirect prompt injection through retrieved/tool content and trust-boundary reasoning.
-- [x] prompt/system leakage scenario.
-- [x] Module 6 Context Incident Boss Lab: repair budget, hierarchy, evidence, placement, injection, output schema and cache selection.
-- [x] 12-question Module 6 mastery exam, pass threshold 10/12.
+- [x] Pretraining corpus construction, filtering, data quality and deduplication.
+- [x] evaluation/benchmark contamination detection.
+- [x] synthetic-data mix intuition and quality caveats.
+- [x] next-token cross-entropy objective.
+- [x] backpropagation at distributed-cluster scale.
+- [x] data, tensor, pipeline and model-parallelism distinctions.
+- [x] checkpoint save/failure/recovery flow.
+- [x] base pretrained behavior vs SFT behavior.
+- [x] instruction-tuning demonstration data.
+- [x] chosen/rejected preference-pair construction.
+- [x] reward-model scoring intuition and reward-hacking caveat.
+- [x] PPO-style RLHF reward-vs-policy-drift/KL intuition.
+- [x] DPO chosen-vs-rejected relative-likelihood intuition.
+- [x] RLAIF and Constitutional AI critique/revision principles.
+- [x] comparison game choosing SFT vs DPO vs PPO vs RLAIF by supervision type.
+- [x] full fine-tuning vs parameter-efficient fine-tuning.
+- [x] LoRA low-rank A/B update and rank/parameter-count slider.
+- [x] QLoRA quantized frozen base + trainable LoRA stack.
+- [x] adapter/domain fine-tuning intuition.
+- [x] teacher/student knowledge distillation.
+- [x] model-merging trade-off and interference warning.
+- [x] continual learning + catastrophic forgetting simulation.
+- [x] quantization-aware training intuition.
+- [x] Module 7 end-to-end Training Control Room Boss Lab.
+- [x] 12-question Module 7 mastery exam, pass threshold 10/12.
 
-## Current Module 6 routes
-- [x] `/lessons/context-backpack`
-- [x] `/lessons/prompting-instruction-hierarchy`
-- [x] `/lessons/module-6-capstone`
+## Current Module 7 routes
+- [x] `/lessons/pretraining-factory`
+- [x] `/lessons/posttraining-arena`
+- [x] `/lessons/efficient-adaptation`
+- [x] `/lessons/module-7-capstone`
 
 ## QA / platform work still open
 - [ ] Fresh `npm ci` + `npm run typecheck` + `npm run build` on an environment with repository/network access.
@@ -58,7 +65,7 @@ Status: **content implemented in code**
 - [ ] Anonymous → authenticated progress merge.
 - [ ] Full visual learning-map/planet view.
 - [ ] TokenStream homepage demo.
-- [ ] migrate remaining legacy one-off lesson mascots into the new canonical `AiMascot` primitive.
+- [ ] migrate remaining legacy one-off lesson mascots into the canonical `AiMascot` primitive.
 
 ## Next batch
-Build **Module 7 — Training & Post-Training**: pretraining data factory → distributed training → checkpoints; then SFT/instruction tuning → preferences/RLHF/PPO/DPO/RLAIF/Constitutional AI; then LoRA/QLoRA/PEFT/adapters, distillation, model merging, continual learning/catastrophic forgetting and quantization-aware training before the module Boss Lab.
+Build **Module 8 — Reasoning & Test-Time Compute**: compare instant answer vs deliberate planning vs generator+verifier; expose reasoning/test-time-compute budgets, search trees, verification/self-correction, PRM/ORM intuition, Best-of-N and self-consistency, and quality/latency/cost trade-offs before the locked mastery exam.
