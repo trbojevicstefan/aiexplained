@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { AiMascot } from "@/components/mascots/ai-mascot";
-import { AcademySignatureLab, hasAcademySignatureLab } from "@/components/academy/academy-signature-lab";
+import { AcademyLabRouter, hasAcademyLab } from "@/components/academy/academy-lab-router";
 import { academyPhases, type AcademyLessonWithPhase } from "@/content/academy-course";
 import styles from "./academy-lesson.module.css";
 
@@ -40,7 +40,7 @@ function rotate<T>(items: T[]) {
 
 export function AcademyLesson({ lesson, previous, next }: Props) {
   const reduced = useReducedMotion();
-  const hasLab = hasAcademySignatureLab(lesson.slug);
+  const hasLab = hasAcademyLab(lesson.slug);
   const requiredSections = hasLab ? ["start", "concepts", "lab", "practice", "debug", "verify", "explain"] : baseSections;
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [hydrated, setHydrated] = useState(false);
@@ -224,7 +224,7 @@ export function AcademyLesson({ lesson, previous, next }: Props) {
       </section>
 
       {hasLab && <section className={styles.signatureSection} data-section="lab">
-        <AcademySignatureLab slug={lesson.slug} accent={lesson.phaseColor} onComplete={setLabComplete} />
+        <AcademyLabRouter slug={lesson.slug} accent={lesson.phaseColor} onComplete={setLabComplete} />
       </section>}
 
       <section className={`${styles.section} ${styles.darkSection}`} data-section="practice">
