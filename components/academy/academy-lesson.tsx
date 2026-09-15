@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { AiMascot } from "@/components/mascots/ai-mascot";
+import { AcademySignatureLab, hasAcademySignatureLab } from "@/components/academy/academy-signature-lab";
 import { academyPhases, type AcademyLessonWithPhase } from "@/content/academy-course";
 import styles from "./academy-lesson.module.css";
 
@@ -17,6 +18,7 @@ type Persisted = {
   visited: string[];
   revealed: number[];
   practiceOrder: string[];
+  labComplete: boolean;
   debugSolved: boolean;
   explanation: string;
   verified: boolean[];
@@ -24,7 +26,7 @@ type Persisted = {
   score: number;
 };
 
-const requiredSections = ["start", "concepts", "practice", "debug", "verify", "explain"];
+const baseSections = ["start", "concepts", "practice", "debug", "verify", "explain"];
 const keyFor = (slug: string) => `ai-academy:lesson:${slug}`;
 
 function sameOrder(a: string[], b: string[]) {
@@ -38,12 +40,15 @@ function rotate<T>(items: T[]) {
 
 export function AcademyLesson({ lesson, previous, next }: Props) {
   const reduced = useReducedMotion();
+  const hasLab = hasAcademySignatureLab(lesson.slug);
+  const requiredSections = hasLab ? ["start", "concepts", "lab", "practice", "debug", "verify", "explain"] : baseSections;
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [hydrated, setHydrated] = useState(false);
   const [visited, setVisited] = useState<string[]>([]);
   const [revealed, setRevealed] = useState<number[]>([]);
   const [practiceOrder, setPracticeOrder] = useState<string[]>(() => rotate(lesson.practice));
   const [dragIndex, setDragIndex] = useState<number | null>(null);
+  const [labComplete, setLabComplete] = useState(false);
   const [debugChoice, setDebugChoice] = useState<number | null>(null);
   const [debugSolved, setDebugSolved] = useState(false);
   const [explanation, setExplanation] = useState("");
@@ -57,6 +62,7 @@ export function AcademyLesson({ lesson, previous, next }: Props) {
     setVisited([]);
     setRevealed([]);
     setPracticeOrder(rotate(lesson.practice));
+    setLabComplete(false);
     setDebugChoice(null);
     setDebugSolved(false);
     setExplanation("");
@@ -72,6 +78,7 @@ export function AcademyLesson({ lesson, previous, next }: Props) {
         if (Array.isArray(saved.visited)) setVisited(saved.visited);
         if (Array.isArray(saved.revealed)) setRevealed(saved.revealed);
         if (Array.isArray(saved.practiceOrder) && saved.practiceOrder.length === lesson.practice.length) setPracticeOrder(saved.practiceOrder);
+        if (typeof saved.labComplete === "boolean") setLabComplete(saved.labComplete);
         if (typeof saved.debugSolved === "boolean") setDebugSolved(saved.debugSolved);
         if (typeof saved.explanation === "string") setExplanation(saved.explanation);
         if (Array.isArray(saved.verified) && saved.verified.length === lesson.verify.length) setVerified(saved.verified);
@@ -86,9 +93,9 @@ export function AcademyLesson({ lesson, previous, next }: Props) {
 
   useEffect(() => {
     if (!hydrated) return;
-    const state: Persisted = { visited, revealed, practiceOrder, debugSolved, explanation, verified, passed, score };
+    const state: Persisted = { visited, revealed, practiceOrder, labComplete, debugSolved, explanation, verified, passed, score };
     window.localStorage.setItem(keyFor(lesson.slug), JSON.stringify(state));
-  }, [debugSolved, explanation, hydrated, lesson.slug, passed, practiceOrder, revealed, score, verified, visited]);
+  }, [debugSolved, explanation, hydrated, labComplete, lesson.slug, passed, practiceOrder, revealed, score, verified, visited]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -109,7 +116,9 @@ export function AcademyLesson({ lesson, previous, next }: Props) {
   const explainSolved = explainWords >= 14;
   const conceptsSolved = revealed.length === lesson.topics.length;
   const verifySolved = verified.length > 0 && verified.every(Boolean);
-  const tasks = [conceptsSolved, workflowSolved, debugSolved, verifySolved, explainSolved];
+  const tasks = hasLab
+    ? [conceptsSolved, labComplete, workflowSolved, debugSolved, verifySolved, explainSolved]
+    : [conceptsSolved, workflowSolved, debugSolved, verifySolved, explainSolved];
   const taskDone = tasks.filter(Boolean).length;
   const allRead = requiredSections.every((section) => visited.includes(section));
   const quizUnlocked = allRead && taskDone === tasks.length;
@@ -214,6 +223,10 @@ export function AcademyLesson({ lesson, previous, next }: Props) {
         <div className={styles.taskStatus} data-done={conceptsSolved}>{conceptsSolved ? "✓ Svi koncepti otvoreni" : `${revealed.length}/${lesson.topics.length} koncepta otvoreno`}</div>
       </section>
 
+      {hasLab && <section className={styles.signatureSection} data-section="lab">
+        <AcademySignatureLab slug={lesson.slug} accent={lesson.phaseColor} onComplete={setLabComplete} />
+      </section>}
+
       <section className={`${styles.section} ${styles.darkSection}`} data-section="practice">
         <div className={styles.sectionHead}><span>02</span><div><small>URADI</small><h2>Složi praktičan workflow.</h2><p>Koraci su namerno pomešani. Prevuci ih ili koristi strelice da vratiš logičan redosled.</p></div></div>
         <div className={styles.practiceBoard}>
@@ -259,9 +272,9 @@ export function AcademyLesson({ lesson, previous, next }: Props) {
         <div className={styles.taskStatus} data-done={explainSolved}>{explainSolved ? "✓ Explain-back završen" : "Napiši najmanje 14 smislenih reči"}</div>
       </section>
 
-      <section className={styles.quizSection}>
+      <section id="quiz" className={styles.quizSection}>
         <div className={styles.quizHeader}>
-          <div><span>FINAL CHECK</span><h2>{quizUnlocked ? "Quiz je otključan." : "Quiz je još zaključan."}</h2><p>{quizUnlocked ? "Treba ti 4/5 za prolaz. Pogrešan odgovor nije kazna — vrati se na mentalni model." : `Pročitaj sve delove (${visited.length}/${requiredSections.length}) i završi sve zadatke (${taskDone}/${tasks.length}).`}</p></div>
+          <div><span>FINAL CHECK</span><h2>{quizUnlocked ? "Quiz je otključan." : "Quiz je još zaključan."}</h2><p>{quizUnlocked ? "Treba ti 4/5 za prolaz. Pogrešan odgovor nije kazna — vrati se na mentalni model." : `Pročitaj sve delove (${visited.filter((item) => requiredSections.includes(item)).length}/${requiredSections.length}) i završi sve zadatke (${taskDone}/${tasks.length}).`}</p></div>
           <div className={styles.quizLock}><AiMascot variant="briefcase" accent={quizUnlocked ? "#82e9ad" : "#7d8490"} mood={quizUnlocked ? "happy" : "neutral"} size={108} label={quizUnlocked ? "READY" : "LOCKED"} /><b>{quizUnlocked ? "UNLOCKED" : "LOCKED"}</b></div>
         </div>
 
