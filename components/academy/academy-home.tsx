@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { AiMascot } from "@/components/mascots/ai-mascot";
 import { academyCertificates, academyLessons, academyMentalModels, academyPhases } from "@/content/academy-course";
 import styles from "./academy-home.module.css";
 
@@ -45,67 +44,72 @@ export function AcademyHome() {
   }, [query]);
 
   const percent = Math.round((completed.length / academyLessons.length) * 100);
-  const continueLesson = academyLessons.find((lesson) => lesson.slug === lastVisited) ?? academyLessons[0];
+  const saved = academyLessons.find((lesson) => lesson.slug === lastVisited);
+  const continueLesson = saved && !completed.includes(saved.slug)
+    ? saved
+    : academyLessons.find((lesson) => !completed.includes(lesson.slug)) ?? academyLessons[academyLessons.length - 1];
 
   return (
     <main className={styles.page}>
+      <header className={styles.siteHeader}>
+        <Link href="/ai-academy" className={styles.wordmark}><b>AI ACADEMY</b><span>SR</span></Link>
+        <nav><a href="#program">Program</a><a href="#principi">Principi</a><a href="#sertifikati">Sertifikacija</a></nav>
+        <Link href={`/ai-academy/lekcije/${continueLesson.slug}`} className={styles.headerAction}>Nastavi program <span>↗</span></Link>
+      </header>
+
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
-          <span className={styles.kicker}>AI EXPLAINED · SRPSKI PROGRAM</span>
-          <h1>AI Academy za ljude koji žele da <em>prave stvari</em>.</h1>
+          <span className={styles.eyebrow}>PRAKTIČNA AI ENGINEERING AKADEMIJA · SRPSKI</span>
+          <h1>Od ideje do sistema koji <em>stvarno radi.</em></h1>
           <p>
-            Ne učiš komande napamet. Učiš da vodiš AI agenta, povežeš alate, razumeš gde putuju podaci,
-            pronađeš grešku i dokažeš da rezultat stvarno radi.
+            Program za ljude koji žele da razumeju i isporučuju AI sisteme: agenti, API-ji, automatizacija,
+            MCP, deployment, debugging, security i produkcioni rad. Bez magije i bez učenja komandi napamet.
           </p>
-          <div className={styles.heroStats}>
-            <span><b>{academyPhases.length}</b> celina</span>
-            <span><b>{academyLessons.length}</b> lekcija</span>
-            <span><b>5</b> završnih projekata</span>
-            <span><b>4</b> sertifikaciona nivoa</span>
-          </div>
           <div className={styles.heroActions}>
             <Link className={styles.primaryCta} href={`/ai-academy/lekcije/${continueLesson.slug}`}>
-              {completed.length ? "Nastavi gde si stao" : "Kreni od početka"} <span>→</span>
+              {completed.length ? "Nastavi program" : "Počni program"} <span>→</span>
             </Link>
-            <a className={styles.secondaryCta} href="#program">Pogledaj ceo program</a>
+            <a className={styles.secondaryCta} href="#program">Pregled kurikuluma</a>
           </div>
-          <div className={styles.overallProgress}>
-            <div><span>Ukupan napredak</span><strong>{percent}%</strong></div>
-            <div className={styles.progressTrack}><i style={{ width: `${percent}%` }} /></div>
-            <small>{completed.length}/{academyLessons.length} položenih lekcija</small>
+          <div className={styles.heroMetrics}>
+            <div><strong>{academyLessons.length}</strong><span>lekcija i projekata</span></div>
+            <div><strong>{academyPhases.length}</strong><span>programskih celina</span></div>
+            <div><strong>5</strong><span>završnih projekata</span></div>
+            <div><strong>4</strong><span>nivoa sertifikacije</span></div>
           </div>
         </div>
 
-        <div className={styles.heroStage} aria-label="Živi AI Academy vodiči">
-          <div className={styles.stageGrid} />
-          <motion.div className={styles.mainMascot} animate={reduced ? undefined : { y: [0, -12, 0] }} transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}>
-            <AiMascot variant="bot" mood="excited" accent="#61c9ff" size={180} label="MENTOR" />
-          </motion.div>
-          <div className={`${styles.sideMascot} ${styles.sideOne}`}><AiMascot variant="briefcase" mood="happy" accent="#82e9ad" size={104} label="BUILD" /></div>
-          <div className={`${styles.sideMascot} ${styles.sideTwo}`}><AiMascot variant="tile" mood="thinking" accent="#a68bff" size={106} label="SYSTEM" /></div>
-          <div className={`${styles.sideMascot} ${styles.sideThree}`}><AiMascot variant="star" mood="happy" accent="#ffd75b" size={92} label="IDEA" /></div>
-          <span className={`${styles.stagePill} ${styles.pillOne}`}>AGENT-FIRST</span>
-          <span className={`${styles.stagePill} ${styles.pillTwo}`}>LEARN BY DOING</span>
-          <span className={`${styles.stagePill} ${styles.pillThree}`}>DOKAZ &gt; TVRDNJA</span>
-        </div>
+        <aside className={styles.architecturePanel} aria-label="Arhitektura programa">
+          <header><span>PROGRAM / ARCHITECTURE</span><strong>AI Systems Builder Track</strong><small>v1 · Serbian curriculum</small></header>
+          <div className={styles.architectureFlow}>
+            {["RAZUMI", "IZGRADI", "POVEŽI", "PROVERI"].map((label, index) => (
+              <motion.div key={label} initial={reduced ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * .08 }}>
+                <span>0{index + 1}</span><b>{label}</b><i />
+              </motion.div>
+            ))}
+          </div>
+          <div className={styles.systemMatrix}>
+            <div><span>FOUNDATIONS</span><b>Digital systems</b><small>Terminal · Git · HTTP · JSON</small></div>
+            <div><span>AGENTS</span><b>Agent operations</b><small>Codex · Claude · Hermes · OpenClaw</small></div>
+            <div><span>INTEGRATION</span><b>Connected systems</b><small>n8n · MCP · APIs · Voice</small></div>
+            <div><span>PRODUCTION</span><b>Reliable delivery</b><small>Deploy · Debug · Security · Verify</small></div>
+          </div>
+          <footer><span>PRINCIP</span><strong>Dokaz &gt; tvrdnja.</strong><small>Svaka akcija završava readback-om, testom ili realnim outputom.</small></footer>
+        </aside>
       </section>
 
-      <section className={styles.principleBand}>
-        <div>
-          <span>OSNOVNI LOOP</span>
-          <strong>Objasni cilj</strong><i>→</i><strong>Daj kontekst</strong><i>→</i><strong>Postavi granice</strong><i>→</i><strong>Pusti agenta</strong><i>→</i><strong>Proveri rezultat</strong>
-        </div>
+      <section className={styles.progressBand}>
+        <div className={styles.progressCopy}><span>TVOJ NAPREDAK</span><strong>{percent}%</strong><small>{completed.length} / {academyLessons.length} položeno</small></div>
+        <div className={styles.progressTrack}><i style={{ width: `${percent}%` }} /></div>
+        <div className={styles.progressNext}><span>SLEDEĆE</span><b>{continueLesson.title}</b></div>
       </section>
 
-      <section className={styles.mentalSection}>
-        <div className={styles.sectionIntro}>
-          <span className={styles.kicker}>MENTALNI MODELI</span>
-          <h2>Pet stvari koje treba da postanu refleks.</h2>
-        </div>
-        <div className={styles.mentalGrid}>
+      <section id="principi" className={styles.principles}>
+        <div className={styles.sectionLead}><span>OPERATIVNI PRINCIPI</span><h2>Način razmišljanja pre alata.</h2><p>Brendovi i framework-i se menjaju. Ovi mentalni modeli ostaju korisni.</p></div>
+        <div className={styles.principleGrid}>
           {academyMentalModels.map((item, index) => (
-            <motion.article key={item} className={styles.mentalCard} whileHover={reduced ? undefined : { y: -7, rotate: index % 2 ? .7 : -.7 }}>
-              <b>0{index + 1}</b><p>{item}</p>
+            <motion.article key={item} whileHover={reduced ? undefined : { y: -3 }}>
+              <span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p>
             </motion.article>
           ))}
         </div>
@@ -113,36 +117,30 @@ export function AcademyHome() {
 
       <section id="program" className={styles.curriculumSection}>
         <div className={styles.curriculumHeader}>
-          <div>
-            <span className={styles.kicker}>CEO PROGRAM</span>
-            <h2>Od prvog AI briefa do produkcionog sistema.</h2>
-          </div>
-          <label className={styles.searchBox}>
-            <span>⌕</span>
-            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Traži: n8n, OAuth, Codex, MCP..." />
-          </label>
+          <div><span>KURIKULUM</span><h2>Kompletan program.</h2><p>Od prvog briefa do produkcionog AI sistema i završnih projekata.</p></div>
+          <label className={styles.searchBox}><span>SEARCH</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="n8n, OAuth, Codex, MCP..." /></label>
         </div>
 
         <div className={styles.phaseStack}>
           {filtered.map((phase) => {
             const phaseDone = phase.lessons.filter((lesson) => completed.includes(lesson.slug)).length;
+            const phasePercent = Math.round((phaseDone / phase.lessons.length) * 100);
             return (
               <section key={phase.id} className={styles.phase} style={{ "--phase": phase.color } as React.CSSProperties}>
                 <header className={styles.phaseHeader}>
-                  <span className={styles.phaseNumber}>{phase.number}</span>
-                  <div><h3>{phase.title}</h3><p>{phase.subtitle}</p></div>
-                  <div className={styles.phaseProgress}><b>{phaseDone}/{phase.lessons.length}</b><small>završeno</small></div>
+                  <div className={styles.phaseIndex}><span>{phase.number}</span><i /></div>
+                  <div className={styles.phaseTitle}><h3>{phase.title}</h3><p>{phase.subtitle}</p></div>
+                  <div className={styles.phaseProgress}><b>{phaseDone}/{phase.lessons.length}</b><span>{phasePercent}%</span></div>
                 </header>
-                <div className={styles.lessonGrid}>
+                <div className={styles.lessonList}>
                   {phase.lessons.map((lesson, index) => {
                     const done = completed.includes(lesson.slug);
                     return (
-                      <Link key={lesson.slug} className={`${styles.lessonCard} ${done ? styles.lessonDone : ""}`} href={`/ai-academy/lekcije/${lesson.slug}`}>
-                        <div className={styles.lessonTop}><span>{String(index + 1).padStart(2, "0")}</span>{done && <b>✓</b>}</div>
-                        <h4>{lesson.title}</h4>
-                        <p>{lesson.summary}</p>
-                        <div className={styles.lessonMeta}><span>{lesson.minutes} min</span><span>{lesson.topics.length} tema</span></div>
-                        <div className={styles.lessonArrow}>→</div>
+                      <Link key={lesson.slug} className={`${styles.lessonRow} ${done ? styles.lessonDone : ""}`} href={`/ai-academy/lekcije/${lesson.slug}`}>
+                        <span className={styles.lessonIndex}>{String(index + 1).padStart(2, "0")}</span>
+                        <div><h4>{lesson.title}</h4><p>{lesson.summary}</p></div>
+                        <div className={styles.lessonMeta}><span>{lesson.minutes} min</span><span>{lesson.topics.length} tema</span>{done && <b>POLOŽENO</b>}</div>
+                        <span className={styles.lessonArrow}>↗</span>
                       </Link>
                     );
                   })}
@@ -153,15 +151,12 @@ export function AcademyHome() {
         </div>
       </section>
 
-      <section className={styles.certSection}>
-        <div className={styles.sectionIntro}>
-          <span className={styles.kicker}>SERTIFIKACIONI PUT</span>
-          <h2>Ne skupljaš lekcije. Gradiš operativnu sposobnost.</h2>
-        </div>
+      <section id="sertifikati" className={styles.certSection}>
+        <div className={styles.sectionLead}><span>SERTIFIKACIONI PUT</span><h2>Merimo sposobnost da isporučiš sistem.</h2><p>Nivo nije dekoracija. Svaki podrazumeva konkretnu tehničku i operativnu odgovornost.</p></div>
         <div className={styles.certGrid}>
           {academyCertificates.map((cert, index) => (
             <article key={cert.title} className={styles.certCard}>
-              <span>{cert.level}</span><b>{index + 1}</b><h3>{cert.title}</h3><p>{cert.description}</p>
+              <span>LEVEL {String(index + 1).padStart(2, "0")}</span><h3>{cert.title}</h3><p>{cert.description}</p><footer>{index < 3 ? "NAPREDOVANJE" : "FINALNI NIVO"}<b>→</b></footer>
             </article>
           ))}
         </div>
