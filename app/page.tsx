@@ -18,7 +18,8 @@ export default function Home() {
           </div>
           <div className="home-actions-v2">
             <Link className="hero-cta tactile" href="/lessons/what-is-ai">Start from zero <span>→</span></Link>
-            <span className="home-small-note">Simple → Real → Expert</span>
+            <Link className="hero-cta tactile" href="/ai-academy">AI Academy · Srpski <span>→</span></Link>
+            <span className="home-small-note">Simple → Real → Expert · English + Serbian tracks</span>
           </div>
         </div>
 
