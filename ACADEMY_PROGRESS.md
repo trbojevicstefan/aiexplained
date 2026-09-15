@@ -62,8 +62,8 @@
 - [x] `TraceTimeline.active` ponovo optional za read-only trace prikaze.
 
 ## QA
-- [ ] GitHub Actions typecheck zelen na finalnom Academy commit-u.
-- [ ] GitHub Actions production build zelen na finalnom Academy commit-u.
+- [x] GitHub Actions typecheck zelen na finalnom Academy kodu.
+- [x] GitHub Actions production build zelen na finalnom Academy kodu.
 - [ ] desktop browser visual QA kompletne Academy putanje.
 - [ ] mobile/touch visual QA.
 - [ ] Playwright course navigation/progress/gating tests.
