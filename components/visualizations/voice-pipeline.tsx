@@ -8,11 +8,11 @@ import styles from "./voice-pipeline.module.css";
 const stages=["MIC","VAD / TURN","ASR / AUDIO","AGENT","TOOLS","TTS","SPEAKER"] as const;
 
 export type VoicePipelineProps={
-  active?:number;
+  active:number;
   interrupted?:boolean;
 };
 
-export const VoicePipeline:FC<VoicePipelineProps>=({active=0,interrupted=false})=>{
+export const VoicePipeline:FC<VoicePipelineProps>=({active,interrupted=false})=>{
  const normalized=Math.max(0,Math.min(stages.length-1,active));
  return <div className={styles.wrap}>
   <div className={styles.wave}>{Array.from({length:32},(_,i)=><motion.i key={i} animate={{height:[8,10+((i*17)%42),8]}} transition={{duration:.7+(i%5)*.08,repeat:Infinity,delay:(i%7)*.04}}/>)}</div>
