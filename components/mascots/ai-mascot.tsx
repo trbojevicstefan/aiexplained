@@ -5,7 +5,7 @@ import { CSSProperties, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./ai-mascot.module.css";
 
 export type AiMascotVariant = "bot" | "star" | "briefcase" | "tile" | "mail";
-export type AiMascotMood = "neutral" | "thinking" | "happy" | "excited";
+export type AiMascotMood = "neutral" | "thinking" | "happy" | "excited" | "wow";
 
 type Props = {
   variant?: AiMascotVariant;
@@ -38,6 +38,7 @@ export function AiMascot({
   const headRotateY = useSpring(tiltY, { stiffness: 150, damping: 22, mass: 0.55 });
   const [blinking, setBlinking] = useState(false);
   const [pressed, setPressed] = useState(false);
+  const energetic = mood === "excited" || mood === "wow";
 
   useEffect(() => {
     if (!gaze || reducedMotion) return;
@@ -83,11 +84,11 @@ export function AiMascot({
 
   const idle = useMemo(() => {
     if (reducedMotion) return undefined;
-    if (mood === "excited") return { y: [0, -8, 0], rotate: [0, 2.2, -1.8, 0], scale: [1, 1.025, 1] };
+    if (energetic) return { y: [0, -8, 0], rotate: [0, 2.2, -1.8, 0], scale: [1, 1.025, 1] };
     if (mood === "thinking") return { y: [0, -3, 0], rotate: [-1, 1.5, -1] };
     if (mood === "neutral") return { y: [0, -3, 0], rotate: [0, .6, -.6, 0] };
     return { y: [0, -5, 0], rotate: [0, 1.1, -1, 0], scale: [1, 1.012, 1] };
-  }, [mood, reducedMotion]);
+  }, [energetic, mood, reducedMotion]);
 
   const style = {
     "--mascot-size": `${size}px`,
@@ -106,7 +107,7 @@ export function AiMascot({
       animate={pressed ? { scale: [1, .9, 1.08, 1], rotate: [0, -3, 2, 0] } : idle}
       transition={pressed
         ? { duration: .42, ease: [0.34, 1.56, 0.64, 1] }
-        : { duration: mood === "excited" ? 2.1 : 3.8, repeat: Infinity, ease: "easeInOut" }}
+        : { duration: energetic ? 2.1 : 3.8, repeat: Infinity, ease: "easeInOut" }}
       whileHover={reducedMotion ? undefined : { scale: 1.065, y: -4 }}
       whileTap={{ scale: .94 }}
       onPointerDown={() => {
@@ -117,7 +118,7 @@ export function AiMascot({
       <motion.div className={styles.shadow} animate={reducedMotion ? undefined : { scaleX: [1, .82, 1], opacity: [.24, .13, .24] }} transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }} />
 
       <motion.div className={styles.antenna} animate={reducedMotion ? undefined : { rotate: [-2, 3, -2] }} transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}>
-        <motion.i className={styles.antennaTip} animate={mood === "excited" && !reducedMotion ? { scale: [1, 1.32, 1] } : undefined} transition={{ duration: .8, repeat: Infinity }} />
+        <motion.i className={styles.antennaTip} animate={energetic && !reducedMotion ? { scale: [1, 1.32, 1] } : undefined} transition={{ duration: .8, repeat: Infinity }} />
       </motion.div>
 
       <i className={`${styles.side} ${styles.sideLeft}`} />
@@ -131,10 +132,10 @@ export function AiMascot({
       >
         <i className={styles.shellHighlight} />
         <div className={styles.face}>
-          <motion.i className={styles.eye} animate={{ scaleY: blinking ? .06 : mood === "excited" ? 1.1 : 1 }} transition={{ duration: .065 }}>
+          <motion.i className={styles.eye} animate={{ scaleY: blinking ? .06 : energetic ? 1.1 : 1 }} transition={{ duration: .065 }}>
             <motion.span className={styles.pupil} style={{ x: pupilX, y: pupilY }} />
           </motion.i>
-          <motion.i className={styles.eye} animate={{ scaleY: blinking ? .06 : mood === "excited" ? 1.1 : 1 }} transition={{ duration: .065 }}>
+          <motion.i className={styles.eye} animate={{ scaleY: blinking ? .06 : energetic ? 1.1 : 1 }} transition={{ duration: .065 }}>
             <motion.span className={styles.pupil} style={{ x: pupilX, y: pupilY }} />
           </motion.i>
           <i className={`${styles.cheek} ${styles.cheekLeft}`} />
@@ -142,7 +143,7 @@ export function AiMascot({
         </div>
       </motion.div>
 
-      <motion.i className={styles.spark} animate={mood === "excited" && !reducedMotion ? { scale: [0, 1.2, .8, 1], rotate: [0, 60, 120, 180] } : undefined} transition={{ duration: 1.4, repeat: Infinity }} />
+      <motion.i className={styles.spark} animate={energetic && !reducedMotion ? { scale: [0, 1.2, .8, 1], rotate: [0, 60, 120, 180] } : undefined} transition={{ duration: 1.4, repeat: Infinity }} />
       {label && <span className={styles.label}>{label}</span>}
     </motion.div>
   );
