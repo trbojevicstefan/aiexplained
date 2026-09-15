@@ -1,13 +1,13 @@
 # AI Academy — Serbian track progress
 
-`[x]` znači da je stvarno implementirano u `main`. Browser/runtime QA se vodi odvojeno i neće biti čekiran bez realne provere.
+`[x]` znači da je stvarno implementirano u `main`. QA stavke ostaju otvorene dok za njih nemamo stvaran dokaz.
 
 ## Platforma
 - [x] poseban `/ai-academy` route unutar `trbojevicstefan/aiexplained`.
-- [x] poseban srpski art direction koji koristi isti living `AiMascot` sistem.
+- [x] srpski Academy art direction na postojećem living `AiMascot` sistemu.
 - [x] Academy home: hero, global progress, continue-last-lesson, pretraga, faze, mentalni modeli i sertifikacioni nivoi.
 - [x] data-driven curriculum registry.
-- [x] dynamic `/ai-academy/lekcije/[slug]` route za sve lekcije.
+- [x] dynamic `/ai-academy/lekcije/[slug]` route za kompletan program.
 - [x] lesson drawer kroz kompletan program.
 - [x] per-lesson `localStorage` progress.
 - [x] section-read tracking preko Intersection Observer-a.
@@ -17,12 +17,12 @@
 - [x] verification checklist.
 - [x] typed explain-back zadatak.
 - [x] quiz zaključan dok svi obavezni delovi i zadaci nisu završeni.
-- [x] custom signature lab se automatski dodaje kao dodatni obavezni task kada lekcija ima specifičan simulator.
+- [x] signature lab je dodatni obavezni task i mora biti završen pre quiz-a.
 - [x] 5-question lesson quiz sa minimum 4/5 za prolaz.
 - [x] previous/next navigation zaključan napred dok lekcija nije položena.
-- [x] glavni AI Explained homepage linkuje novi Serbian Academy track.
+- [x] glavni AI Explained homepage linkuje Serbian Academy track.
 
-## Curriculum iz izvornog VibeCode Academy dokumenta
+## Curriculum
 - [x] A0 — Osnove komunikacije sa AI agentom.
 - [x] A1 — Hermes Basic, OpenClaw Basic, Codex Basic, Claude Code Basic, coding ecosystem i izbor agenta.
 - [x] A2 — Hermes Advanced, OpenClaw Advanced, coding agents advanced i framework mapa.
@@ -43,38 +43,28 @@
 - [x] 4 sertifikaciona nivoa.
 - [x] 5 glavnih mentalnih modela.
 
-## Broj lekcija
-- [x] 66 konkretnih lekcija/capstone projekata postoji u registry-ju i može da se otvori kroz Academy UI.
+## Coverage
+- [x] 67 konkretnih lekcija/capstone projekata postoji u registry-ju i otvara se kroz Academy UI.
+- [x] Signature Batch 1 — agent brief, terminal, Git, API, webhook, n8n, MCP, Calendar, debugging i secret incident.
+- [x] Signature Batch 2 — browser/server, JSON, OAuth, n8n agent, multi-agent, Composio, voice pipeline, Firestore, Cloudflare i log correlation.
+- [x] Signature Batch 3 — Hermes/OpenClaw/Codex/Claude basic, GitHub teamwork/CLI, auth, webhook debugging, n8n API i custom MCP.
+- [x] Signature Batch 4 — tool permissions, voice tools, ElevenLabs, Firebase App Hosting, Vercel, Tailscale, task design, human+agent teamwork, docs i agent safety.
+- [x] Signature Batch 5 — coding ecosystem, agent choice, Hermes/OpenClaw advanced, coding advanced, framework map i Vibe production labs.
+- [x] Signature Batch 6 — digital layers, project structure, Git vs GitHub, coding brief, Codex team loop, Vibe lifecycle, dev-agent architecture, HTTP headers, n8n anatomy i MCP anatomy.
+- [x] Signature Batch 7 — local→production, evidence/readback discipline i svih 5 završnih capstone simulatora.
+- [x] Sve Academy lekcije sada imaju temu-specifičan signature lab pored generic lesson interakcija.
 
-## Signature interaction batch 1
-- [x] A0 Agent Brief Builder — loš vs dobar brief + structured task fields.
-- [x] Terminal simulator — `pwd`, `ls`, `npm run dev`, `curl` i dokaz šta svaka komanda potvrđuje.
-- [x] Git workflow mini lab — status → stage → commit → push → PR → review → merge.
-- [x] API request builder — GET/POST/PATCH/DELETE sa request/response prikazom.
-- [x] Webhook retry/idempotency simulator — dupli delivery vs jedan database write.
-- [x] n8n visual workflow builder — Webhook → Validacija → AI Agent → Sheets → Slack → Email.
-- [x] MCP capability lab — connect, discovery, read tool, write tool i human approval.
-- [x] Calendar booking simulator — availability, timezone, event ID i cancellation verification.
-- [x] Debugging layer isolation lab — browser/frontend/backend/API/auth/database/deployment/DNS/provider slojevi.
-- [x] Secret incident response lab — revoke, rotate, scope-down, history plan, secret store i audit.
+## Repo/CI popravke urađene tokom Academy build-a
+- [x] dodat GitHub Actions `npm ci → typecheck → production build` workflow.
+- [x] dodat `concurrency/cancel-in-progress` da zastareli CI runovi ne prave backlog.
+- [x] uklonjen root JSX type collision koji je `active` props pretvarao u `never`.
+- [x] vraćen neutralni legacy `active?: unknown` compatibility shim bez sužavanja pravih component prop tipova.
+- [x] `TraceTimeline.active` ponovo optional za read-only trace prikaze.
 
-## Signature interaction batch 2 — sledeće
-- [ ] HTTP request/response inspector sa status kodovima 200/201/400/401/403/404/429/500/502/530.
-- [ ] JSON fixer + nested-path mapper.
-- [ ] OAuth consent/scopes/redirect simulator.
-- [ ] n8n AI Agent node assembler: model + prompt + memory + tools + guardrails + fallback + approval.
-- [ ] Multi-agent handoff/router visualizer.
-- [ ] Composio connected-account / toolkit / MCP credential mapper.
-- [ ] Voice realtime pipeline STT → LLM → tool → TTS.
-- [ ] Firebase data/rules mini lab.
-- [ ] Cloudflare/tunnel diagnostic control room.
-- [ ] GitHub Actions/log correlation lab.
-
-## QA još otvoren
-- [ ] fresh `npm ci` — pokušano, execution environment nema DNS pristup GitHub-u.
-- [ ] `npm run typecheck`.
-- [ ] `npm run build`.
-- [ ] desktop browser visual QA.
+## QA
+- [ ] GitHub Actions typecheck zelen na finalnom Academy commit-u.
+- [ ] GitHub Actions production build zelen na finalnom Academy commit-u.
+- [ ] desktop browser visual QA kompletne Academy putanje.
 - [ ] mobile/touch visual QA.
-- [ ] Playwright course navigation/progress tests.
-- [ ] cloud account/progress sync.
+- [ ] Playwright course navigation/progress/gating tests.
+- [ ] cloud account/progress sync — nije deo local-first v1.
