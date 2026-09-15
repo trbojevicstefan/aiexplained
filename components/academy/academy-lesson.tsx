@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { AiMascot } from "@/components/mascots/ai-mascot";
 import { AcademyLabRouter, hasAcademyLab } from "@/components/academy/academy-lab-router";
 import { academyPhases, type AcademyLessonWithPhase } from "@/content/academy-course";
 import styles from "./academy-lesson.module.css";
@@ -165,26 +164,26 @@ export function AcademyLesson({ lesson, previous, next }: Props) {
     setQuizSubmitted(true);
   }
 
-  const mascotMood = passed ? "excited" : progress > 65 ? "happy" : progress > 30 ? "thinking" : "neutral";
+  const lessonStatus = passed ? "POLOŽENO" : quizUnlocked ? "READY FOR CHECK" : "IN PROGRESS";
 
   return (
     <main className={styles.page} data-academy-lesson={lesson.slug} style={{ "--accent": lesson.phaseColor } as React.CSSProperties}>
       <header className={styles.topbar}>
         <button className={styles.menuButton} onClick={() => setDrawerOpen(true)} aria-label="Otvori program"><span /> <span /> <span /></button>
-        <Link className={styles.brand} href="/ai-academy"><b>AI</b><span>ACADEMY</span><small>SR</small></Link>
+        <Link className={styles.brand} href="/ai-academy"><b>AI ACADEMY</b><small>SR</small></Link>
         <div className={styles.topIdentity}><span>{lesson.phaseNumber} · {lesson.phaseTitle}</span><strong>{lesson.title}</strong></div>
         <div className={styles.topProgress}><div><span>{progress}%</span><small>{taskDone}/{tasks.length} zadataka</small></div><i><b style={{ width: `${progress}%` }} /></i></div>
-        <div className={styles.topMascot}><AiMascot variant="bot" accent={lesson.phaseColor} mood={mascotMood} size={52} label="MENTOR" /></div>
+        <div className={styles.topStatus} data-passed={passed || undefined}><span>STATUS</span><b>{lessonStatus}</b></div>
       </header>
 
       {drawerOpen && <button className={styles.drawerBackdrop} onClick={() => setDrawerOpen(false)} aria-label="Zatvori program" />}
       <aside className={`${styles.drawer} ${drawerOpen ? styles.drawerOpen : ""}`}>
-        <header><div><span>AI ACADEMY</span><b>Program</b></div><button onClick={() => setDrawerOpen(false)}>×</button></header>
-        <div className={styles.drawerProgress}><span>Tvoj napredak u lekciji</span><strong>{progress}%</strong><i><b style={{ width: `${progress}%` }} /></i></div>
+        <header><div><span>AI ACADEMY / SR</span><b>Program</b></div><button onClick={() => setDrawerOpen(false)}>×</button></header>
+        <div className={styles.drawerProgress}><span>Napredak u lekciji</span><strong>{progress}%</strong><i><b style={{ width: `${progress}%` }} /></i></div>
         <nav>
           {academyPhases.map((phase) => (
             <section key={phase.id}>
-              <h3><span style={{ background: phase.color }}>{phase.number}</span>{phase.title}</h3>
+              <h3><span style={{ borderColor: phase.color }}>{phase.number}</span>{phase.title}</h3>
               {phase.lessons.map((item, index) => (
                 <Link key={item.slug} href={`/ai-academy/lekcije/${item.slug}`} onClick={() => setDrawerOpen(false)} className={item.slug === lesson.slug ? styles.drawerActive : ""}>
                   <small>{String(index + 1).padStart(2, "0")}</small>{item.title}
@@ -203,24 +202,27 @@ export function AcademyLesson({ lesson, previous, next }: Props) {
           <div className={styles.heroMeta}><span>{lesson.minutes} min</span><span>{lesson.topics.length} ključnih tema</span><span>{lesson.practice.length} praktična koraka</span></div>
           <div className={styles.takeaway}><b>MENTALNI MODEL</b><p>{lesson.takeaway}</p></div>
         </div>
-        <div className={styles.heroStage}>
-          <AiMascot variant="bot" accent={lesson.phaseColor} mood="happy" size={150} label="MENTOR" />
-          <div className={styles.orbitOne} /><div className={styles.orbitTwo} />
-          <span className={styles.floatChip}>CILJ</span><span className={styles.floatChip}>ALATI</span><span className={styles.floatChip}>DOKAZ</span>
-        </div>
+        <aside className={styles.heroStage}>
+          <header><span>LESSON / DOSSIER</span><b>{lesson.phaseNumber}.{String(lesson.index + 1).padStart(2, "0")}</b></header>
+          <div className={styles.dossierRow}><span>OBJECTIVE</span><p>{lesson.summary}</p></div>
+          <div className={styles.dossierRow}><span>FAILURE MODE</span><p>{lesson.failure}</p></div>
+          <div className={styles.dossierRow}><span>EVIDENCE</span><p>{lesson.verify[0] ?? "Postoji realan readback rezultata."}</p></div>
+          <div className={styles.dossierRow}><span>METHOD</span><p>Razumi → uradi → izazovi grešku → proveri → objasni.</p></div>
+          <footer><span>COMPLETE</span><strong>{taskDone}/{tasks.length}</strong><i><b style={{ width: `${progress}%` }} /></i></footer>
+        </aside>
       </section>
 
       <section className={styles.section} data-section="concepts">
-        <div className={styles.sectionHead}><span>01</span><div><small>RAZUMI</small><h2>Otvori koncept deo po deo.</h2><p>Klikni svaku karticu. Ne pokušavaj da zapamtiš termin — objasni sebi čemu služi u stvarnom sistemu.</p></div></div>
+        <div className={styles.sectionHead}><span>01</span><div><small>RAZUMI</small><h2>Otvori koncept deo po deo.</h2><p>Klikni svaku stavku. Ne uči naziv napamet — poveži pojam sa odgovornošću u realnom sistemu.</p></div></div>
         <div className={styles.topicGrid}>
           {lesson.topics.map((topic, index) => {
             const open = revealed.includes(index);
-            return <motion.button key={topic} className={`${styles.topicCard} ${open ? styles.topicOpen : ""}`} onClick={() => setRevealed((current) => current.includes(index) ? current : [...current, index])} whileTap={{ scale: .96 }} whileHover={reduced ? undefined : { y: -5 }}>
-              <span>{String(index + 1).padStart(2, "0")}</span><strong>{topic}</strong><p>{open ? `Ovaj pojam je deo lekcije „${lesson.title}“. Poveži ga sa ciljem: ${lesson.takeaway}` : "Klikni da otvoriš"}</p><b>{open ? "✓" : "+"}</b>
+            return <motion.button key={topic} className={`${styles.topicCard} ${open ? styles.topicOpen : ""}`} onClick={() => setRevealed((current) => current.includes(index) ? current : [...current, index])} whileTap={{ scale: .985 }} whileHover={reduced ? undefined : { y: -2 }}>
+              <span>{String(index + 1).padStart(2, "0")}</span><strong>{topic}</strong><p>{open ? `Poveži ovaj pojam sa glavnim pravilom: ${lesson.takeaway}` : "Otvori objašnjenje"}</p><b>{open ? "DONE" : "OPEN"}</b>
             </motion.button>;
           })}
         </div>
-        <div className={styles.taskStatus} data-done={conceptsSolved}>{conceptsSolved ? "✓ Svi koncepti otvoreni" : `${revealed.length}/${lesson.topics.length} koncepta otvoreno`}</div>
+        <div className={styles.taskStatus} data-done={conceptsSolved}>{conceptsSolved ? "✓ Svi koncepti obrađeni" : `${revealed.length}/${lesson.topics.length} otvoreno`}</div>
       </section>
 
       {hasLab && <section className={styles.signatureSection} data-section="lab">
@@ -228,31 +230,31 @@ export function AcademyLesson({ lesson, previous, next }: Props) {
       </section>}
 
       <section className={`${styles.section} ${styles.darkSection}`} data-section="practice">
-        <div className={styles.sectionHead}><span>02</span><div><small>URADI</small><h2>Složi praktičan workflow.</h2><p>Koraci su namerno pomešani. Prevuci ih ili koristi strelice da vratiš logičan redosled.</p></div></div>
+        <div className={styles.sectionHead}><span>02</span><div><small>IZVEDI</small><h2>Složi praktičan workflow.</h2><p>Koraci su namerno pomešani. Prevuci ih ili koristi strelice da rekonstruišeš pouzdan proces.</p></div></div>
         <div className={styles.practiceBoard}>
           {practiceOrder.map((step, index) => (
             <motion.article key={step} draggable onDragStart={() => setDragIndex(index)} onDragOver={(event) => event.preventDefault()} onDrop={() => { if (dragIndex !== null) movePractice(dragIndex, index); setDragIndex(null); }} className={styles.practiceCard} layout>
-              <span className={styles.dragHandle}>⠿</span><b>{index + 1}</b><p>{step}</p><div><button disabled={index === 0} onClick={() => movePractice(index, index - 1)}>↑</button><button disabled={index === practiceOrder.length - 1} onClick={() => movePractice(index, index + 1)}>↓</button></div>
+              <span className={styles.dragHandle}>⋮⋮</span><b>{String(index + 1).padStart(2, "0")}</b><p>{step}</p><div><button disabled={index === 0} onClick={() => movePractice(index, index - 1)}>↑</button><button disabled={index === practiceOrder.length - 1} onClick={() => movePractice(index, index + 1)}>↓</button></div>
             </motion.article>
           ))}
         </div>
-        <div className={styles.taskStatus} data-done={workflowSolved}>{workflowSolved ? "✓ Workflow je u dobrom redosledu" : "Još nije tačan redosled"}</div>
+        <div className={styles.taskStatus} data-done={workflowSolved}>{workflowSolved ? "✓ Workflow je u dobrom redosledu" : "Redosled još nije ispravan"}</div>
       </section>
 
       <section className={styles.section} data-section="debug">
-        <div className={styles.sectionHead}><span>03</span><div><small>POKVARI I POPRAVI</small><h2>Debugging scenario.</h2><p>Namerno izazvana greška je deo svake Academy lekcije. Cilj je da prvo pronađeš sloj problema, pa tek onda menjaš sistem.</p></div></div>
+        <div className={styles.sectionHead}><span>03</span><div><small>DIJAGNOSTIKUJ</small><h2>Incident scenario.</h2><p>Prvo identifikuj dokaz i sloj problema. Tek onda menjaš sistem.</p></div></div>
         <div className={styles.incident}>
-          <div className={styles.incidentHeader}><AiMascot variant="tile" accent="#ff667f" mood={debugSolved ? "happy" : "thinking"} size={84} label="DEBUG" /><div><span>INCIDENT</span><h3>{lesson.failure}</h3></div></div>
+          <div className={styles.incidentHeader}><div className={styles.incidentMark}>INC<br/>01</div><div><span>FAILURE MODE</span><h3>{lesson.failure}</h3></div></div>
           <p>Koji kriterijum treba prvo da proveriš?</p>
           {[lesson.verify[0] ?? "Proveri stvarni output.", "Promeni nekoliko stvari odjednom dok ne proradi.", "Ignoriši logove i pretpostavi da je alat kriv."].map((option, index) => (
-            <button key={option} className={`${styles.debugOption} ${debugChoice === index ? styles.debugSelected : ""}`} onClick={() => { setDebugChoice(index); if (index === 0) setDebugSolved(true); }}><span>{String.fromCharCode(65 + index)}</span>{option}{debugChoice === index && <b>{index === 0 ? "TAČNO" : "PROBAJ OPET"}</b>}</button>
+            <button key={option} className={`${styles.debugOption} ${debugChoice === index ? styles.debugSelected : ""}`} onClick={() => { setDebugChoice(index); if (index === 0) setDebugSolved(true); }}><span>{String.fromCharCode(65 + index)}</span>{option}{debugChoice === index && <b>{index === 0 ? "VALID" : "REJECTED"}</b>}</button>
           ))}
         </div>
-        <div className={styles.taskStatus} data-done={debugSolved}>{debugSolved ? "✓ Incident pravilno dijagnostikovan" : "Izaberi prvi dobar verification korak"}</div>
+        <div className={styles.taskStatus} data-done={debugSolved}>{debugSolved ? "✓ Incident pravilno dijagnostikovan" : "Izaberi prvi pouzdan verification korak"}</div>
       </section>
 
       <section className={`${styles.section} ${styles.verifySection}`} data-section="verify">
-        <div className={styles.sectionHead}><span>04</span><div><small>DOKAŽI</small><h2>Tvrdnja nije dokaz.</h2><p>Označi svaku proveru tek kada razumeš šta ona potvrđuje. Ovo je deo koji razlikuje demo od ozbiljnog sistema.</p></div></div>
+        <div className={styles.sectionHead}><span>04</span><div><small>DOKAŽI</small><h2>Tvrdnja nije dokaz.</h2><p>Označi proveru tek kada razumeš šta ona potvrđuje. Production standard je spolja proverljiv rezultat.</p></div></div>
         <div className={styles.verifyGrid}>
           {lesson.verify.map((item, index) => (
             <button key={item} onClick={() => setVerified((current) => current.map((value, i) => i === index ? !value : value))} className={verified[index] ? styles.verified : ""}>
@@ -264,18 +266,18 @@ export function AcademyLesson({ lesson, previous, next }: Props) {
       </section>
 
       <section className={styles.section} data-section="explain">
-        <div className={styles.sectionHead}><span>05</span><div><small>OBJASNI NAZAD</small><h2>Objasni kao kolegi koji nije tehnički.</h2><p>Ako možeš jasno da objasniš svojim rečima, verovatno si zaista razumeo. Minimum je 14 reči.</p></div></div>
+        <div className={styles.sectionHead}><span>05</span><div><small>OBJASNI</small><h2>Objasni sistem bez buzzword-a.</h2><p>Ako razumeš odgovornosti i tok, možeš da ih objasniš jednostavno. Minimum je 14 reči.</p></div></div>
         <div className={styles.explainBox}>
-          <AiMascot variant="star" accent="#ffd75b" mood={explainSolved ? "excited" : "thinking"} size={98} label="IDEA" />
-          <div><label>Šta je najvažnije što si naučio iz lekcije „{lesson.title}“?</label><textarea value={explanation} onChange={(event) => setExplanation(event.target.value)} placeholder="Objasni svojim rečima, bez kopiranja definicije..." /><div><span>{explainWords} reči</span><b>{explainSolved ? "Dovoljno jasno za quiz ✓" : "Još malo razradi objašnjenje"}</b></div></div>
+          <div className={styles.explainMark}><span>FYN</span><b>MAN</b><small>CHECK</small></div>
+          <div><label>Šta je najvažnije što si naučio iz lekcije „{lesson.title}“?</label><textarea value={explanation} onChange={(event) => setExplanation(event.target.value)} placeholder="Objasni svojim rečima, bez kopiranja definicije..." /><div><span>{explainWords} reči</span><b>{explainSolved ? "Dovoljno jasno za final check ✓" : "Razradi mehanizam i dokaz"}</b></div></div>
         </div>
         <div className={styles.taskStatus} data-done={explainSolved}>{explainSolved ? "✓ Explain-back završen" : "Napiši najmanje 14 smislenih reči"}</div>
       </section>
 
       <section id="quiz" className={styles.quizSection}>
         <div className={styles.quizHeader}>
-          <div><span>FINAL CHECK</span><h2>{quizUnlocked ? "Quiz je otključan." : "Quiz je još zaključan."}</h2><p>{quizUnlocked ? "Treba ti 4/5 za prolaz. Pogrešan odgovor nije kazna — vrati se na mentalni model." : `Pročitaj sve delove (${visited.filter((item) => requiredSections.includes(item)).length}/${requiredSections.length}) i završi sve zadatke (${taskDone}/${tasks.length}).`}</p></div>
-          <div className={styles.quizLock}><AiMascot variant="briefcase" accent={quizUnlocked ? "#82e9ad" : "#7d8490"} mood={quizUnlocked ? "happy" : "neutral"} size={108} label={quizUnlocked ? "READY" : "LOCKED"} /><b>{quizUnlocked ? "UNLOCKED" : "LOCKED"}</b></div>
+          <div><span>FINAL CHECK</span><h2>{quizUnlocked ? "Provera je otključana." : "Provera je zaključana."}</h2><p>{quizUnlocked ? "Treba ti 4/5 za prolaz. Cilj je proveriti mentalni model, ne pogađati pitanja." : `Pročitaj sve delove (${visited.filter((item) => requiredSections.includes(item)).length}/${requiredSections.length}) i završi sve zadatke (${taskDone}/${tasks.length}).`}</p></div>
+          <div className={styles.quizLock}><span className={styles.quizBadge}>{quizUnlocked ? "READY" : "LOCKED"}</span><b>{progress}% COMPLETE</b></div>
         </div>
 
         {quizUnlocked && <div className={styles.quizBody}>
@@ -291,13 +293,13 @@ export function AcademyLesson({ lesson, previous, next }: Props) {
             </article>
           ))}
           <button className={styles.submitQuiz} disabled={quizAnswers.some((answer) => answer === null)} onClick={submitQuiz}>Proveri odgovore</button>
-          {quizSubmitted && <div className={`${styles.quizResult} ${passed ? styles.quizPassed : styles.quizFailed}`}><AiMascot variant={passed ? "star" : "bot"} accent={passed ? "#ffd75b" : "#ff8067"} mood={passed ? "excited" : "thinking"} size={92} label={passed ? "PASS" : "RETRY"} /><div><span>{score}/5</span><h3>{passed ? "Lekcija položena!" : "Još jedan prolaz."}</h3><p>{passed ? "Napredak je sačuvan. Možeš na sledeću lekciju." : "Vrati se na pogrešne mentalne modele, pa pokušaj ponovo."}</p></div></div>}
+          {quizSubmitted && <div className={`${styles.quizResult} ${passed ? styles.quizPassed : styles.quizFailed}`}><div className={styles.resultScore}><span>{score}</span><small>/ 5</small></div><div><h3>{passed ? "Lekcija položena." : "Potrebna je još jedna iteracija."}</h3><p>{passed ? "Napredak je sačuvan. Možeš na sledeću lekciju." : "Vrati se na pogrešne mentalne modele, pa pokušaj ponovo."}</p></div></div>}
         </div>}
       </section>
 
       <footer className={styles.lessonFooter}>
         {previous ? <Link href={`/ai-academy/lekcije/${previous.slug}`}>← <span><small>PRETHODNA</small><b>{previous.title}</b></span></Link> : <Link href="/ai-academy">← <span><small>PROGRAM</small><b>AI Academy</b></span></Link>}
-        {next ? <Link className={!passed ? styles.nextLocked : ""} href={passed ? `/ai-academy/lekcije/${next.slug}` : "#quiz"} onClick={(event) => { if (!passed) event.preventDefault(); }}><span><small>{passed ? "SLEDEĆA" : "POLOŽI QUIZ"}</small><b>{next.title}</b></span> →</Link> : <Link href="/ai-academy"><span><small>ZAVRŠENO</small><b>Nazad na program</b></span> →</Link>}
+        {next ? <Link className={!passed ? styles.nextLocked : ""} href={passed ? `/ai-academy/lekcije/${next.slug}` : "#quiz"} onClick={(event) => { if (!passed) event.preventDefault(); }}><span><small>{passed ? "SLEDEĆA" : "POLOŽI PROVERU"}</small><b>{next.title}</b></span> →</Link> : <Link href="/ai-academy"><span><small>ZAVRŠENO</small><b>Nazad na program</b></span> →</Link>}
       </footer>
     </main>
   );
