@@ -5,7 +5,7 @@ import type { FC } from "react";
 import styles from "./trace-timeline.module.css";
 
 export type TraceSpan={id:string;parent?:string;kind:"agent"|"llm"|"retrieval"|"tool"|"guardrail";name:string;start:number;duration:number;status:"ok"|"error"|"warning";tokens?:number;cost?:number;detail:string};
-export type TraceTimelineProps={spans:TraceSpan[];active?:string;onSelect?:(span:TraceSpan)=>void};
+export type TraceTimelineProps={spans:TraceSpan[];active:string;onSelect?:(span:TraceSpan)=>void};
 
 export const TraceTimeline:FC<TraceTimelineProps>=({spans,active,onSelect})=>{
  const end=Math.max(...spans.map(s=>s.start+s.duration),1);
