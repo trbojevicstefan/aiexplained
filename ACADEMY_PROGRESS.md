@@ -17,6 +17,7 @@
 - [x] verification checklist.
 - [x] typed explain-back zadatak.
 - [x] quiz zaključan dok svi obavezni delovi i zadaci nisu završeni.
+- [x] custom signature lab se automatski dodaje kao dodatni obavezni task kada lekcija ima specifičan simulator.
 - [x] 5-question lesson quiz sa minimum 4/5 za prolaz.
 - [x] previous/next navigation zaključan napred dok lekcija nije položena.
 - [x] glavni AI Explained homepage linkuje novi Serbian Academy track.
@@ -45,21 +46,32 @@
 ## Broj lekcija
 - [x] 66 konkretnih lekcija/capstone projekata postoji u registry-ju i može da se otvori kroz Academy UI.
 
-## Sledeći custom-interaction batch
-- [ ] A0 Agent Brief Builder — loš vs dobar brief, approval i verification simulator.
-- [ ] Terminal sandbox simulator.
-- [ ] Git/GitHub commit + PR mini lab.
-- [ ] HTTP request/response inspector.
-- [ ] API request builder + JSON fixer.
-- [ ] Webhook event simulator + retry/idempotency.
-- [ ] n8n visual workflow builder.
-- [ ] MCP tool discovery/schema/execution simulator.
-- [ ] Voice booking simulator sa event-ID verification pravilom.
-- [ ] Debugging layer isolation lab.
-- [ ] Secrets/permission incident lab.
+## Signature interaction batch 1
+- [x] A0 Agent Brief Builder — loš vs dobar brief + structured task fields.
+- [x] Terminal simulator — `pwd`, `ls`, `npm run dev`, `curl` i dokaz šta svaka komanda potvrđuje.
+- [x] Git workflow mini lab — status → stage → commit → push → PR → review → merge.
+- [x] API request builder — GET/POST/PATCH/DELETE sa request/response prikazom.
+- [x] Webhook retry/idempotency simulator — dupli delivery vs jedan database write.
+- [x] n8n visual workflow builder — Webhook → Validacija → AI Agent → Sheets → Slack → Email.
+- [x] MCP capability lab — connect, discovery, read tool, write tool i human approval.
+- [x] Calendar booking simulator — availability, timezone, event ID i cancellation verification.
+- [x] Debugging layer isolation lab — browser/frontend/backend/API/auth/database/deployment/DNS/provider slojevi.
+- [x] Secret incident response lab — revoke, rotate, scope-down, history plan, secret store i audit.
+
+## Signature interaction batch 2 — sledeće
+- [ ] HTTP request/response inspector sa status kodovima 200/201/400/401/403/404/429/500/502/530.
+- [ ] JSON fixer + nested-path mapper.
+- [ ] OAuth consent/scopes/redirect simulator.
+- [ ] n8n AI Agent node assembler: model + prompt + memory + tools + guardrails + fallback + approval.
+- [ ] Multi-agent handoff/router visualizer.
+- [ ] Composio connected-account / toolkit / MCP credential mapper.
+- [ ] Voice realtime pipeline STT → LLM → tool → TTS.
+- [ ] Firebase data/rules mini lab.
+- [ ] Cloudflare/tunnel diagnostic control room.
+- [ ] GitHub Actions/log correlation lab.
 
 ## QA još otvoren
-- [ ] fresh `npm ci`.
+- [ ] fresh `npm ci` — pokušano, execution environment nema DNS pristup GitHub-u.
 - [ ] `npm run typecheck`.
 - [ ] `npm run build`.
 - [ ] desktop browser visual QA.
